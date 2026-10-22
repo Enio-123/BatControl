@@ -87,10 +87,10 @@ export const UNITS: Unit[] = [
         exercises: [
           { kind: 'choice', answer: 0 },
           { kind: 'choice', answer: 0 },
-          { kind: 'fill', code: 'robot = DriveBase(left_motor, right_motor, wheel_diameter=___, axle_track=140)', answers: [['56']] },
+          { kind: 'fill', code: 'robot = DriveBase(left_motor, right_motor, wheel_diameter=___, axle_track=150)', answers: [['62.4', '62,4']] },
           {
             kind: 'order',
-            lines: ['hub = PrimeHub()', 'left_motor = Motor(Port.A, Direction.COUNTERCLOCKWISE)', 'right_motor = Motor(Port.B)', 'robot = DriveBase(left_motor, right_motor, wheel_diameter=56, axle_track=140)', 'robot.straight(200)'],
+            lines: ['hub = PrimeHub()', 'left_motor = Motor(Port.A, positive_direction=Direction.COUNTERCLOCKWISE)', 'right_motor = Motor(Port.B, positive_direction=Direction.CLOCKWISE)', 'robot = DriveBase(left_motor, right_motor, wheel_diameter=62.4, axle_track=150)', 'robot.straight(200)'],
           },
           {
             kind: 'code',
@@ -98,8 +98,8 @@ export const UNITS: Unit[] = [
 
 hub = PrimeHub()
 left_motor = Motor(Port.A)
-right_motor = Motor(Port.B)
-robot = DriveBase(left_motor, right_motor, wheel_diameter=56, axle_track=140)
+right_motor = Motor(Port.B, positive_direction=Direction.CLOCKWISE)
+robot = DriveBase(left_motor, right_motor, wheel_diameter=62.4, axle_track=150)
 
 robot.straight(400)
 `,
@@ -629,7 +629,7 @@ for i in range(8):
         exercises: [
           { kind: 'choice', answer: 0 },
           { kind: 'choice', answer: 0 },
-          { kind: 'fill', code: 'robot = DriveBase(left_motor, right_motor, wheel_diameter=___, axle_track=140)', answers: [['57.4', '57.40']] },
+          { kind: 'fill', code: 'robot = DriveBase(left_motor, right_motor, wheel_diameter=___, axle_track=150)', answers: [['64', '64.0', '63.96', '64,0', '63,96']] },
         ],
       },
       {
@@ -917,9 +917,9 @@ robot.straight(-606)`),
             starter: `${IMPORTS}
 
 hub = PrimeHub()
-left_motor = Motor(Port.A, Direction.COUNTERCLOCKWISE)
-right_motor = Motor(Port.B)
-robot = DriveBase(left_motor, right_motor, wheel_diameter=56, axle_track=140)
+left_motor = Motor(Port.A, positive_direction=Direction.COUNTERCLOCKWISE)
+right_motor = Motor(Port.B, positive_direction=Direction.CLOCKWISE)
+robot = DriveBase(left_motor, right_motor, wheel_diameter=62.4, axle_track=150)
 sensor = ColorSensor(Port.F)
 
 robot.drive(200, 0)
@@ -929,7 +929,7 @@ robot.stop()
 `,
             targets: [zoneTarget('red')],
             check: (r) => (inZone(sensorAt(r.final), 'red') ? null : t('chk.stopRed')),
-            solution: program('robot.drive(200, 0)\nwhile sensor.color() != Color.RED:\n    wait(10)\nrobot.stop()', false).replace('robot = DriveBase(left_motor, right_motor, wheel_diameter=56, axle_track=140)', 'robot = DriveBase(left_motor, right_motor, wheel_diameter=56, axle_track=140)\nsensor = ColorSensor(Port.E)'),
+            solution: program('robot.drive(200, 0)\nwhile sensor.color() != Color.RED:\n    wait(10)\nrobot.stop()', false).replace('robot = DriveBase(left_motor, right_motor, wheel_diameter=62.4, axle_track=150)', 'robot = DriveBase(left_motor, right_motor, wheel_diameter=62.4, axle_track=150)\nsensor = ColorSensor(Port.D)'),
           },
         ],
       },

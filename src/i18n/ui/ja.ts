@@ -105,7 +105,7 @@ export const UI: Record<string, string> = {
   "e.negTime": "run_time() の時間はマイナスにできません",
   "e.zeroSpeed": "速度 0 の {f}() は終わりません",
   "e.stalled": "run_until_stalled() は実物のアタッチメントが止まることを前提にしていて、シミュレーターでは再現できません。run_angle() か run_target() を使ってください。",
-  "e.dbMotors": "DriveBase() には Motor が 2 つ必要です：DriveBase(left_motor, right_motor, wheel_diameter=56, axle_track=...)",
+  "e.dbMotors": "DriveBase() には Motor が 2 つ必要です：DriveBase(left_motor, right_motor, wheel_diameter=62.4, axle_track=...)",
   "e.dbSame": "左右のモーターは別のものにしてください",
   "e.dbTaken": "これらのモーターはすでに別の DriveBase で使われています",
   "e.dbSize": "wheel_diameter と axle_track は 0 より大きくしてください（単位は mm）",

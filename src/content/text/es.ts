@@ -25,7 +25,7 @@ export const TEXT: ContentText = {
     },
     motor: {
       title: 'Motor(): crear un motor',
-      summary: 'Crea el objeto que controla un motor conectado a un puerto del hub (A a F). En el robot estándar de BatControl, las ruedas están en los puertos A y B y los accesorios en los puertos C y D.',
+      summary: 'Crea el objeto que controla un motor conectado a un puerto del hub (A a F). En el robot estándar de BatControl, las ruedas están en los puertos A y B y los accesorios en los puertos C y E.',
       params: [
         ['Port.A … Port.F', 'Puerto del hub donde está conectado el cable del motor.'],
         ['Direction', 'Qué sentido cuenta como positivo. El motor de la rueda izquierda está montado en espejo, por eso usamos COUNTERCLOCKWISE en él.'],
@@ -42,7 +42,7 @@ export const TEXT: ContentText = {
       params: [
         ['Motor', 'Motor de la rueda izquierda.'],
         ['Motor', 'Motor de la rueda derecha.'],
-        ['mm', 'Diámetro de la rueda. La rueda del SPIKE Prime mide 56 mm.'],
+        ['mm', 'Diámetro de la rueda. El robot de BatLego usa ruedas de 62,4 mm (la rueda pequeña del SPIKE Prime mide 56 mm).'],
         ['mm', 'Distancia entre los puntos donde las dos ruedas tocan el suelo.'],
       ],
       tips: [
@@ -229,7 +229,7 @@ export const TEXT: ContentText = {
     u1: { title: 'Conoce Pybricks', desc: 'Qué es un programa y cómo aparece el robot en el código.' },
     u2: { title: 'Avanzar y girar', desc: 'straight() y turn(): los dos comandos más usados en FLL.' },
     u3: { title: 'Curvas y velocidad', desc: 'curve() para trayectorias suaves y settings() para marcar el ritmo.' },
-    u4: { title: 'Accesorios', desc: 'Motores en los puertos C y D, que mueven los accesorios de las misiones.' },
+    u4: { title: 'Accesorios', desc: 'Motores en los puertos C y E, que mueven los accesorios de las misiones.' },
     u5: { title: 'Sensor de color', desc: 'Parar en la línea negra y seguir una línea.' },
     u6: { title: 'Lógica de programación', desc: 'Repetir con for, decidir con if y organizar misiones con def.' },
     u7: { title: 'Misión completa', desc: 'Junta todo en una salida real, dentro del tiempo de la partida.' },
@@ -253,11 +253,11 @@ export const TEXT: ContentText = {
     },
     u1l2: {
       title: 'El robot en el código',
-      intro: 'Antes de mandar al robot que avance, el programa necesita saber qué hay conectado en cada puerto. En el robot estándar de BatControl:\n\nPuerto A: rueda izquierda. Puerto B: rueda derecha. Puertos C y D: motores de accesorios. Puerto E: sensor de color.\n\nEl motor izquierdo está montado en espejo, así que recibe Direction.COUNTERCLOCKWISE para que "positivo" signifique "adelante" en las dos ruedas.',
+      intro: 'Antes de mandar al robot que avance, el programa necesita saber qué hay conectado en cada puerto. En el robot estándar de BatControl:\n\nPuerto A: rueda izquierda. Puerto B: rueda derecha. Puerto C: accesorio izquierdo. Puerto D: sensor de color. Puerto E: accesorio derecho.\n\nEl motor izquierdo está montado en espejo, así que recibe Direction.COUNTERCLOCKWISE para que "positivo" signifique "adelante" en las dos ruedas.',
       ex: [
-        { prompt: '¿En qué puertos están los motores de las ruedas del robot estándar?', options: ['A y B', 'C y D', 'E y F', 'A y C'], explain: 'Ruedas en A y B, accesorios en C y D, sensor de color en E.' },
+        { prompt: '¿En qué puertos están los motores de las ruedas del robot estándar?', options: ['A y B', 'C y D', 'E y F', 'A y C'], explain: 'Ruedas en A y B, accesorios en C y E, sensor de color en D.' },
         { prompt: '¿Por qué el motor izquierdo usa Direction.COUNTERCLOCKWISE?', options: ['Porque está montado en espejo respecto al derecho', 'Para que el robot sea más rápido', 'Porque el hub solo acepta un motor normal', 'Para moverse de lado'], explain: 'Los dos motores están enfrentados. Sin invertir uno de ellos, las ruedas giran en sentidos opuestos y el robot gira sobre sí mismo.' },
-        { prompt: 'La rueda del SPIKE Prime tiene 56 mm de diámetro. Completa:', explain: 'wheel_diameter es el diámetro de la rueda en mm.' },
+        { prompt: 'Las ruedas del robot de BatLego miden 62,4 mm de diámetro. Completa (con punto: 62.4):', explain: 'wheel_diameter es el diámetro de la rueda en mm.' },
         { prompt: 'Pon las líneas en el orden correcto (los imports ya están).', explain: 'Primero creamos los motores, luego el DriveBase que los usa, y solo después damos comandos.' },
         { prompt: 'Este programa hace que el robot gire sobre sí mismo en lugar de avanzar 400 mm. Ejecútalo para ver el problema y corrige cómo se crean los motores.', hint: 'El motor del puerto A necesita Direction.COUNTERCLOCKWISE.' },
       ],
@@ -310,7 +310,7 @@ export const TEXT: ContentText = {
     },
     u4l1: {
       title: 'run_angle()',
-      intro: 'Los accesorios se mueven con los motores de los puertos C y D. En el simulador son los dos engranajes encima del robot.\n\nleft_arm.run_angle(500, 180) gira el accesorio izquierdo 180 grados a 500 grados por segundo.',
+      intro: 'Los accesorios se mueven con los motores de los puertos C y E. En el simulador son los dos engranajes encima del robot.\n\nleft_arm.run_angle(500, 180) gira el accesorio izquierdo 180 grados a 500 grados por segundo.',
       ex: [
         { prompt: 'En left_arm.run_angle(500, 90), ¿qué es el 500?', options: ['La velocidad, en grados por segundo', 'El ángulo, en grados', 'El tiempo, en milisegundos', 'La potencia del motor'], explain: 'Primero va la velocidad y después el ángulo.' },
         { prompt: 'Completa para girar el accesorio derecho una vuelta completa.', explain: 'Una vuelta completa son 360 grados.' },
@@ -382,11 +382,11 @@ export const TEXT: ContentText = {
     },
     u8l2: {
       title: 'Calibración',
-      intro: 'El programa solo sabe lo que tú le dices. Si la rueda real es un poco mayor que 56 mm, el robot avanza más de lo pedido.\n\nPara calibrar: avanza 1000 mm y mide. Nuevo wheel_diameter = actual × medido ÷ 1000.\n\nPara el giro: gira 360° y mira cuánto giró. Nuevo axle_track = actual × 360 ÷ giro real.',
+      intro: 'El programa solo sabe lo que tú le dices. Si la rueda real es un poco mayor que 62,4 mm, el robot avanza más de lo pedido.\n\nPara calibrar: avanza 1000 mm y mide. Nuevo wheel_diameter = actual × medido ÷ 1000.\n\nPara el giro: gira 360° y mira cuánto giró. Nuevo axle_track = actual × 360 ÷ giro real.',
       ex: [
         { prompt: 'El robot debía avanzar 1000 mm pero avanzó 980 mm. ¿Qué haces con wheel_diameter?', options: ['Disminuirlo', 'Aumentarlo', 'Mantenerlo y cambiar axle_track', 'Cambiarle el signo'], explain: 'Avanzó menos, así que la rueda real es más pequeña de lo que cree el programa: disminúyelo (56 × 980 ÷ 1000 = 54,9).' },
         { prompt: 'Pedí turn(360) y el robot solo giró 350°. ¿Qué haces con axle_track?', options: ['Aumentarlo', 'Disminuirlo', 'Mantenerlo', 'Ponerlo a cero'], explain: 'Para girar más, el DriveBase debe creer que las ruedas están más separadas: 140 × 360 ÷ 350 = 144.' },
-        { prompt: 'Con wheel_diameter=56 el robot avanzó 1025 mm cuando pedí 1000 mm. Escribe el nuevo valor (56 × 1025 ÷ 1000):', explain: '56 × 1,025 = 57,4 mm.' },
+        { prompt: 'Con wheel_diameter=62.4 el robot avanzó 1025 mm cuando pedí 1000 mm. Escribe el nuevo valor (62,4 × 1025 ÷ 1000, redondeado):', explain: '62,4 × 1,025 = 63,96, unos 64 mm.' },
       ],
     },
     u9l1: {
@@ -633,10 +633,10 @@ export const TEXT: ContentText = {
     },
     u11l4: {
       title: 'Puerto equivocado',
-      intro: 'OSError al crear un dispositivo suele significar que el programa usa un puerto sin nada conectado, o con el dispositivo equivocado.\n\nEn el robot por defecto, el sensor de color está en el puerto E.',
+      intro: 'OSError al crear un dispositivo suele significar que el programa usa un puerto sin nada conectado, o con el dispositivo equivocado.\n\nEn el robot por defecto, el sensor de color está en el puerto D.',
       ex: [
         { prompt: 'El programa se detiene con OSError en la línea sensor = ColorSensor(Port.F). ¿Qué revisas?', options: ['En qué puerto está conectado de verdad el sensor', 'El tamaño de la rueda', 'La velocidad del robot', 'Los comentarios'], explain: 'El error dice que no se encontró nada en ese puerto.' },
-        { prompt: 'Este programa debería parar en la zona roja, pero se detiene con un error. Arréglalo.', hint: 'El sensor de color está en Port.E.' },
+        { prompt: 'Este programa debería parar en la zona roja, pero se detiene con un error. Arréglalo.', hint: 'El sensor de color está en Port.D.' },
       ],
     },
     u12l1: {
@@ -649,7 +649,7 @@ export const TEXT: ContentText = {
     },
     u12l2: {
       title: 'Contra el reloj',
-      intro: 'En una partida cada segundo cuenta. Sube straight_speed y straight_acceleration, pero recuerda: en el robot real, demasiado rápido puede patinar y perder precisión.\n\nLa velocidad máxima de rueda de los motores SPIKE ronda los 490 mm/s.',
+      intro: 'En una partida cada segundo cuenta. Sube straight_speed y straight_acceleration, pero recuerda: en el robot real, demasiado rápido puede patinar y perder precisión.\n\nLa velocidad máxima de rueda de los motores SPIKE ronda los 540 mm/s con ruedas de 62,4 mm.',
       ex: [
         { prompt: '¿Qué cambio ayuda más en un camino largo y recto?', options: ['Subir straight_speed', 'Subir turn_rate', 'Bajar axle_track', 'Añadir wait(100)'], explain: 'En un camino recto, lo que importa es la velocidad de avance.' },
         { prompt: 'Visita la zona roja y la zona azul y vuelve a la BASE 1 en menos de 8 segundos.', hint: 'robot.settings(straight_speed=480, straight_acceleration=1500), straight(1480) y straight(-1480).' },

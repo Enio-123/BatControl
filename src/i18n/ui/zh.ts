@@ -105,7 +105,7 @@ export const UI: Record<string, string> = {
   "e.negTime": "run_time() 的时间不能为负数",
   "e.zeroSpeed": "速度为 0 的 {f}() 永远不会结束",
   "e.stalled": "run_until_stalled() 依赖真实附件被卡住，而模拟器中不存在这种情况。请使用 run_angle() 或 run_target()。",
-  "e.dbMotors": "DriveBase() 需要两个 Motor：DriveBase(left_motor, right_motor, wheel_diameter=56, axle_track=...)",
+  "e.dbMotors": "DriveBase() 需要两个 Motor：DriveBase(left_motor, right_motor, wheel_diameter=62.4, axle_track=...)",
   "e.dbSame": "左电机和右电机必须不同",
   "e.dbTaken": "这些电机已经属于另一个 DriveBase",
   "e.dbSize": "wheel_diameter 和 axle_track 必须大于零（单位 mm）",

@@ -25,7 +25,7 @@ export const TEXT: ContentText = {
     },
     motor: {
       title: 'Motor()：创建电机',
-      summary: '创建一个对象，用来控制插在主机某个端口（A 到 F）上的电机。在 BatControl 的标准机器人上，车轮在 A、B 端口，附件在 C、D 端口。',
+      summary: '创建一个对象，用来控制插在主机某个端口（A 到 F）上的电机。在 BatControl 的标准机器人上，车轮在 A、B 端口，附件在 C、E 端口。',
       params: [
         ['Port.A … Port.F', '电机线插入的主机端口。'],
         ['Direction', '哪个方向算正方向。左轮电机是镜像安装的，所以要用 COUNTERCLOCKWISE。'],
@@ -42,7 +42,7 @@ export const TEXT: ContentText = {
       params: [
         ['Motor', '左轮电机。'],
         ['Motor', '右轮电机。'],
-        ['mm', '车轮直径。SPIKE Prime 的车轮是 56 mm。'],
+        ['mm', '车轮直径。BatLego 的机器人使用 62.4 mm 的车轮（SPIKE Prime 的小车轮是 56 mm）。'],
         ['mm', '两个车轮接触地面的点之间的距离。'],
       ],
       tips: [
@@ -229,7 +229,7 @@ export const TEXT: ContentText = {
     u1: { title: '认识 Pybricks', desc: '什么是程序，以及机器人在代码中如何出现。' },
     u2: { title: '直行与转向', desc: 'straight() 和 turn()：FLL 中最常用的两个指令。' },
     u3: { title: '弧线与速度', desc: '用 curve() 走平滑路线，用 settings() 控制节奏。' },
-    u4: { title: '附件', desc: 'C、D 端口上的电机，用来驱动任务附件。' },
+    u4: { title: '附件', desc: 'C、E 端口上的电机，用来驱动任务附件。' },
     u5: { title: '颜色传感器', desc: '停在黑线上，以及沿线行驶。' },
     u6: { title: '编程逻辑', desc: '用 for 重复，用 if 判断，用 def 组织任务。' },
     u7: { title: '完整任务', desc: '把所学的组合成一次真实的出发，在比赛时间内完成。' },
@@ -253,11 +253,11 @@ export const TEXT: ContentText = {
     },
     u1l2: {
       title: '代码里的机器人',
-      intro: '在让机器人行驶之前，程序需要知道每个端口上插着什么。在 BatControl 的标准机器人上：\n\nA 端口：左轮。B 端口：右轮。C、D 端口：附件电机。E 端口：颜色传感器。\n\n左电机是镜像安装的，所以要加 Direction.COUNTERCLOCKWISE，让两个轮子的“正方向”都表示“向前”。',
+      intro: '在让机器人行驶之前，程序需要知道每个端口上插着什么。在 BatControl 的标准机器人上：\n\nA 端口：左轮。B 端口：右轮。C 端口：左侧附件。D 端口：颜色传感器。E 端口：右侧附件。\n\n左电机是镜像安装的，所以要加 Direction.COUNTERCLOCKWISE，让两个轮子的“正方向”都表示“向前”。',
       ex: [
-        { prompt: '标准机器人的车轮电机在哪些端口？', options: ['A 和 B', 'C 和 D', 'E 和 F', 'A 和 C'], explain: '车轮在 A 和 B，附件在 C 和 D，颜色传感器在 E。' },
+        { prompt: '标准机器人的车轮电机在哪些端口？', options: ['A 和 B', 'C 和 D', 'E 和 F', 'A 和 C'], explain: '车轮在 A 和 B，附件在 C 和 E，颜色传感器在 D。' },
         { prompt: '为什么左电机要用 Direction.COUNTERCLOCKWISE？', options: ['因为它和右电机是镜像安装的', '为了让机器人更快', '因为主机只接受一个普通电机', '为了横着走'], explain: '两个电机面对面安装。如果不把其中一个反向，两个轮子会朝相反方向转，机器人就会原地打转。' },
-        { prompt: 'SPIKE Prime 车轮的直径是 56 mm。补全：', explain: 'wheel_diameter 是以 mm 为单位的车轮直径。' },
+        { prompt: 'BatLego 机器人的车轮直径是 62.4 mm。补全：', explain: 'wheel_diameter 是以 mm 为单位的车轮直径。' },
         { prompt: '把这些行排成正确的顺序（import 已经写好了）。', explain: '先创建电机，再创建使用它们的 DriveBase，最后才下达指令。' },
         { prompt: '这个程序让机器人原地打转，而不是向前走 400 mm。运行它看看问题，然后修正电机的创建方式。', hint: 'A 端口的电机需要 Direction.COUNTERCLOCKWISE。' },
       ],
@@ -310,7 +310,7 @@ export const TEXT: ContentText = {
     },
     u4l1: {
       title: 'run_angle()',
-      intro: '附件由 C、D 端口的电机驱动。在模拟器中，它们是机器人顶部的两个齿轮。\n\nleft_arm.run_angle(500, 180) 以每秒 500 度的速度把左侧附件转 180 度。',
+      intro: '附件由 C、E 端口的电机驱动。在模拟器中，它们是机器人顶部的两个齿轮。\n\nleft_arm.run_angle(500, 180) 以每秒 500 度的速度把左侧附件转 180 度。',
       ex: [
         { prompt: '在 left_arm.run_angle(500, 90) 中，500 是什么？', options: ['速度，单位是度/秒', '角度，单位是度', '时间，单位是毫秒', '电机功率'], explain: '先写速度，再写角度。' },
         { prompt: '补全代码，让右侧附件转一整圈。', explain: '一整圈是 360 度。' },
@@ -382,11 +382,11 @@ export const TEXT: ContentText = {
     },
     u8l2: {
       title: '校准',
-      intro: '程序只知道你告诉它的东西。如果真实车轮比 56 mm 略大，机器人就会走得比要求的远。\n\n校准方法：行驶 1000 mm 并测量。新的 wheel_diameter = 当前值 × 实测值 ÷ 1000。\n\n转向校准：转 360°，看实际转了多少。新的 axle_track = 当前值 × 360 ÷ 实际转角。',
+      intro: '程序只知道你告诉它的东西。如果真实车轮比 62.4 mm 略大，机器人就会走得比要求的远。\n\n校准方法：行驶 1000 mm 并测量。新的 wheel_diameter = 当前值 × 实测值 ÷ 1000。\n\n转向校准：转 360°，看实际转了多少。新的 axle_track = 当前值 × 360 ÷ 实际转角。',
       ex: [
         { prompt: '机器人应该走 1000 mm，实际走了 980 mm。wheel_diameter 应该怎么改？', options: ['减小', '增大', '不变，改 axle_track', '改变正负号'], explain: '走少了，说明真实车轮比程序以为的小：减小它（56 × 980 ÷ 1000 = 54.9）。' },
         { prompt: '我要求 turn(360)，机器人只转了 350°。axle_track 应该怎么改？', options: ['增大', '减小', '不变', '设为零'], explain: '要转得更多，DriveBase 必须认为两轮距离更远：140 × 360 ÷ 350 = 144。' },
-        { prompt: 'wheel_diameter=56 时，我要求走 1000 mm，机器人走了 1025 mm。填入新值（56 × 1025 ÷ 1000）：', explain: '56 × 1.025 = 57.4 mm。' },
+        { prompt: 'wheel_diameter=62.4 时，我要求走 1000 mm，机器人走了 1025 mm。填入新值（62.4 × 1025 ÷ 1000，取整）：', explain: '62.4 × 1.025 = 63.96，约 64 mm。' },
       ],
     },
     u9l1: {
@@ -633,10 +633,10 @@ export const TEXT: ContentText = {
     },
     u11l4: {
       title: '端口错了',
-      intro: '创建设备时出现 OSError，通常表示程序用的端口上没有接设备，或者接的是别的设备。\n\n在默认机器人上，颜色传感器接在 E 端口。',
+      intro: '创建设备时出现 OSError，通常表示程序用的端口上没有接设备，或者接的是别的设备。\n\n在默认机器人上，颜色传感器接在 D 端口。',
       ex: [
         { prompt: '程序在 sensor = ColorSensor(Port.F) 这一行报 OSError 停下。你要检查什么？', options: ['传感器实际接在哪个端口', '轮子大小', '机器人速度', '注释'], explain: '这个错误说明那个端口上什么也没找到。' },
-        { prompt: '这个程序应该停在红色区域，但报错停止了。修好它。', hint: '颜色传感器接在 Port.E。' },
+        { prompt: '这个程序应该停在红色区域，但报错停止了。修好它。', hint: '颜色传感器接在 Port.D。' },
       ],
     },
     u12l1: {
@@ -649,7 +649,7 @@ export const TEXT: ContentText = {
     },
     u12l2: {
       title: '与时间赛跑',
-      intro: '比赛中每一秒都很重要。提高 straight_speed 和 straight_acceleration，但要记住：在真实机器人上，太快可能打滑，精度会下降。\n\nSPIKE 电机的最大轮速大约是 490 mm/s。',
+      intro: '比赛中每一秒都很重要。提高 straight_speed 和 straight_acceleration，但要记住：在真实机器人上，太快可能打滑，精度会下降。\n\n使用 62.4 mm 车轮时，SPIKE 电机的最大轮速大约是 540 mm/s。',
       ex: [
         { prompt: '在一段很长的直线路线上，哪个改动最有帮助？', options: ['提高 straight_speed', '提高 turn_rate', '减小 axle_track', '加上 wait(100)'], explain: '直线路线上，关键是行驶速度。' },
         { prompt: '在 8 秒内经过红色区域和蓝色区域，再回到基地 1。', hint: 'robot.settings(straight_speed=480, straight_acceleration=1500)、straight(1480) 和 straight(-1480)。' },

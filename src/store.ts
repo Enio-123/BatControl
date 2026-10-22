@@ -71,6 +71,12 @@ interface Saved {
 
 const DEFAULT_PREFS: Prefs = { lang: null, theme: 'system', haptics: true, ghost: true, realistic: false, mat: 'training', objects: 'none', editor: 'python' };
 
+/** Configuração padrão antiga (rodas de 56 mm, anexos em C e D, sensor em E): troca pelo robô atual da BatLego. */
+function oldDefault(c: Partial<RobotConfig> | undefined) {
+  const p = c?.ports;
+  return !!c && c.wheelDiameter === 56 && c.axleTrack === 140 && p?.leftArm === 'C' && p?.rightArm === 'D' && p?.color === 'E';
+}
+
 function load(): Saved {
   const empty: Saved = {
     progress: { xp: 0, done: {}, streak: { last: null, count: 0 }, mistakes: [] },
@@ -92,7 +98,7 @@ function load(): Saved {
     return {
       progress: { ...empty.progress, ...s.progress, mistakes: Array.isArray(s.progress?.mistakes) ? s.progress.mistakes : [] },
       code: typeof s.code === 'string' ? s.code : null,
-      config: { ...empty.config, ...s.config, ports: { ...empty.config.ports, ...(s.config?.ports ?? {}) }, attachments: { ...empty.config.attachments, ...(s.config?.attachments ?? {}) } },
+      config: oldDefault(s.config) ? empty.config : { ...empty.config, ...s.config, ports: { ...empty.config.ports, ...(s.config?.ports ?? {}) }, attachments: { ...empty.config.attachments, ...(s.config?.attachments ?? {}) } },
       start: s.start ?? null,
       prefs: { ...DEFAULT_PREFS, ...(s.prefs ?? {}) },
       programs: Array.isArray(s.programs) ? s.programs : [],

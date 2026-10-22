@@ -105,7 +105,7 @@ export const UI: Record<string, string> = {
   "e.negTime": "die Zeit von run_time() darf nicht negativ sein",
   "e.zeroSpeed": "{f}() mit Geschwindigkeit 0 würde nie fertig",
   "e.stalled": "run_until_stalled() hängt davon ab, dass ein echter Anbau blockiert, und das gibt es im Simulator nicht. Verwende run_angle() oder run_target().",
-  "e.dbMotors": "DriveBase() braucht zwei Motor: DriveBase(left_motor, right_motor, wheel_diameter=56, axle_track=...)",
+  "e.dbMotors": "DriveBase() braucht zwei Motor: DriveBase(left_motor, right_motor, wheel_diameter=62.4, axle_track=...)",
   "e.dbSame": "linker und rechter Motor müssen verschieden sein",
   "e.dbTaken": "diese Motoren gehören schon zu einer anderen DriveBase",
   "e.dbSize": "wheel_diameter und axle_track müssen größer als null sein (in mm)",

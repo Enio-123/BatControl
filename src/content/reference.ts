@@ -114,7 +114,7 @@ print("heading:", hub.imu.heading())`),
   {
     id: 'calibrate',
     group: 'drive',
-    signature: 'wheel_diameter = 56 × measured / requested',
+    signature: 'wheel_diameter = 62.4 × measured / requested',
     example: program(`# Calibration test: drive 1000 mm and measure with a tape measure
 robot.straight(1000)
 wait(500)

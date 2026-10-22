@@ -25,7 +25,7 @@ export const TEXT: ContentText = {
     },
     motor: {
       title: 'Motor(): create a motor',
-      summary: 'Creates the object that controls a motor plugged into a hub port (A to F). On the default BatControl robot the wheels are on ports A and B and the attachments on ports C and D.',
+      summary: 'Creates the object that controls a motor plugged into a hub port (A to F). On the default BatControl robot the wheels are on ports A and B and the attachments on ports C and E.',
       params: [
         ['Port.A … Port.F', 'Hub port where the motor cable is plugged in.'],
         ['Direction', 'Which way counts as positive. The left wheel motor is mounted mirrored, so we use COUNTERCLOCKWISE on it.'],
@@ -42,7 +42,7 @@ export const TEXT: ContentText = {
       params: [
         ['Motor', 'Left wheel motor.'],
         ['Motor', 'Right wheel motor.'],
-        ['mm', 'Wheel diameter. The SPIKE Prime wheel is 56 mm.'],
+        ['mm', 'Wheel diameter. The BatLego robot uses 62.4 mm wheels (the small SPIKE Prime wheel is 56 mm).'],
         ['mm', 'Distance between the points where the two wheels touch the ground.'],
       ],
       tips: [
@@ -229,7 +229,7 @@ export const TEXT: ContentText = {
     u1: { title: 'Meet Pybricks', desc: 'What a program is and how the robot shows up in code.' },
     u2: { title: 'Drive and turn', desc: 'straight() and turn(): the two most used commands in FLL.' },
     u3: { title: 'Curves and speed', desc: 'curve() for smooth paths and settings() to set the pace.' },
-    u4: { title: 'Attachments', desc: 'Motors on ports C and D, which move the mission attachments.' },
+    u4: { title: 'Attachments', desc: 'Motors on ports C and E, which move the mission attachments.' },
     u5: { title: 'Color sensor', desc: 'Stop on the black line and follow a line.' },
     u6: { title: 'Programming logic', desc: 'Repeat with for, decide with if and organize missions with def.' },
     u7: { title: 'Full mission', desc: 'Put it all together in a real run, within match time.' },
@@ -253,11 +253,11 @@ export const TEXT: ContentText = {
     },
     u1l2: {
       title: 'The robot in code',
-      intro: 'Before telling the robot to drive, the program needs to know what is plugged into each port. On the default BatControl robot:\n\nPort A: left wheel. Port B: right wheel. Ports C and D: attachment motors. Port E: color sensor.\n\nThe left motor is mounted mirrored, so it gets Direction.COUNTERCLOCKWISE so that "positive" means "forward" on both wheels.',
+      intro: 'Before telling the robot to drive, the program needs to know what is plugged into each port. On the default BatControl robot:\n\nPort A: left wheel. Port B: right wheel. Port C: left attachment. Port D: color sensor. Port E: right attachment.\n\nThe left motor is mounted mirrored, so it gets Direction.COUNTERCLOCKWISE so that "positive" means "forward" on both wheels.',
       ex: [
-        { prompt: 'Which ports are the wheel motors of the default robot on?', options: ['A and B', 'C and D', 'E and F', 'A and C'], explain: 'Wheels on A and B, attachments on C and D, color sensor on E.' },
+        { prompt: 'Which ports are the wheel motors of the default robot on?', options: ['A and B', 'C and D', 'E and F', 'A and C'], explain: 'Wheels on A and B, attachments on C and E, color sensor on D.' },
         { prompt: 'Why does the left motor use Direction.COUNTERCLOCKWISE?', options: ['Because it is mounted mirrored compared to the right one', 'To make the robot faster', 'Because the hub only accepts one normal motor', 'To drive sideways'], explain: 'The two motors face each other. Without reversing one of them, the wheels spin in opposite directions and the robot turns in place.' },
-        { prompt: 'The SPIKE Prime wheel is 56 mm in diameter. Complete:', explain: 'wheel_diameter is the wheel diameter in mm.' },
+        { prompt: 'The wheels of the BatLego robot are 62.4 mm in diameter. Complete:', explain: 'wheel_diameter is the wheel diameter in mm.' },
         { prompt: 'Put the lines in the right order (the imports are already there).', explain: 'First we create the motors, then the DriveBase that uses them, and only then give commands.' },
         { prompt: 'This program makes the robot spin in place instead of driving 400 mm. Run it to see the problem and fix how the motors are created.', hint: 'The motor on port A needs Direction.COUNTERCLOCKWISE.' },
       ],
@@ -310,7 +310,7 @@ export const TEXT: ContentText = {
     },
     u4l1: {
       title: 'run_angle()',
-      intro: 'Attachments are moved by the motors on ports C and D. In the simulator they are the two gears on top of the robot.\n\nleft_arm.run_angle(500, 180) turns the left attachment 180 degrees at 500 degrees per second.',
+      intro: 'Attachments are moved by the motors on ports C and E. In the simulator they are the two gears on top of the robot.\n\nleft_arm.run_angle(500, 180) turns the left attachment 180 degrees at 500 degrees per second.',
       ex: [
         { prompt: 'In left_arm.run_angle(500, 90), what is the 500?', options: ['The speed, in degrees per second', 'The angle, in degrees', 'The time, in milliseconds', 'The motor power'], explain: 'Speed comes first, then the angle.' },
         { prompt: 'Complete to turn the right attachment one full turn.', explain: 'A full turn is 360 degrees.' },
@@ -382,11 +382,11 @@ export const TEXT: ContentText = {
     },
     u8l2: {
       title: 'Calibration',
-      intro: 'The program only knows what you tell it. If the real wheel is slightly larger than 56 mm, the robot drives further than requested.\n\nTo calibrate: drive 1000 mm and measure. New wheel_diameter = current × measured ÷ 1000.\n\nFor turning: turn 360° and see how much it turned. New axle_track = current × 360 ÷ real turn.',
+      intro: 'The program only knows what you tell it. If the real wheel is slightly larger than 62.4 mm, the robot drives further than requested.\n\nTo calibrate: drive 1000 mm and measure. New wheel_diameter = current × measured ÷ 1000.\n\nFor turning: turn 360° and see how much it turned. New axle_track = current × 360 ÷ real turn.',
       ex: [
         { prompt: 'The robot should drive 1000 mm but drove 980 mm. What do you do with wheel_diameter?', options: ['Decrease it', 'Increase it', 'Keep it and change axle_track', 'Flip the sign'], explain: 'It drove less, so the real wheel is smaller than the program thinks: decrease it (56 × 980 ÷ 1000 = 54.9).' },
         { prompt: 'I asked for turn(360) and the robot only turned 350°. What do you do with axle_track?', options: ['Increase it', 'Decrease it', 'Keep it', 'Set it to zero'], explain: 'To turn more, the DriveBase must believe the wheels are further apart: 140 × 360 ÷ 350 = 144.' },
-        { prompt: 'With wheel_diameter=56 the robot drove 1025 mm when I asked for 1000 mm. Fill in the new value (56 × 1025 ÷ 1000):', explain: '56 × 1.025 = 57.4 mm.' },
+        { prompt: 'With wheel_diameter=62.4 the robot drove 1025 mm when I asked for 1000 mm. Fill in the new value (62.4 × 1025 ÷ 1000, rounded):', explain: '62.4 × 1.025 = 63.96, about 64 mm.' },
       ],
     },
     u9l1: {
@@ -633,10 +633,10 @@ export const TEXT: ContentText = {
     },
     u11l4: {
       title: 'Wrong port',
-      intro: 'OSError when creating a device usually means the program uses a port with nothing plugged in, or the wrong device on it.\n\nOn the default robot the color sensor is on port E.',
+      intro: 'OSError when creating a device usually means the program uses a port with nothing plugged in, or the wrong device on it.\n\nOn the default robot the color sensor is on port D.',
       ex: [
         { prompt: 'The program stops with OSError on the line sensor = ColorSensor(Port.F). What do you check?', options: ['Which port the sensor is really plugged into', 'The wheel size', 'The robot speed', 'The comments'], explain: 'The error says nothing was found on that port.' },
-        { prompt: 'This program should stop on the red zone but stops with an error. Fix it.', hint: 'The color sensor is on Port.E.' },
+        { prompt: 'This program should stop on the red zone but stops with an error. Fix it.', hint: 'The color sensor is on Port.D.' },
       ],
     },
     u12l1: {
@@ -649,7 +649,7 @@ export const TEXT: ContentText = {
     },
     u12l2: {
       title: 'Against the clock',
-      intro: 'In a match every second counts. Raise straight_speed and straight_acceleration, but remember: on the real robot, too fast can slip and lose accuracy.\n\nThe maximum wheel speed of the SPIKE motors is around 490 mm/s.',
+      intro: 'In a match every second counts. Raise straight_speed and straight_acceleration, but remember: on the real robot, too fast can slip and lose accuracy.\n\nThe maximum wheel speed of the SPIKE motors is around 540 mm/s with 62.4 mm wheels.',
       ex: [
         { prompt: 'Which change helps the most on a long, straight path?', options: ['Raise straight_speed', 'Raise turn_rate', 'Lower axle_track', 'Add wait(100)'], explain: 'On a straight path, driving speed is what matters.' },
         { prompt: 'Visit the red zone and the blue zone and come back to BASE 1 in under 8 seconds.', hint: 'robot.settings(straight_speed=480, straight_acceleration=1500), straight(1480) and straight(-1480).' },

@@ -105,7 +105,7 @@ export const UI: Record<string, string> = {
   "e.negTime": "el tiempo de run_time() no puede ser negativo",
   "e.zeroSpeed": "{f}() con velocidad 0 nunca terminaría",
   "e.stalled": "run_until_stalled() depende de que un accesorio físico se trabe, y eso no existe en el simulador. Usa run_angle() o run_target().",
-  "e.dbMotors": "DriveBase() necesita dos Motor: DriveBase(left_motor, right_motor, wheel_diameter=56, axle_track=...)",
+  "e.dbMotors": "DriveBase() necesita dos Motor: DriveBase(left_motor, right_motor, wheel_diameter=62.4, axle_track=...)",
   "e.dbSame": "el motor izquierdo y el derecho deben ser distintos",
   "e.dbTaken": "estos motores ya pertenecen a otra DriveBase",
   "e.dbSize": "wheel_diameter y axle_track deben ser mayores que cero (en mm)",

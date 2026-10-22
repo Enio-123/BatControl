@@ -9,14 +9,14 @@ from pybricks.tools import wait, StopWatch`;
 export const SETUP_BASE = `${IMPORTS}
 
 hub = PrimeHub()
-left_motor = Motor(Port.A, Direction.COUNTERCLOCKWISE)
-right_motor = Motor(Port.B)
-robot = DriveBase(left_motor, right_motor, wheel_diameter=56, axle_track=140)`;
+left_motor = Motor(Port.A, positive_direction=Direction.COUNTERCLOCKWISE)
+right_motor = Motor(Port.B, positive_direction=Direction.CLOCKWISE)
+robot = DriveBase(left_motor, right_motor, wheel_diameter=62.4, axle_track=150)`;
 
 export const SETUP_FULL = `${SETUP_BASE}
 left_arm = Motor(Port.C)
-right_arm = Motor(Port.D)
-sensor = ColorSensor(Port.E)`;
+right_arm = Motor(Port.E)
+sensor = ColorSensor(Port.D)`;
 
 export const program = (body: string, full = true) => `${full ? SETUP_FULL : SETUP_BASE}
 
@@ -34,9 +34,10 @@ export function setupFor(cfg: { ports: Record<string, string>; wheelDiameter: nu
   return `${IMPORTS}
 
 hub = PrimeHub()
-left_motor = Motor(Port.${p.leftWheel}, Direction.COUNTERCLOCKWISE)
-right_motor = Motor(Port.${p.rightWheel})
+left_motor = Motor(Port.${p.leftWheel}, positive_direction=Direction.COUNTERCLOCKWISE)
+right_motor = Motor(Port.${p.rightWheel}, positive_direction=Direction.CLOCKWISE)
 robot = DriveBase(left_motor, right_motor, wheel_diameter=${cfg.wheelDiameter}, axle_track=${cfg.axleTrack})
+robot.use_gyro(True)
 left_arm = Motor(Port.${p.leftArm})
 right_arm = Motor(Port.${p.rightArm})
 sensor = ColorSensor(Port.${p.color})`;

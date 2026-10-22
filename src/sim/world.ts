@@ -16,10 +16,10 @@ export interface RobotConfig {
 }
 
 export const DEFAULT_CONFIG: RobotConfig = {
-  ports: { leftWheel: 'A', rightWheel: 'B', leftArm: 'C', rightArm: 'D', color: 'E' },
+  ports: { leftWheel: 'A', rightWheel: 'B', leftArm: 'C', rightArm: 'E', color: 'D' },
   attachments: { left: 'none', right: 'none' },
-  wheelDiameter: 56,
-  axleTrack: 140,
+  wheelDiameter: 62.4,
+  axleTrack: 150,
 };
 
 /** Geometria do modelo (mm), no referencial do robô: x para frente, y para a esquerda.
