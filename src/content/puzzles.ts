@@ -96,7 +96,7 @@ function straightGen(id: string, back: boolean): Gen {
       return {
         rating: (back ? 700 : 550) + (Math.abs(d) % 100 ? 80 : 0) + (start.h !== 0 ? 60 : 0),
         kind: 'code', prompt: ['pz.reach', { where: whereText(start), target: targetText(c) }],
-        start, targets: [tg], starter: program(BLANK), solution: program(`robot.straight(${d})`), check: reachCheck(tg),
+        start, targets: [tg], starter: program(BLANK), solution: program(`robo.straight(${d})`), check: reachCheck(tg),
       };
     },
   };
@@ -118,7 +118,7 @@ function sideGen(id: string, ell: boolean): Gen {
       if (!inside(c, 160) || !inside(rel(start, a, 0))) return null;
       const tg = square(c);
       const turn = b > 0 ? -90 : 90;
-      const lines = [a ? `robot.straight(${a})` : '', `robot.turn(${turn})`, `robot.straight(${Math.abs(b)})`].filter(Boolean);
+      const lines = [a ? `robo.straight(${a})` : '', `robo.turn(${turn})`, `robo.straight(${Math.abs(b)})`].filter(Boolean);
       return {
         rating: (ell ? 900 : 750) + (Math.abs(b) % 100 ? 60 : 0) + (start.h !== 0 ? 60 : 0),
         kind: 'code', prompt: ['pz.reach', { where: whereText(start), target: targetText(c) }],
@@ -146,7 +146,7 @@ const diagGen: Gen = {
     return {
       rating: 1150 + (Math.abs(ang) % 15 ? 120 : 0) + (start.h !== 0 ? 60 : 0),
       kind: 'code', prompt: ['pz.diag', { where: whereText(start), target: targetText(c) }],
-      start, targets: [tg], starter: program(BLANK), solution: program(`robot.turn(${ang})\nrobot.straight(${dist})`),
+      start, targets: [tg], starter: program(BLANK), solution: program(`robo.turn(${ang})\nrobo.straight(${dist})`),
       check: (res, code) => first(count(code, /\.turn\s*\(/) === 1 && count(code, /\.straight\s*\(/) === 1 ? null : t('chk.oneEach'), reachCheck(tg)(res)),
     };
   },
@@ -159,7 +159,7 @@ const predictGen: Gen = {
     const start = { x: int(r, 500, 1800, 10), y: int(r, 350, 800, 10), h: pick(r, HEADINGS) };
     const n = int(r, 2, 4);
     const moves: string[] = [];
-    for (let i = 0; i < n; i++) moves.push(i % 2 === 0 ? `robot.straight(${int(r, 1, 4) * 100 * (r() < 0.2 ? -1 : 1)})` : `robot.turn(${pick(r, [90, -90, 180])})`);
+    for (let i = 0; i < n; i++) moves.push(i % 2 === 0 ? `robo.straight(${int(r, 1, 4) * 100 * (r() < 0.2 ? -1 : 1)})` : `robo.turn(${pick(r, [90, -90, 180])})`);
     const body = moves.join('\n');
     const f = simEnd(body, start);
     if (!f) return null;
@@ -168,7 +168,7 @@ const predictGen: Gen = {
     // Distratores: erros comuns (sinal do giro trocado, ignorar o último movimento, centímetros)
     const wrong = [
       body.replace(/turn\((-?)(\d+)\)/g, (_, s, d) => `turn(${s ? '' : '-'}${d})`),
-      moves.slice(0, -1).join('\n') || 'robot.straight(0)',
+      moves.slice(0, -1).join('\n') || 'robo.straight(0)',
       body.replace(/straight\((-?\d+)\)/g, (_, d) => `straight(${-Number(d)})`),
     ].map((b) => simEnd(b, start)).filter((p): p is Frame => !!p).map(fmt);
     const opts = [...new Set([right, ...wrong])].filter((o, i) => i === 0 || o !== right);
@@ -203,9 +203,9 @@ const facingGen: Gen = {
     return {
       rating: 650 + n * 90 + (turns.some((a) => Math.abs(a) > 180) ? 100 : 0) + (start.h !== 0 ? 60 : 0),
       kind: 'choice', prompt: ['pz.facing', { where: whereText(start) }],
-      code: turns.map((a) => `robot.turn(${a})`).join('\n'),
+      code: turns.map((a) => `robo.turn(${a})`).join('\n'),
       options: [right, ...dirs.filter((d) => d !== right)].map((d) => t(`pz.dir.${d}`)),
-      start, targets: [], solution: program(turns.map((a) => `robot.turn(${a})`).join('\n')),
+      start, targets: [], solution: program(turns.map((a) => `robo.turn(${a})`).join('\n')),
     };
   },
 };
@@ -217,7 +217,7 @@ const fixGen: Gen = {
     const base = sideGen('x', true).make(r);
     if (!base) return null;
     const lines = base.solution.split('\n');
-    const i0 = lines.findIndex((l) => /^robot\./.test(l));
+    const i0 = lines.findIndex((l) => /^robo\./.test(l));
     const body = lines.slice(i0);
     const kind = pick(r, ['sign', 'cm', 'neg'] as const);
     const bad = body.map((l) => l);
@@ -247,7 +247,7 @@ const pushGen: Gen = {
     // Calibra a distância com o próprio simulador
     let dist = gap + d;
     for (let k = 0; k < 3; k++) {
-      const res = runProgram(program(`robot.straight(${dist})`), DEFAULT_CONFIG, start, { objects });
+      const res = runProgram(program(`robo.straight(${dist})`), DEFAULT_CONFIG, start, { objects });
       const c = res.world.objects[0];
       const err = (goal.x - c.x) * Math.cos(rad(start.h));
       if (Math.abs(err) < 4) break;
@@ -256,7 +256,7 @@ const pushGen: Gen = {
     return {
       rating: 1200 + (start.h !== 0 ? 80 : 0) + (gap > 300 ? 60 : 0),
       kind: 'code', prompt: ['pz.push', { where: whereText(start), crate: t('pz.crateAt', { x: Math.round(crateC.x), y: Math.round(crateC.y) }), target: targetText(goal) }],
-      start, targets: [tg], objects, starter: program(BLANK), solution: program(`robot.straight(${dist})`),
+      start, targets: [tg], objects, starter: program(BLANK), solution: program(`robo.straight(${dist})`),
       check: (res) => (inTarget(res.world.objects[0], tg) ? null : t('pz.chk.crate')),
     };
   },
@@ -271,7 +271,7 @@ const polygonGen: Gen = {
     const left = r() < 0.5;
     const start = { x: int(r, 800, 1500, 10), y: int(r, 400, 700, 10), h: pick(r, HEADINGS) };
     const turn = r1(360 / n) * (left ? -1 : 1);
-    const sol = program(`for i in range(${n}):\n    robot.straight(${s})\n    robot.turn(${turn})`);
+    const sol = program(`for i in range(${n}):\n    robo.straight(${s})\n    robo.turn(${turn})`);
     return {
       rating: 1100 + (n === 5 || n === 8 ? 120 : 40) + (left ? 0 : 40),
       kind: 'code', prompt: ['pz.polygon', { n, s, side: t(left ? 'pz.toLeft' : 'pz.toRight') }],
@@ -303,7 +303,7 @@ const colorGen: Gen = {
       rating: 950 + between * 120,
       kind: 'code', prompt: ['pz.color', { zone: t('zone.' + z.id) }],
       start, targets: [zoneTargetOf(z)], starter: program(BLANK),
-      solution: program(`robot.drive(200, 0)\nwhile sensor.color() != Color.${color}:\n    wait(10)\nrobot.stop()`),
+      solution: program(`robo.drive(200, 0)\nwhile sensor.color() != Color.${color}:\n    wait(10)\nrobo.stop()`),
       check: (res, code) => {
         const s = sensorAt(res.final);
         return first(/\.(color|reflection)\s*\(/.test(strip(code)) ? null : t('chk.useSensor'),
@@ -323,14 +323,14 @@ const timeGen: Gen = {
     const c = rel(start, d, 0);
     if (!inside(c, 140)) return null;
     const tg = square(c);
-    const fast = runProgram(program(`robot.settings(straight_speed=450)\nrobot.straight(${d})`), DEFAULT_CONFIG, start);
-    const slow = runProgram(program(`robot.straight(${d})`), DEFAULT_CONFIG, start);
+    const fast = runProgram(program(`robo.settings(straight_speed=450)\nrobo.straight(${d})`), DEFAULT_CONFIG, start);
+    const slow = runProgram(program(`robo.straight(${d})`), DEFAULT_CONFIG, start);
     const limit = Math.ceil((fast.final.t + 700) / 1000);
     if (slow.final.t <= limit * 1000) return null;
     return {
       rating: 1050 + (d % 100 ? 60 : 0),
       kind: 'code', prompt: ['pz.time', { where: whereText(start), target: targetText(c), s: limit }],
-      start, targets: [tg], starter: program(BLANK), solution: program(`robot.settings(straight_speed=450)\nrobot.straight(${d})`),
+      start, targets: [tg], starter: program(BLANK), solution: program(`robo.settings(straight_speed=450)\nrobo.straight(${d})`),
       check: (res) => first(reachCheck(tg)(res), res.final.t <= limit * 1000 ? null : t('chk.tooSlow', { s: (res.final.t / 1000).toFixed(1), max: limit })),
     };
   },
@@ -341,7 +341,7 @@ function goTo(from: Pose, to: { x: number; y: number }): [string[], Pose] {
   const want = (Math.atan2(to.y - from.y, to.x - from.x) * 180) / Math.PI;
   const turn = r1(-norm180(want - from.h));
   const dist = Math.round(Math.hypot(to.x - from.x, to.y - from.y));
-  const lines = [Math.abs(turn) >= 0.5 ? `robot.turn(${turn})` : '', `robot.straight(${dist})`].filter(Boolean);
+  const lines = [Math.abs(turn) >= 0.5 ? `robo.turn(${turn})` : '', `robo.straight(${dist})`].filter(Boolean);
   return [lines, { x: to.x, y: to.y, h: from.h - turn }];
 }
 const randomPoint = (r: Rng, m = 160) => ({ x: int(r, m, MAT_W - m, 10), y: int(r, m, MAT_H - m, 10) });
@@ -380,7 +380,7 @@ const poseGen: Gen = {
     const tg = square(c);
     const [l1, p1] = goTo(start, c);
     const last = r1(-norm180(h - p1.h));
-    const lines = [...l1, Math.abs(last) >= 0.5 ? `robot.turn(${last})` : ''].filter(Boolean);
+    const lines = [...l1, Math.abs(last) >= 0.5 ? `robo.turn(${last})` : ''].filter(Boolean);
     if (lines.length < 3) return null;
     return {
       rating: 1250 + (start.h !== 0 ? 60 : 0) + (Math.abs(last) % 90 ? 120 : 40),

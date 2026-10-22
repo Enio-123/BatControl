@@ -19,7 +19,7 @@ export const TEXT: ContentText = {
       tips: [
         'Create each device only once, at the start of the program.',
         'Lines starting with # are comments: the robot ignores them, but they help the team understand the code.',
-        'The names left_motor, robot and sensor are our choice. You can use others, as long as you use the same name throughout the program.',
+        'The names left_motor, robo and sensor are our choice. You can use others, as long as you use the same name throughout the program.',
       ],
       mistakes: ['Forgetting an import causes a NameError: Python does not know what DriveBase or Port is.'],
     },
@@ -74,7 +74,7 @@ export const TEXT: ContentText = {
     strafe: {
       title: 'What about strafe (driving sideways)?',
       summary: 'The Pybricks DriveBase has no strafe. A typical FLL robot has two fixed drive wheels (differential drive) that only push forward and backward. Driving sideways only exists on robots with omni or mecanum wheels. To reach a point to the side, turn, drive and turn back.',
-      tips: ['If you write robot.strafe(...), the simulator shows the same error the hub would: AttributeError.'],
+      tips: ['If you write robo.strafe(...), the simulator shows the same error the hub would: AttributeError.'],
     },
     curve: {
       title: 'curve(): drive along an arc',
@@ -98,7 +98,7 @@ export const TEXT: ContentText = {
     },
     drive: {
       title: 'drive() and stop(): keep driving',
-      summary: 'drive() starts the wheels and the program moves on to the next line right away, with the robot still moving. The robot only stops when you call robot.stop(). This is the basis for "drive until you see the black line" and for line followers.',
+      summary: 'drive() starts the wheels and the program moves on to the next line right away, with the robot still moving. The robot only stops when you call robo.stop(). This is the basis for "drive until you see the black line" and for line followers.',
       params: [
         ['mm/s', 'Forward speed (negative = backward).'],
         ['deg/s', 'How much it turns while driving. 0 = straight, positive = right.'],
@@ -243,12 +243,12 @@ export const TEXT: ContentText = {
   lessons: {
     u1l1: {
       title: 'First program',
-      intro: 'Pybricks is Python running inside the SPIKE Prime hub. The robot runs the program from top to bottom, one line at a time.\n\nTo drive we use the DriveBase, which in this course is called robot. The command robot.straight(300) drives 300 millimeters forward.',
+      intro: 'Pybricks is Python running inside the SPIKE Prime hub. The robot runs the program from top to bottom, one line at a time.\n\nTo drive we use the DriveBase, which in this course is called robot. The command robo.straight(300) drives 300 millimeters forward.',
       ex: [
         { prompt: 'Which language do we use to write Pybricks programs?', options: ['Python', 'Scratch blocks', 'C++', 'JavaScript'], explain: 'Pybricks uses MicroPython, a version of Python made for small boards like the hub.' },
         { prompt: 'In which unit does straight() measure distance?', options: ['Millimeters', 'Centimeters', 'Wheel rotations', 'Seconds'], explain: 'Every distance in Pybricks is in mm. 30 cm = 300 mm.' },
         { prompt: 'Complete so the robot drives 300 mm forward.', explain: 'straight means going in a straight line.' },
-        { prompt: 'Make the robot drive 300 mm forward.', hint: 'Use robot.straight(300) below the comment.' },
+        { prompt: 'Make the robot drive 300 mm forward.', hint: 'Use robo.straight(300) below the comment.' },
       ],
     },
     u1l2: {
@@ -266,17 +266,17 @@ export const TEXT: ContentText = {
       title: 'Driving straight',
       intro: 'straight(distance) drives in a straight line and stops. A positive number goes forward; a negative one goes backward.\n\nOn the simulator mat, the edge has a ruler every 100 mm. The start is inside BASE 1, with the center of the robot at x = 120 mm.',
       ex: [
-        { prompt: 'What does robot.straight(-200) do?', options: ['Drives 200 mm backward', 'Drives 200 mm forward', 'Turns 200 degrees', 'Gives an error, negative numbers are not allowed'], explain: 'A negative distance drives backward.' },
+        { prompt: 'What does robo.straight(-200) do?', options: ['Drives 200 mm backward', 'Drives 200 mm forward', 'Turns 200 degrees', 'Gives an error, negative numbers are not allowed'], explain: 'A negative distance drives backward.' },
         { prompt: 'How much is 25 cm in millimeters?', options: ['250', '25', '2500', '2.5'], explain: '1 cm = 10 mm, so 25 cm = 250 mm.' },
-        { prompt: 'Take the robot to the red zone. Its center is 800 mm in front of the start.', hint: 'A single robot.straight() with the right distance does it.' },
+        { prompt: 'Take the robot to the red zone. Its center is 800 mm in front of the start.', hint: 'A single robo.straight() with the right distance does it.' },
       ],
     },
     u2l2: {
       title: 'Turning',
       intro: 'turn(angle) turns the robot in place. Positive turns right (clockwise), negative turns left.\n\nA quarter turn is 90 degrees and half a turn is 180.',
       ex: [
-        { prompt: 'Which way does the robot go with robot.turn(90)?', options: ['Right', 'Left', 'Forward', 'It depends on the port'], explain: 'Positive angle = clockwise = right.' },
-        { prompt: 'Which command makes the robot turn around?', options: ['robot.turn(180)', 'robot.turn(90)', 'robot.turn(360)', 'robot.straight(-180)'], explain: 'Turning around is 180 degrees. 360 is a full turn, and the robot ends up facing the same way.' },
+        { prompt: 'Which way does the robot go with robo.turn(90)?', options: ['Right', 'Left', 'Forward', 'It depends on the port'], explain: 'Positive angle = clockwise = right.' },
+        { prompt: 'Which command makes the robot turn around?', options: ['robo.turn(180)', 'robo.turn(90)', 'robo.turn(360)', 'robo.straight(-180)'], explain: 'Turning around is 180 degrees. 360 is a full turn, and the robot ends up facing the same way.' },
         { prompt: 'Complete to make a quarter turn to the left.', explain: 'Left is negative: -90.' },
         { prompt: 'Take the robot to the yellow zone. Measurements: drive 800 mm, turn left and drive another 640 mm.', hint: 'straight(800), then turn(-90), then straight(640).' },
       ],
@@ -285,7 +285,7 @@ export const TEXT: ContentText = {
       title: 'Is there strafe?',
       intro: 'Some people look for a strafe() command to drive sideways. The Pybricks DriveBase does not have one: the robot has two fixed wheels that only push forward and backward (differential drive).\n\nTo reach a point to the side: turn, drive and turn back.',
       ex: [
-        { prompt: 'What happens if the program calls robot.strafe(100)?', options: ['An error: the DriveBase has no strafe', 'The robot drives 100 mm sideways', 'The robot turns 100 degrees', 'The robot drives 100 mm forward'], explain: 'The hub shows AttributeError, just like the simulator. Driving sideways only exists with omni or mecanum wheels.' },
+        { prompt: 'What happens if the program calls robo.strafe(100)?', options: ['An error: the DriveBase has no strafe', 'The robot drives 100 mm sideways', 'The robot turns 100 degrees', 'The robot drives 100 mm forward'], explain: 'The hub shows AttributeError, just like the simulator. Driving sideways only exists with omni or mecanum wheels.' },
         { prompt: 'Build the path to "go 300 mm to the left" and end up facing forward again.', explain: 'Turn, drive and turn back replaces strafe.' },
         { prompt: 'Finish inside the yellow zone, but facing the right side of the mat, like at the start.', hint: 'Use the path from the previous lesson and add a turn(90) at the end.' },
       ],
@@ -294,54 +294,54 @@ export const TEXT: ContentText = {
       title: 'Curves',
       intro: 'curve(radius, angle) drives along a circular arc. A large radius makes a wide curve, a small radius a tight one. A positive angle curves right.\n\nA curve with radius 300 and angle -90 moves the robot 300 mm forward and 300 mm to the left.',
       ex: [
-        { prompt: 'Which of these curves is the tightest?', options: ['robot.curve(100, 90)', 'robot.curve(400, 90)', 'robot.curve(800, 90)', 'They are all the same'], explain: 'The smaller the radius, the tighter the curve.' },
+        { prompt: 'Which of these curves is the tightest?', options: ['robo.curve(100, 90)', 'robo.curve(400, 90)', 'robo.curve(800, 90)', 'They are all the same'], explain: 'The smaller the radius, the tighter the curve.' },
         { prompt: 'Complete to drive a quarter circle to the left with a 300 mm radius.', explain: 'Left is negative and a quarter circle is 90 degrees.' },
         { prompt: 'Reach the yellow zone using a curve() on the way, without turn().', hint: 'Drive 500 mm, do curve(300, -90) and drive another 340 mm.' },
       ],
     },
     u3l2: {
       title: 'Speed',
-      intro: 'robot.settings() changes the speed of straight, turn and curve. For example, robot.settings(straight_speed=400) drives at 400 mm/s.\n\nFaster saves match time, slower is usually more accurate.',
+      intro: 'robo.settings() changes the speed of straight, turn and curve. For example, robo.settings(straight_speed=400) drives at 400 mm/s.\n\nFaster saves match time, slower is usually more accurate.',
       ex: [
         { prompt: 'Which unit is straight_speed in?', options: ['mm/s', 'deg/s', 'cm/s', 'revolutions per minute'], explain: 'Driving speed is in millimeters per second.' },
         { prompt: 'Complete to drive at 400 mm/s.', explain: 'straight_speed controls the speed in a straight line.' },
-        { prompt: 'Reach the blue zone (1400 mm ahead) in under 6 seconds. At the default speed the robot cannot make it.', hint: 'Put robot.settings(straight_speed=400) before straight.' },
+        { prompt: 'Reach the blue zone (1400 mm ahead) in under 6 seconds. At the default speed the robot cannot make it.', hint: 'Put robo.settings(straight_speed=400) before straight.' },
       ],
     },
     u4l1: {
       title: 'run_angle()',
-      intro: 'Attachments are moved by the motors on ports C and E. In the simulator they are the two gears on top of the robot.\n\nleft_arm.run_angle(500, 180) turns the left attachment 180 degrees at 500 degrees per second.',
+      intro: 'Attachments are moved by the motors on ports C and E. In the simulator they are the two gears on top of the robot.\n\nanexo_left.run_angle(500, 180) turns the left attachment 180 degrees at 500 degrees per second.',
       ex: [
-        { prompt: 'In left_arm.run_angle(500, 90), what is the 500?', options: ['The speed, in degrees per second', 'The angle, in degrees', 'The time, in milliseconds', 'The motor power'], explain: 'Speed comes first, then the angle.' },
+        { prompt: 'In anexo_left.run_angle(500, 90), what is the 500?', options: ['The speed, in degrees per second', 'The angle, in degrees', 'The time, in milliseconds', 'The motor power'], explain: 'Speed comes first, then the angle.' },
         { prompt: 'Complete to turn the right attachment one full turn.', explain: 'A full turn is 360 degrees.' },
-        { prompt: 'Turn the left attachment half a turn and then bring it back to the starting position.', hint: 'Two lines: left_arm.run_angle(500, 180) and left_arm.run_angle(500, -180).' },
+        { prompt: 'Turn the left attachment half a turn and then bring it back to the starting position.', hint: 'Two lines: anexo_left.run_angle(500, 180) and anexo_left.run_angle(500, -180).' },
       ],
     },
     u4l2: {
       title: 'Attachment and robot together',
       intro: 'By default each command waits until it is done before the next line. With wait=False the command starts and the program moves on right away.\n\nThat way the attachment can rise while the robot drives, saving precious match seconds.\n\nrun_target(speed, angle) moves the motor to an exact angle, counted from zero.',
       ex: [
-        { prompt: 'What does wait=False do in right_arm.run_angle(500, 90, wait=False)?', options: ['Starts turning and the program continues without waiting', 'Does not turn the motor', 'Turns the motor forever', 'Waits 90 ms before turning'], explain: 'The motor turns in parallel with the next lines.' },
+        { prompt: 'What does wait=False do in anexo_right.run_angle(500, 90, wait=False)?', options: ['Starts turning and the program continues without waiting', 'Does not turn the motor', 'Turns the motor forever', 'Waits 90 ms before turning'], explain: 'The motor turns in parallel with the next lines.' },
         { prompt: 'The attachment is at 30°. Where does it go with run_target(500, 90)?', options: ['To 90°', 'To 120°', 'To 60°', 'It stays at 30°'], explain: 'run_target goes to the target angle no matter where it was. run_angle(500, 90) would go to 120°.' },
-        { prompt: 'Go to the red zone and, at the same time, turn the right attachment 90°. All in under 4.6 seconds.', hint: 'right_arm.run_angle(500, 90, wait=False) and then robot.straight(800).' },
+        { prompt: 'Go to the red zone and, at the same time, turn the right attachment 90°. All in under 4.6 seconds.', hint: 'anexo_right.run_angle(500, 90, wait=False) and then robo.straight(800).' },
       ],
     },
     u5l1: {
       title: 'Stop on the line',
-      intro: 'sensor.color() tells you the color of the mat below the sensor: Color.BLACK, Color.WHITE, Color.RED...\n\nTo drive until a color shows up: start the wheels with robot.drive(speed, 0), wait in a while loop until the color appears and call robot.stop().\n\nIn the simulator, the red dot on the floor shows where the sensor reads.',
+      intro: 'sensor.color() tells you the color of the mat below the sensor: Color.BLACK, Color.WHITE, Color.RED...\n\nTo drive until a color shows up: start the wheels with robo.drive(speed, 0), wait in a while loop until the color appears and call robo.stop().\n\nIn the simulator, the red dot on the floor shows where the sensor reads.',
       ex: [
         { prompt: 'What is the right way to check whether the sensor sees black?', options: ['sensor.color() == Color.BLACK', 'sensor.color() == "BLACK"', 'sensor.color = Color.BLACK', 'sensor.black()'], explain: 'Compare with == and use the Pybricks color (Color.BLACK), without quotes.' },
         { prompt: 'Complete to drive until the black line is found.', explain: 'While the color is different (!=) from black, keep driving.' },
-        { prompt: 'Drive to the black STOP strip and stop on it. On the way the sensor crosses the red zone: the robot must not stop there.', hint: 'robot.drive(200, 0), then while sensor.color() != Color.BLACK: wait(10), then robot.stop().' },
+        { prompt: 'Drive to the black STOP strip and stop on it. On the way the sensor crosses the red zone: the robot must not stop there.', hint: 'robo.drive(200, 0), then while sensor.color() != Color.BLACK: wait(10), then robo.stop().' },
       ],
     },
     u5l2: {
       title: 'Line follower',
-      intro: 'sensor.reflection() measures from 0 to 100 how much light comes back: black is around 7 and white around 96. On the edge of the line it is in between, around 50.\n\nThe proportional follower computes error = reflection() - 50 and turns the robot in proportion to the error: robot.drive(150, error * gain). It drives along the edge of the line, correcting all the time.',
+      intro: 'sensor.reflection() measures from 0 to 100 how much light comes back: black is around 7 and white around 96. On the edge of the line it is in between, around 50.\n\nThe proportional follower computes error = reflection() - 50 and turns the robot in proportion to the error: robo.drive(150, error * gain). It drives along the edge of the line, correcting all the time.',
       ex: [
         { prompt: 'The sensor is fully over black. Which reflection() value is most likely?', options: ['Around 7', 'Around 50', 'Around 96', 'Exactly 100'], explain: 'Black reflects little light.' },
         { prompt: 'The robot zigzags a lot over the line. What usually helps?', options: ['Lower the gain', 'Raise the gain', 'Remove the wait(10)', 'Use turn() instead of drive()'], explain: 'A high gain exaggerates the corrections. Lower it gradually (and the speed too, if needed).' },
-        { prompt: 'The robot already starts with the sensor on the edge of the line. Complete the line follower so it drives the straight part and the curve to the end of the line.', hint: 'Inside the while loop, replace the comment with robot.drive(150, error * gain).' },
+        { prompt: 'The robot already starts with the sensor on the edge of the line. Complete the line follower so it drives the straight part and the curve to the end of the line.', hint: 'Inside the while loop, replace the comment with robo.drive(150, error * gain).' },
       ],
     },
     u6l1: {
@@ -350,7 +350,7 @@ export const TEXT: ContentText = {
       ex: [
         { prompt: 'How many times does the block of for i in range(3): run?', options: ['3', '2', '4', 'Forever'], explain: 'range(3) counts 0, 1 and 2: three times.' },
         { prompt: 'Complete to repeat 4 times.', explain: 'range(4) generates the numbers 0 to 3.' },
-        { prompt: 'Drive a square with 300 mm sides using for, and finish where you started. The robot starts outside the base, with free space ahead and to the left.', hint: 'for i in range(4): and, inside, robot.straight(300) and robot.turn(-90).' },
+        { prompt: 'Drive a square with 300 mm sides using for, and finish where you started. The robot starts outside the base, with free space ahead and to the left.', hint: 'for i in range(4): and, inside, robo.straight(300) and robo.turn(-90).' },
       ],
     },
     u6l2: {
@@ -359,7 +359,7 @@ export const TEXT: ContentText = {
       ex: [
         { prompt: 'What happens when Python reads the line def mission():?', options: ['It only stores the function; it runs when called with mission()', 'It runs the function right away', 'It gives an error if the function is never used', 'It repeats the function forever'], explain: 'Defining is not running. It only runs when you call mission().' },
         { prompt: 'Put the function and the call in the right order.', explain: 'First the definition with its indented block, then the call outside the block.' },
-        { prompt: 'Create the function go_and_back(distance) and use it to visit the red zone and return to the start.', hint: 'Inside the function: robot.straight(distance) and robot.straight(-distance). Outside: go_and_back(800).' },
+        { prompt: 'Create the function go_and_back(distance) and use it to visit the red zone and return to the start.', hint: 'Inside the function: robo.straight(distance) and robo.straight(-distance). Outside: go_and_back(800).' },
       ],
     },
     u7l1: {
@@ -372,12 +372,12 @@ export const TEXT: ContentText = {
     },
     u8l1: {
       title: 'Gyro',
-      intro: 'On a real robot the wheels slip a little on every turn and one wheel is never identical to the other. A 2° error on each turn becomes a big error by the end of a run.\n\nrobot.use_gyro(True) makes the DriveBase measure turning with the hub gyro and correct by itself.\n\nIn this challenge the simulator is in realistic mode: the wheels slip like on a real robot.',
+      intro: 'On a real robot the wheels slip a little on every turn and one wheel is never identical to the other. A 2° error on each turn becomes a big error by the end of a run.\n\nrobo.use_gyro(True) makes the DriveBase measure turning with the hub gyro and correct by itself.\n\nIn this challenge the simulator is in realistic mode: the wheels slip like on a real robot.',
       ex: [
         { prompt: 'Why does the real robot miss its turns even with the right program?', options: ['The wheels slip and are not identical', 'Python rounds the numbers', 'The hub only turns in steps of 10 degrees', 'The battery changes the requested angle'], explain: 'The DriveBase counts turning by the wheels. If they slip, the count does not match the real turn.' },
         { prompt: 'What does the gyro measure?', options: ['How much the robot really turned', 'The mat color', 'The distance to the wall', 'The wheel speed'], explain: 'The gyro senses the rotation of the hub itself, so it does not depend on the wheels.' },
         { prompt: 'Complete to turn on the gyro in the DriveBase.', explain: 'use_gyro(True) turns it on, use_gyro(False) turns it off.' },
-        { prompt: 'Run the program as it is: after two laps of the square the robot does not return to the start. Turn on the gyro so it comes back exactly.', hint: 'Add robot.use_gyro(True) before the for.' },
+        { prompt: 'Run the program as it is: after two laps of the square the robot does not return to the start. Turn on the gyro so it comes back exactly.', hint: 'Add robo.use_gyro(True) before the for.' },
       ],
     },
     u8l2: {
@@ -403,7 +403,7 @@ export const TEXT: ContentText = {
       intro: 'Many FLL missions are about pushing an object to a place. The robot bumper pushes whatever is in front of it.\n\nPut each mission in a function with a clear name, like push_crate(). That way you can test one mission on its own and build the match by calling the functions in sequence.',
       ex: [
         { prompt: 'Why put each mission in its own function?', options: ['To test each one alone and change the order easily', 'Because Pybricks requires it', 'To make the robot faster', 'To save battery'], explain: 'Functions keep the program organized: you change one mission without breaking the others.' },
-        { prompt: 'Complete push_crate() to push the orange crate into the blue zone and come back to BASE 1.', hint: 'The crate center must end between x = 1500 and 1700. Try robot.straight(1300) and then robot.straight(-1300).' },
+        { prompt: 'Complete push_crate() to push the orange crate into the blue zone and come back to BASE 1.', hint: 'The crate center must end between x = 1500 and 1700. Try robo.straight(1300) and then robo.straight(-1300).' },
       ],
     },
     u10l2: {
@@ -411,15 +411,15 @@ export const TEXT: ContentText = {
       intro: 'In this challenge the robot has the claw on the left side (port C). With the motor at 90° it is open and at 0° closed.\n\nTo grab: open, arrive with the crate between the jaws and close. To release, open again.\n\nThe center of the claw is 214 mm ahead and 46 mm to the left of the robot center.',
       ex: [
         { prompt: 'What happens if the claw closes with nothing between the jaws?', options: ['It closes empty and the robot moves on without the crate', 'The program gives an error', 'The robot stops', 'The crate comes to the claw'], explain: 'The claw only grabs what is between the jaws when it closes.' },
-        { prompt: 'Use open_claw() and close_claw() to grab the blue crate and bring it inside BASE 1.', hint: 'open_claw(), robot.straight(466), close_claw(), robot.straight(-466).' },
+        { prompt: 'Use open_claw() and close_claw() to grab the blue crate and bring it inside BASE 1.', hint: 'open_claw(), robo.straight(466), close_claw(), robo.straight(-466).' },
       ],
     },
     u1l3: {
       title: 'Errors and comments',
-      intro: 'Lines that start with # are comments: notes for the team that the robot ignores.\n\nWhen something is wrong, the program stops and shows an error with the line number. A misspelled command, such as robot.straigth(), gives AttributeError: the DriveBase has no command with that name.',
+      intro: 'Lines that start with # are comments: notes for the team that the robot ignores.\n\nWhen something is wrong, the program stops and shows an error with the line number. A misspelled command, such as robo.straigth(), gives AttributeError: the DriveBase has no command with that name.',
       ex: [
         { prompt: 'What does the robot do with a line that starts with #?', options: ['Ignores it: it is a comment', 'Runs it twice', 'Stops the program with an error', 'Beeps'], explain: 'Comments explain the code to people. The robot skips them.' },
-        { prompt: 'robot.straigth(300) gives an error. Why?', options: ['The command name is misspelled', 'The number is too big', 'Parentheses are not allowed', 'The robot needs a comment first'], explain: 'The right name is straight. Python only knows the exact name.' },
+        { prompt: 'robo.straigth(300) gives an error. Why?', options: ['The command name is misspelled', 'The number is too big', 'Parentheses are not allowed', 'The robot needs a comment first'], explain: 'The right name is straight. Python only knows the exact name.' },
         { prompt: 'This program stops with an error. Run it, read the message and fix it so the robot drives 500 mm.', hint: 'Look at how straight is written.' },
       ],
     },
@@ -427,25 +427,25 @@ export const TEXT: ContentText = {
       title: 'Light and sound',
       intro: 'The hub has a light on the center button and a speaker. hub.light.on(Color.GREEN) turns the light green and hub.speaker.beep() makes a short beep.\n\nThey help in testing: a beep tells you a step has finished, and the light can show which mission the robot is on.',
       ex: [
-        { prompt: 'Which command makes the hub beep?', options: ['hub.speaker.beep()', 'hub.light.beep()', 'robot.beep()', 'hub.display.beep()'], explain: 'The sound comes from the speaker: hub.speaker.' },
+        { prompt: 'Which command makes the hub beep?', options: ['hub.speaker.beep()', 'hub.light.beep()', 'robo.beep()', 'hub.display.beep()'], explain: 'The sound comes from the speaker: hub.speaker.' },
         { prompt: 'Complete to turn the light green.', explain: 'Colors use Color and the name in capitals.' },
-        { prompt: 'Turn the light green, drive 300 mm and beep at the end.', hint: 'hub.light.on(Color.GREEN), robot.straight(300), hub.speaker.beep().' },
+        { prompt: 'Turn the light green, drive 300 mm and beep at the end.', hint: 'hub.light.on(Color.GREEN), robo.straight(300), hub.speaker.beep().' },
       ],
     },
     u2l4: {
       title: 'Backing up',
-      intro: 'Many missions only need the robot to go and come back the same way. Instead of turning around, drive backward with a negative distance: robot.straight(-800) undoes robot.straight(800).\n\nIt is faster and the robot returns facing the same way.',
+      intro: 'Many missions only need the robot to go and come back the same way. Instead of turning around, drive backward with a negative distance: robo.straight(-800) undoes robo.straight(800).\n\nIt is faster and the robot returns facing the same way.',
       ex: [
-        { prompt: 'The robot drove robot.straight(800). Which command brings it back to the start without turning?', options: ['robot.straight(-800)', 'robot.turn(180)', 'robot.straight(800)', 'robot.turn(-800)'], explain: 'A negative distance drives backward over the same path.' },
-        { prompt: 'Visit the red zone and come back into BASE 1 without turning.', hint: 'robot.straight(800) and robot.straight(-800).' },
+        { prompt: 'The robot drove robo.straight(800). Which command brings it back to the start without turning?', options: ['robo.straight(-800)', 'robo.turn(180)', 'robo.straight(800)', 'robo.turn(-800)'], explain: 'A negative distance drives backward over the same path.' },
+        { prompt: 'Visit the red zone and come back into BASE 1 without turning.', hint: 'robo.straight(800) and robo.straight(-800).' },
       ],
     },
     u2l5: {
       title: 'Turning around',
-      intro: 'Turning around is a half turn: robot.turn(180) or robot.turn(-180). Both end facing the opposite way; they only spin in different directions.\n\nAfter turning around, positive distances drive back toward where the robot came from.',
+      intro: 'Turning around is a half turn: robo.turn(180) or robo.turn(-180). Both end facing the opposite way; they only spin in different directions.\n\nAfter turning around, positive distances drive back toward where the robot came from.',
       ex: [
         { prompt: 'Complete so the robot turns around.', explain: '180 or -180: half a turn to either side.' },
-        { prompt: 'After robot.turn(180), what does robot.straight(300) do?', options: ['Drives 300 mm back toward where it came from', 'Drives 300 mm backward', 'Turns another 300 degrees', 'Drives sideways'], explain: 'The robot now faces the other way, so forward is back toward the start.' },
+        { prompt: 'After robo.turn(180), what does robo.straight(300) do?', options: ['Drives 300 mm back toward where it came from', 'Drives 300 mm backward', 'Turns another 300 degrees', 'Drives sideways'], explain: 'The robot now faces the other way, so forward is back toward the start.' },
         { prompt: 'Go to the red zone, turn around and come back into BASE 1 driving forward.', hint: 'straight(800), turn(180), straight(800).' },
       ],
     },
@@ -460,27 +460,27 @@ export const TEXT: ContentText = {
     },
     u3l3: {
       title: 'S-curve',
-      intro: 'Two curves in opposite directions make an S. robot.curve(300, -90) followed by robot.curve(300, 90) moves the robot 600 mm forward and 600 mm to the left, and it ends facing the same way as at the start.\n\nIt is a smooth way to change lanes without stopping.',
+      intro: 'Two curves in opposite directions make an S. robo.curve(300, -90) followed by robo.curve(300, 90) moves the robot 600 mm forward and 600 mm to the left, and it ends facing the same way as at the start.\n\nIt is a smooth way to change lanes without stopping.',
       ex: [
-        { prompt: 'After robot.curve(300, -90) and then robot.curve(300, 90), which way does the robot face?', options: ['The same way as at the start', 'Left', 'Right', 'Backward'], explain: 'One curve turns 90° left and the other 90° right: they cancel out.' },
+        { prompt: 'After robo.curve(300, -90) and then robo.curve(300, 90), which way does the robot face?', options: ['The same way as at the start', 'Left', 'Right', 'Backward'], explain: 'One curve turns 90° left and the other 90° right: they cancel out.' },
         { prompt: 'Reach the yellow zone with two curves and end facing right, like at the start.', hint: 'curve(300, -90), curve(300, 90) and then straight(200).' },
       ],
     },
     u3l4: {
       title: 'Turning speed',
-      intro: 'settings() also changes the turning speed with turn_rate, in degrees per second. robot.settings(turn_rate=400) makes turn() spin faster.\n\nFast turns save time, but on the real robot they slip more. Test on the mat.',
+      intro: 'settings() also changes the turning speed with turn_rate, in degrees per second. robo.settings(turn_rate=400) makes turn() spin faster.\n\nFast turns save time, but on the real robot they slip more. Test on the mat.',
       ex: [
         { prompt: 'Which setting changes how fast turn() spins?', options: ['turn_rate', 'straight_speed', 'axle_track', 'wheel_diameter'], explain: 'turn_rate is the turning speed in degrees per second.' },
         { prompt: 'Complete to make turns faster.', explain: 'turn_rate=400 means 400 degrees per second.' },
-        { prompt: 'Spin a full turn (360°) in under 2 seconds. At the default speed it takes 2.5 s.', hint: 'Put robot.settings(turn_rate=400) before the turn.' },
+        { prompt: 'Spin a full turn (360°) in under 2 seconds. At the default speed it takes 2.5 s.', hint: 'Put robo.settings(turn_rate=400) before the turn.' },
       ],
     },
     u4l3: {
       title: 'Exact angle',
       intro: 'run_angle() adds to wherever the motor is, so small errors pile up. run_target(speed, angle) goes to an exact angle counted from zero, no matter where the motor started.\n\nreset_angle(0) sets the current position as the new zero.',
       ex: [
-        { prompt: 'What does left_arm.reset_angle(0) do?', options: ['Sets the current position as zero', 'Turns the motor back to zero', 'Stops the motor', 'Turns 0 degrees'], explain: 'It does not move anything: it only changes the reference.' },
-        { prompt: 'The attachment has already moved to 105°. Make it end at exactly 120°.', hint: 'left_arm.run_target(500, 120).' },
+        { prompt: 'What does anexo_left.reset_angle(0) do?', options: ['Sets the current position as zero', 'Turns the motor back to zero', 'Stops the motor', 'Turns 0 degrees'], explain: 'It does not move anything: it only changes the reference.' },
+        { prompt: 'The attachment has already moved to 105°. Make it end at exactly 120°.', hint: 'anexo_left.run_target(500, 120).' },
       ],
     },
     u4l4: {
@@ -488,7 +488,7 @@ export const TEXT: ContentText = {
       intro: 'If the first command waits until it finishes, the second attachment only starts afterward. With wait=False on the first one, both move together and you save time.',
       ex: [
         { prompt: 'How do you move two attachments at the same time?', options: ['wait=False on the first command', 'wait=False on both commands', 'Write both on the same line', 'It is not possible in Pybricks'], explain: 'The first one starts and the program goes on to the second. The second, without wait=False, waits until it finishes.' },
-        { prompt: 'Turn both attachments 180° in under 0.8 seconds.', hint: 'left_arm.run_angle(500, 180, wait=False) and right_arm.run_angle(500, 180).' },
+        { prompt: 'Turn both attachments 180° in under 0.8 seconds.', hint: 'anexo_left.run_angle(500, 180, wait=False) and anexo_right.run_angle(500, 180).' },
       ],
     },
     u5l3: {
@@ -497,7 +497,7 @@ export const TEXT: ContentText = {
       ex: [
         { prompt: 'Complete to stop on the red zone.', explain: 'Color.RED is red.' },
         { prompt: 'The robot stopped with the sensor on red, but the robot center is still before the zone. Why?', options: ['The sensor is in front of the robot center', 'The sensor is broken', 'Red is not detected', 'The robot drove backward'], explain: 'The sensor reads the floor in front of the robot. Keep that in mind when planning where to stop.' },
-        { prompt: 'Drive until the sensor finds the red zone and stop there.', hint: 'robot.drive(200, 0), while sensor.color() != Color.RED: wait(10), robot.stop().' },
+        { prompt: 'Drive until the sensor finds the red zone and stop there.', hint: 'robo.drive(200, 0), while sensor.color() != Color.RED: wait(10), robo.stop().' },
       ],
     },
     u5l4: {
@@ -505,7 +505,7 @@ export const TEXT: ContentText = {
       intro: 'reflection() gives a number, so you can choose a limit. Black is around 7: while sensor.reflection() > 20, the robot is not on black yet.\n\nThis is useful when the colors on the official mat are not exactly the ones color() knows.',
       ex: [
         { prompt: 'To stop on black using reflection(), which condition keeps the robot driving?', options: ['while sensor.reflection() > 20:', 'while sensor.reflection() < 20:', 'while sensor.reflection() == 100:', 'while sensor.color() > 20:'], explain: 'While the value is high (light floor), keep driving. It drops below 20 on black.' },
-        { prompt: 'Stop on the black STOP strip using sensor.reflection().', hint: 'robot.drive(200, 0), while sensor.reflection() > 20: wait(10), robot.stop().' },
+        { prompt: 'Stop on the black STOP strip using sensor.reflection().', hint: 'robo.drive(200, 0), while sensor.reflection() > 20: wait(10), robo.stop().' },
       ],
     },
     u5l5: {
@@ -518,18 +518,18 @@ export const TEXT: ContentText = {
     },
     u6l3: {
       title: 'Repeat while',
-      intro: 'while repeats while a condition is true. Together with drive() it stops the robot at the right moment: robot.drive(200, 0), then while robot.distance() < 600: wait(10), then robot.stop().\n\ndistance() is updated while the robot drives.',
+      intro: 'while repeats while a condition is true. Together with drive() it stops the robot at the right moment: robo.drive(200, 0), then while robo.distance() < 600: wait(10), then robo.stop().\n\ndistance() is updated while the robot drives.',
       ex: [
-        { prompt: 'When does while robot.distance() < 600: stop repeating?', options: ['When the robot has driven 600 mm or more', 'Never', 'After 600 repeats', 'Right away'], explain: 'The condition becomes false at 600 mm and the program moves on.' },
-        { prompt: 'Use drive() and a while loop to stop the robot after 600 mm.', hint: 'while robot.distance() < 600: and, inside, wait(10).' },
+        { prompt: 'When does while robo.distance() < 600: stop repeating?', options: ['When the robot has driven 600 mm or more', 'Never', 'After 600 repeats', 'Right away'], explain: 'The condition becomes false at 600 mm and the program moves on.' },
+        { prompt: 'Use drive() and a while loop to stop the robot after 600 mm.', hint: 'while robo.distance() < 600: and, inside, wait(10).' },
       ],
     },
     u6l4: {
       title: 'Decide with if',
-      intro: 'if runs a block only when the condition is true; else runs when it is false. The robot can decide what to do based on the sensor.\n\nExample: if sensor.color() == Color.RED: robot.turn(-90) else: robot.turn(90).',
+      intro: 'if runs a block only when the condition is true; else runs when it is false. The robot can decide what to do based on the sensor.\n\nExample: if sensor.color() == Color.RED: robo.turn(-90) else: robo.turn(90).',
       ex: [
         { prompt: 'What does this program print?', options: ['A', 'B', 'A and B', 'Nothing'], explain: '5 > 3 is true, so only the if block runs.' },
-        { prompt: 'After driving 700 mm, if the sensor sees red, turn left; otherwise, turn right. Then drive 400 mm.', hint: 'if sensor.color() == Color.RED: robot.turn(-90), else: robot.turn(90).' },
+        { prompt: 'After driving 700 mm, if the sensor sees red, turn left; otherwise, turn right. Then drive 400 mm.', hint: 'if sensor.color() == Color.RED: robo.turn(-90), else: robo.turn(90).' },
       ],
     },
     u6l5: {
@@ -538,7 +538,7 @@ export const TEXT: ContentText = {
       ex: [
         { prompt: 'With moves = [800, 640], what is moves[1]?', options: ['640', '800', '1440', 'An error'], explain: 'Counting starts at 0: moves[0] is 800 and moves[1] is 640.' },
         { prompt: 'Complete to drive each distance of the list.', explain: 'for gives each value of the list to distance, one at a time.' },
-        { prompt: 'Complete the loop to follow the list of moves and reach the yellow zone.', hint: 'Inside the for: robot.straight(distance) and robot.turn(angle).' },
+        { prompt: 'Complete the loop to follow the list of moves and reach the yellow zone.', hint: 'Inside the for: robo.straight(distance) and robo.turn(angle).' },
       ],
     },
     u6l6: {
@@ -547,7 +547,7 @@ export const TEXT: ContentText = {
       ex: [
         { prompt: 'Complete so the function gives back the value in millimeters.', explain: 'return sends the result back to whoever called the function.' },
         { prompt: 'What does this program print?', options: ['9', '8', '10', 'double(4) + 1'], explain: 'double(4) returns 8, plus 1 gives 9.' },
-        { prompt: 'Use mm() to drive 80 cm and reach the red zone.', hint: 'robot.straight(mm(80)).' },
+        { prompt: 'Use mm() to drive 80 cm and reach the red zone.', hint: 'robo.straight(mm(80)).' },
       ],
     },
     u6l7: {
@@ -563,7 +563,7 @@ export const TEXT: ContentText = {
       intro: 'The training mat has two bases, one on each side, like the launch areas on the FLL table. BASE 2 is on the right, at the other end of the mat.\n\nCrossing the whole mat takes time: use settings() to go faster.',
       ex: [
         { prompt: 'How many bases does the BatControl training mat have?', options: ['Two, one on each side', 'One', 'Four', 'None'], explain: 'BASE 1 on the left and BASE 2 on the right.' },
-        { prompt: 'Cross the mat from BASE 1 to BASE 2 in under 6 seconds.', hint: 'robot.settings(straight_speed=400) and robot.straight(2000).' },
+        { prompt: 'Cross the mat from BASE 1 to BASE 2 in under 6 seconds.', hint: 'robo.settings(straight_speed=400) and robo.straight(2000).' },
       ],
     },
     u7l3: {
@@ -571,7 +571,7 @@ export const TEXT: ContentText = {
       intro: 'In a real run, the attachment moves while the robot drives. Start the attachment with wait=False and then drive: both happen together.\n\nThat is how good teams save seconds on every mission.',
       ex: [
         { prompt: 'Why move the attachment while the robot drives?', options: ['To save match time', 'To make the robot more accurate', 'Because the hub requires it', 'To save battery'], explain: 'Two actions at once take the time of the longest one, not the sum.' },
-        { prompt: 'Go to the red zone opening the right attachment 90° on the way, close it back to 0° on the way home and end in BASE 1, all in under 6 seconds.', hint: 'settings(straight_speed=400), right_arm.run_angle(500, 90, wait=False), straight(800), right_arm.run_angle(500, -90, wait=False), straight(-800).' },
+        { prompt: 'Go to the red zone opening the right attachment 90° on the way, close it back to 0° on the way home and end in BASE 1, all in under 6 seconds.', hint: 'settings(straight_speed=400), anexo_right.run_angle(500, 90, wait=False), straight(800), anexo_right.run_angle(500, -90, wait=False), straight(-800).' },
       ],
     },
     u8l3: {
@@ -612,7 +612,7 @@ export const TEXT: ContentText = {
       intro: 'SyntaxError means Python could not understand how a line is written: a missing colon, wrong indentation, or an unclosed parenthesis.\n\nThe message shows the line. Look at that line and the one before it.',
       ex: [
         { prompt: 'SyntaxError on a for line. What is the most likely cause?', options: ['The colon at the end is missing', 'The number is wrong', 'The motor is unplugged', 'The robot is too slow'], explain: 'for, while, if and def always end with a colon.' },
-        { prompt: 'This program should drive a 300 mm square and return to the start, but it has two mistakes. Fix them.', hint: 'Put the colon after range(4) and indent robot.turn(-90) so it is inside the for.' },
+        { prompt: 'This program should drive a 300 mm square and return to the start, but it has two mistakes. Fix them.', hint: 'Put the colon after range(4) and indent robo.turn(-90) so it is inside the for.' },
       ],
     },
     u11l2: {
@@ -620,7 +620,7 @@ export const TEXT: ContentText = {
       intro: 'print() shows values in the Output panel. It is the easiest way to find out what the robot is "thinking": how far it drove, what the sensor reads, what the heading is.\n\nOn the real hub, print shows up in the Pybricks Code terminal.',
       ex: [
         { prompt: 'What does this program print?', options: ['250', '0', '25', 'An error'], explain: 'distance() counts the mm driven since the start.' },
-        { prompt: 'The robot drives to the black strip. Print how far it drove.', hint: 'print(robot.distance()) after robot.stop().' },
+        { prompt: 'The robot drives to the black strip. Print how far it drove.', hint: 'print(robo.distance()) after robo.stop().' },
       ],
     },
     u11l3: {
@@ -643,7 +643,7 @@ export const TEXT: ContentText = {
       title: 'Start from BASE 2',
       intro: 'On the FLL table, some missions are closer to the other launch area. In BatControl, BASE 2 is on the right and the robot starts facing left.\n\nThe commands are the same: forward is wherever the robot is facing.',
       ex: [
-        { prompt: 'The robot starts in BASE 2 facing left. Which command drives it toward the blue zone?', options: ['robot.straight(640)', 'robot.straight(-640)', 'robot.turn(180)', 'robot.curve(640, 90)'], explain: 'The robot faces left, toward the blue zone, so forward is positive.' },
+        { prompt: 'The robot starts in BASE 2 facing left. Which command drives it toward the blue zone?', options: ['robo.straight(640)', 'robo.straight(-640)', 'robo.turn(180)', 'robo.curve(640, 90)'], explain: 'The robot faces left, toward the blue zone, so forward is positive.' },
         { prompt: 'From BASE 2, visit the blue zone and return to BASE 2.', hint: 'The blue zone center is 642 mm ahead.' },
       ],
     },
@@ -652,7 +652,7 @@ export const TEXT: ContentText = {
       intro: 'In a match every second counts. Raise straight_speed and straight_acceleration, but remember: on the real robot, too fast can slip and lose accuracy.\n\nThe maximum wheel speed of the SPIKE motors is around 540 mm/s with 62.4 mm wheels.',
       ex: [
         { prompt: 'Which change helps the most on a long, straight path?', options: ['Raise straight_speed', 'Raise turn_rate', 'Lower axle_track', 'Add wait(100)'], explain: 'On a straight path, driving speed is what matters.' },
-        { prompt: 'Visit the red zone and the blue zone and come back to BASE 1 in under 8 seconds.', hint: 'robot.settings(straight_speed=480, straight_acceleration=1500), straight(1480) and straight(-1480).' },
+        { prompt: 'Visit the red zone and the blue zone and come back to BASE 1 in under 8 seconds.', hint: 'robo.settings(straight_speed=480, straight_acceleration=1500), straight(1480) and straight(-1480).' },
       ],
     },
     u12l3: {
@@ -668,7 +668,7 @@ export const TEXT: ContentText = {
       intro: 'Put together what you learned: follow the line to the end, show that you arrived with the light and a beep.\n\nCongratulations: after this lesson you know the main Pybricks commands used in FLL.',
       ex: [
         { prompt: 'Which is the best way to know whether a mission really worked on the real robot?', options: ['Run it several times and see whether it always works', 'Run it once', 'Only look at the code', 'Test in the simulator only'], explain: 'A good mission works every time, not only once.' },
-        { prompt: 'Follow the line to the end, then turn the light green and beep.', hint: 'while robot.distance() < 1300: follower with kp; then robot.stop(), hub.light.on(Color.GREEN), hub.speaker.beep().' },
+        { prompt: 'Follow the line to the end, then turn the light green and beep.', hint: 'while robo.distance() < 1300: follower with kp; then robo.stop(), hub.light.on(Color.GREEN), hub.speaker.beep().' },
       ],
     },
   },

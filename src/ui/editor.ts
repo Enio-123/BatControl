@@ -58,9 +58,9 @@ const theme = EditorView.theme({
 });
 
 const WORDS: [string, string][] = [
-  ['straight', 'robot.straight(mm)'], ['turn', 'robot.turn(deg)'], ['curve', 'robot.curve(mm, deg)'],
-  ['drive', 'robot.drive(mm/s, deg/s)'], ['stop', 'stop()'], ['settings', 'robot.settings(...)'],
-  ['distance', 'robot.distance()'], ['angle', 'angle()'], ['reset', 'robot.reset()'], ['use_gyro', 'robot.use_gyro(True)'],
+  ['straight', 'robo.straight(mm)'], ['turn', 'robo.turn(deg)'], ['curve', 'robo.curve(mm, deg)'],
+  ['drive', 'robo.drive(mm/s, deg/s)'], ['stop', 'stop()'], ['settings', 'robo.settings(...)'],
+  ['distance', 'robo.distance()'], ['angle', 'angle()'], ['reset', 'robo.reset()'], ['use_gyro', 'robo.use_gyro(True)'],
   ['run_angle', 'motor.run_angle(deg/s, deg)'], ['run_target', 'motor.run_target(deg/s, deg)'], ['run_time', 'motor.run_time(deg/s, ms)'],
   ['run', 'motor.run(deg/s)'], ['reset_angle', 'motor.reset_angle(0)'], ['color', 'sensor.color()'], ['reflection', 'sensor.reflection()'],
   ['wait', 'wait(ms)'], ['StopWatch', 'StopWatch()'], ['DriveBase', 'class'], ['Motor', 'class'], ['ColorSensor', 'class'],
@@ -68,7 +68,7 @@ const WORDS: [string, string][] = [
   ['COUNTERCLOCKWISE', 'Direction'], ['CLOCKWISE', 'Direction'], ['BLACK', 'Color'], ['WHITE', 'Color'], ['RED', 'Color'],
   ['BLUE', 'Color'], ['GREEN', 'Color'], ['YELLOW', 'Color'], ['heading', 'hub.imu.heading()'], ['reset_heading', 'hub.imu.reset_heading(0)'],
   ['beep', 'hub.speaker.beep()'], ['wheel_diameter', 'mm'], ['axle_track', 'mm'], ['straight_speed', 'mm/s'], ['turn_rate', 'deg/s'],
-  ['robot', 'DriveBase'], ['left_arm', 'Motor C'], ['right_arm', 'Motor D'], ['sensor', 'ColorSensor'], ['hub', 'PrimeHub'],
+  ['robo', 'DriveBase'], ['anexo_left', 'Motor C'], ['anexo_right', 'Motor E'], ['sensor', 'ColorSensor'], ['hub', 'PrimeHub'],
 ];
 
 const SETUP_LINE = /^\s*(from |import |hub\s*=|\w*_motor\s*=|motor_\w*\s*=|robot?\s*=|\w*_arm\s*=|anexo_\w*\s*=|sensor\s*=|$)/;

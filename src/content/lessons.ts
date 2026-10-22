@@ -73,12 +73,12 @@ export const UNITS: Unit[] = [
         exercises: [
           { kind: 'choice', answer: 0 },
           { kind: 'choice', answer: 0 },
-          { kind: 'fill', code: 'robot.___(300)', answers: [['straight']] },
+          { kind: 'fill', code: 'robo.___(300)', answers: [['straight']] },
           {
             kind: 'code',
             starter: program(BLANK),
             check: (r) => (Math.abs(r.final.x - (START.x + 300)) <= 15 && Math.abs(r.final.y - START.y) <= 15 ? null : `${t('chk.drive300')} ${where(r.final)}`),
-            solution: program('robot.straight(300)'),
+            solution: program('robo.straight(300)'),
           },
         ],
       },
@@ -87,10 +87,10 @@ export const UNITS: Unit[] = [
         exercises: [
           { kind: 'choice', answer: 0 },
           { kind: 'choice', answer: 0 },
-          { kind: 'fill', code: 'robot = DriveBase(left_motor, right_motor, wheel_diameter=___, axle_track=150)', answers: [['62.4', '62,4']] },
+          { kind: 'fill', code: 'robo = DriveBase(left_motor, right_motor, wheel_diameter=___, axle_track=150)', answers: [['62.4', '62,4']] },
           {
             kind: 'order',
-            lines: ['hub = PrimeHub()', 'left_motor = Motor(Port.A, positive_direction=Direction.COUNTERCLOCKWISE)', 'right_motor = Motor(Port.B, positive_direction=Direction.CLOCKWISE)', 'robot = DriveBase(left_motor, right_motor, wheel_diameter=62.4, axle_track=150)', 'robot.straight(200)'],
+            lines: ['hub = PrimeHub()', 'left_motor = Motor(Port.A, positive_direction=Direction.COUNTERCLOCKWISE)', 'right_motor = Motor(Port.B, positive_direction=Direction.CLOCKWISE)', 'robo = DriveBase(left_motor, right_motor, wheel_diameter=62.4, axle_track=150)', 'robo.straight(200)'],
           },
           {
             kind: 'code',
@@ -99,12 +99,12 @@ export const UNITS: Unit[] = [
 hub = PrimeHub()
 left_motor = Motor(Port.A)
 right_motor = Motor(Port.B, positive_direction=Direction.CLOCKWISE)
-robot = DriveBase(left_motor, right_motor, wheel_diameter=62.4, axle_track=150)
+robo = DriveBase(left_motor, right_motor, wheel_diameter=62.4, axle_track=150)
 
-robot.straight(400)
+robo.straight(400)
 `,
             check: (r) => (Math.abs(r.final.x - (START.x + 400)) <= 20 && angDiff(r.final.h, 0) < 3 ? null : `${t('chk.straight400')} ${where(r.final)}`),
-            solution: program('robot.straight(400)', false),
+            solution: program('robo.straight(400)', false),
           },
         ],
       },
@@ -115,9 +115,9 @@ robot.straight(400)
           { kind: 'choice', answer: 0 },
           {
             kind: 'code',
-            starter: program('# Drive 500 mm forward\nrobot.straigth(500)'),
+            starter: program('# Drive 500 mm forward\nrobo.straigth(500)'),
             check: (r) => (Math.abs(r.final.x - (START.x + 500)) <= 15 && Math.abs(r.final.y - START.y) <= 15 ? null : `${t('chk.driveTo', { d: 500 })} ${where(r.final)}`),
-            solution: program('# Drive 500 mm forward\nrobot.straight(500)'),
+            solution: program('# Drive 500 mm forward\nrobo.straight(500)'),
           },
         ],
       },
@@ -136,7 +136,7 @@ robot.straight(400)
                 r.final.light === 'GREEN' ? null : t('chk.lightGreen'),
                 moved && r.events.some((e) => e.kind === 'beep' && e.t >= moved.t) ? null : t('chk.beepEnd'));
             },
-            solution: program('hub.light.on(Color.GREEN)\nrobot.straight(300)\nhub.speaker.beep()'),
+            solution: program('hub.light.on(Color.GREEN)\nrobo.straight(300)\nhub.speaker.beep()'),
           },
         ],
       },
@@ -155,7 +155,7 @@ robot.straight(400)
             starter: program(BLANK),
             targets: [zoneTarget('red')],
             check: (r) => needZone(r, 'red'),
-            solution: program('robot.straight(800)'),
+            solution: program('robo.straight(800)'),
           },
         ],
       },
@@ -164,13 +164,13 @@ robot.straight(400)
         exercises: [
           { kind: 'choice', answer: 0 },
           { kind: 'choice', answer: 0 },
-          { kind: 'fill', code: 'robot.turn(___)', answers: [['-90']] },
+          { kind: 'fill', code: 'robo.turn(___)', answers: [['-90']] },
           {
             kind: 'code',
             starter: program(BLANK),
             targets: [zoneTarget('yellow')],
             check: (r) => needZone(r, 'yellow'),
-            solution: program('robot.straight(800)\nrobot.turn(-90)\nrobot.straight(640)'),
+            solution: program('robo.straight(800)\nrobo.turn(-90)\nrobo.straight(640)'),
           },
         ],
       },
@@ -178,13 +178,13 @@ robot.straight(400)
         id: 'u2l3',
         exercises: [
           { kind: 'choice', answer: 0 },
-          { kind: 'order', lines: ['robot.turn(-90)', 'robot.straight(300)', 'robot.turn(90)'] },
+          { kind: 'order', lines: ['robo.turn(-90)', 'robo.straight(300)', 'robo.turn(90)'] },
           {
             kind: 'code',
             starter: program(BLANK),
             targets: [zoneTarget('yellow')],
             check: (r) => first(needZone(r, 'yellow'), angDiff(r.final.h, 0) <= 6 ? null : t('chk.faceRight')),
-            solution: program('robot.straight(800)\nrobot.turn(-90)\nrobot.straight(640)\nrobot.turn(90)'),
+            solution: program('robo.straight(800)\nrobo.turn(-90)\nrobo.straight(640)\nrobo.turn(90)'),
           },
         ],
       },
@@ -197,21 +197,21 @@ robot.straight(400)
             starter: program(BLANK),
             targets: [zoneTarget('red'), BASE_TARGET],
             check: (r, code) => first(visited(r, 'red') ? null : t('chk.notVisited', { zone: zoneName('red') }), uses(code, /^(?![\s\S]*\.(turn|curve)\s*\()/, 'chk.noTurnAtAll'), inBase(r.final.x, r.final.y) ? null : `${t('chk.endInBase')} ${where(r.final)}`),
-            solution: program('robot.straight(800)\nrobot.straight(-800)'),
+            solution: program('robo.straight(800)\nrobo.straight(-800)'),
           },
         ],
       },
       {
         id: 'u2l5',
         exercises: [
-          { kind: 'fill', code: '# turn around\nrobot.turn(___)', answers: [['180', '-180']] },
+          { kind: 'fill', code: '# turn around\nrobo.turn(___)', answers: [['180', '-180']] },
           { kind: 'choice', answer: 0 },
           {
             kind: 'code',
             starter: program(BLANK),
             targets: [zoneTarget('red'), BASE_TARGET],
             check: (r) => first(visited(r, 'red') ? null : t('chk.notVisited', { zone: zoneName('red') }), inBase(r.final.x, r.final.y) ? null : `${t('chk.endInBase')} ${where(r.final)}`, angDiff(r.final.h, 180) <= 6 ? null : t('chk.faceLeft')),
-            solution: program('robot.straight(800)\nrobot.turn(180)\nrobot.straight(800)'),
+            solution: program('robo.straight(800)\nrobo.turn(180)\nrobo.straight(800)'),
           },
         ],
       },
@@ -225,7 +225,7 @@ robot.straight(400)
             starter: program(BLANK),
             targets: [zoneTarget('yellow')],
             check: (r, code) => first(count(code, /\.turn\s*\(/) === 1 && count(code, /\.straight\s*\(/) === 1 ? null : t('chk.oneEach'), needZone(r, 'yellow')),
-            solution: program('robot.turn(-38.7)\nrobot.straight(1024)'),
+            solution: program('robo.turn(-38.7)\nrobo.straight(1024)'),
           },
         ],
       },
@@ -238,13 +238,13 @@ robot.straight(400)
         id: 'u3l1',
         exercises: [
           { kind: 'choice', answer: 0 },
-          { kind: 'fill', code: 'robot.curve(300, ___)', answers: [['-90']] },
+          { kind: 'fill', code: 'robo.curve(300, ___)', answers: [['-90']] },
           {
             kind: 'code',
             starter: program(BLANK),
             targets: [zoneTarget('yellow')],
             check: (r, code) => first(uses(code, /\.curve\s*\(/, 'chk.useCurve'), uses(code, /^(?![\s\S]*\.turn\s*\()/, 'chk.noTurn'), needZone(r, 'yellow')),
-            solution: program('robot.straight(500)\nrobot.curve(300, -90)\nrobot.straight(340)'),
+            solution: program('robo.straight(500)\nrobo.curve(300, -90)\nrobo.straight(340)'),
           },
         ],
       },
@@ -252,13 +252,13 @@ robot.straight(400)
         id: 'u3l2',
         exercises: [
           { kind: 'choice', answer: 0 },
-          { kind: 'fill', code: 'robot.settings(___=400)', answers: [['straight_speed']] },
+          { kind: 'fill', code: 'robo.settings(___=400)', answers: [['straight_speed']] },
           {
             kind: 'code',
-            starter: program('robot.straight(1400)'),
+            starter: program('robo.straight(1400)'),
             targets: [zoneTarget('blue')],
             check: (r) => first(needZone(r, 'blue'), r.final.t <= 6000 ? null : t('chk.tooSlow', { s: secs(r.final.t), max: 6 })),
-            solution: program('robot.settings(straight_speed=400)\nrobot.straight(1400)'),
+            solution: program('robo.settings(straight_speed=400)\nrobo.straight(1400)'),
           },
         ],
       },
@@ -271,7 +271,7 @@ robot.straight(400)
             starter: program(BLANK),
             targets: [zoneTarget('yellow')],
             check: (r, code) => first(count(code, /\.curve\s*\(/) >= 2 ? null : t('chk.twoCurves'), needZone(r, 'yellow'), angDiff(r.final.h, 0) <= 6 ? null : t('chk.faceRight')),
-            solution: program('robot.curve(300, -90)\nrobot.curve(300, 90)\nrobot.straight(200)'),
+            solution: program('robo.curve(300, -90)\nrobo.curve(300, 90)\nrobo.straight(200)'),
           },
         ],
       },
@@ -279,13 +279,13 @@ robot.straight(400)
         id: 'u3l4',
         exercises: [
           { kind: 'choice', answer: 0 },
-          { kind: 'fill', code: 'robot.settings(___=400)\nrobot.turn(360)', answers: [['turn_rate']] },
+          { kind: 'fill', code: 'robo.settings(___=400)\nrobo.turn(360)', answers: [['turn_rate']] },
           {
             kind: 'code',
-            starter: program('robot.turn(360)'),
+            starter: program('robo.turn(360)'),
             start: SQUARE_START,
             check: (r) => first(r.world.bases[0] && Math.abs(r.world.bases[0].turn) >= 350 && angDiff(r.final.h, SQUARE_START.h) <= 6 ? null : t('chk.spinFull'), r.final.t <= 2000 ? null : t('chk.tooSlow', { s: secs(r.final.t), max: 2 })),
-            solution: program('robot.settings(turn_rate=400)\nrobot.turn(360)'),
+            solution: program('robo.settings(turn_rate=400)\nrobo.turn(360)'),
           },
         ],
       },
@@ -298,12 +298,12 @@ robot.straight(400)
         id: 'u4l1',
         exercises: [
           { kind: 'choice', answer: 0 },
-          { kind: 'fill', code: 'right_arm.run_angle(500, ___)', answers: [['360']] },
+          { kind: 'fill', code: 'anexo_right.run_angle(500, ___)', answers: [['360']] },
           {
             kind: 'code',
             starter: program(BLANK),
             check: (r) => (maxOf(r, 'al') >= 170 && Math.abs(r.final.al) <= 5 ? null : maxOf(r, 'al') < 170 ? t('chk.armHalf') : t('chk.armBack', { a: Math.round(r.final.al) })),
-            solution: program('left_arm.run_angle(500, 180)\nleft_arm.run_angle(500, -180)'),
+            solution: program('anexo_left.run_angle(500, 180)\nanexo_left.run_angle(500, -180)'),
           },
         ],
       },
@@ -317,7 +317,7 @@ robot.straight(400)
             starter: program(BLANK),
             targets: [zoneTarget('red')],
             check: (r) => first(needZone(r, 'red'), Math.abs(r.final.ar - 90) <= 5 ? null : t('chk.arm90', { a: Math.round(r.final.ar) }), r.final.t <= 4600 ? null : t('chk.useWaitFalse', { s: secs(r.final.t) })),
-            solution: program('right_arm.run_angle(500, 90, wait=False)\nrobot.straight(800)'),
+            solution: program('anexo_right.run_angle(500, 90, wait=False)\nrobo.straight(800)'),
           },
         ],
       },
@@ -327,9 +327,9 @@ robot.straight(400)
           { kind: 'choice', answer: 0 },
           {
             kind: 'code',
-            starter: program('left_arm.run_angle(500, 75)\nleft_arm.run_angle(500, 30)\n# complete: end exactly at 120 degrees\n'),
+            starter: program('anexo_left.run_angle(500, 75)\nanexo_left.run_angle(500, 30)\n# complete: end exactly at 120 degrees\n'),
             check: (r, code) => first(uses(code, /\.run_target\s*\(/, 'chk.useRunTarget'), Math.abs(r.final.al - 120) <= 3 ? null : t('chk.armAt', { target: 120, a: Math.round(r.final.al) })),
-            solution: program('left_arm.run_angle(500, 75)\nleft_arm.run_angle(500, 30)\nleft_arm.run_target(500, 120)'),
+            solution: program('anexo_left.run_angle(500, 75)\nanexo_left.run_angle(500, 30)\nanexo_left.run_target(500, 120)'),
           },
         ],
       },
@@ -339,9 +339,9 @@ robot.straight(400)
           { kind: 'choice', answer: 0 },
           {
             kind: 'code',
-            starter: program('left_arm.run_angle(500, 180)\nright_arm.run_angle(500, 180)'),
+            starter: program('anexo_left.run_angle(500, 180)\nanexo_right.run_angle(500, 180)'),
             check: (r) => first(Math.abs(r.final.al - 180) <= 5 && Math.abs(r.final.ar - 180) <= 5 ? null : t('chk.bothArms'), r.final.t <= 800 ? null : t('chk.useWaitFalse', { s: secs(r.final.t) })),
-            solution: program('left_arm.run_angle(500, 180, wait=False)\nright_arm.run_angle(500, 180)'),
+            solution: program('anexo_left.run_angle(500, 180, wait=False)\nanexo_right.run_angle(500, 180)'),
           },
         ],
       },
@@ -354,7 +354,7 @@ robot.straight(400)
         id: 'u5l1',
         exercises: [
           { kind: 'choice', answer: 0 },
-          { kind: 'fill', code: 'robot.drive(200, 0)\nwhile sensor.color() != Color.___:\n    wait(10)\nrobot.stop()', answers: [['BLACK']] },
+          { kind: 'fill', code: 'robo.drive(200, 0)\nwhile sensor.color() != Color.___:\n    wait(10)\nrobo.stop()', answers: [['BLACK']] },
           {
             kind: 'code',
             starter: program(BLANK),
@@ -363,7 +363,7 @@ robot.straight(400)
               const sx = r.final.x + 92;
               return first(uses(code, /\.color\s*\(/, 'chk.useSensor'), sx >= 1225 && sx <= 1300 ? null : t('chk.stopLine', { x: Math.round(sx) }));
             },
-            solution: program('robot.drive(200, 0)\nwhile sensor.color() != Color.BLACK:\n    wait(10)\nrobot.stop()'),
+            solution: program('robo.drive(200, 0)\nwhile sensor.color() != Color.BLACK:\n    wait(10)\nrobo.stop()'),
           },
         ],
       },
@@ -377,23 +377,23 @@ robot.straight(400)
             starter: program(`target = 50
 gain = 1.5
 
-while robot.distance() < 1300:
+while robo.distance() < 1300:
     error = sensor.reflection() - target
     # complete: drive at 150 mm/s turning error * gain
     wait(10)
 
-robot.stop()`),
+robo.stop()`),
             start: FOLLOW_START,
             targets: [{ kind: 'rect', x: 1450, y: 860, w: 200, h: 230 }],
             check: (r) => (r.final.y >= 820 && r.final.x >= 1400 && r.final.x <= 1700 ? null : `${t('chk.lostLine')} ${where(r.final)}`),
-            solution: program('target = 50\ngain = 1.5\n\nwhile robot.distance() < 1300:\n    error = sensor.reflection() - target\n    robot.drive(150, error * gain)\n    wait(10)\n\nrobot.stop()'),
+            solution: program('target = 50\ngain = 1.5\n\nwhile robo.distance() < 1300:\n    error = sensor.reflection() - target\n    robo.drive(150, error * gain)\n    wait(10)\n\nrobo.stop()'),
           },
         ],
       },
       {
         id: 'u5l3',
         exercises: [
-          { kind: 'fill', code: 'robot.drive(200, 0)\nwhile sensor.color() != Color.___:\n    wait(10)\nrobot.stop()', answers: [['RED']] },
+          { kind: 'fill', code: 'robo.drive(200, 0)\nwhile sensor.color() != Color.___:\n    wait(10)\nrobo.stop()', answers: [['RED']] },
           { kind: 'choice', answer: 0 },
           {
             kind: 'code',
@@ -403,7 +403,7 @@ robot.stop()`),
               const s = sensorAt(r.final);
               return first(uses(code, /\.color\s*\(/, 'chk.useSensor'), inZone(s, 'red') && s.x <= 880 ? null : t('chk.stopRed'));
             },
-            solution: program('robot.drive(200, 0)\nwhile sensor.color() != Color.RED:\n    wait(10)\nrobot.stop()'),
+            solution: program('robo.drive(200, 0)\nwhile sensor.color() != Color.RED:\n    wait(10)\nrobo.stop()'),
           },
         ],
       },
@@ -419,23 +419,23 @@ robot.stop()`),
               const sx = sensorAt(r.final).x;
               return first(uses(code, /\.reflection\s*\(/, 'chk.useReflection'), sx >= 1225 && sx <= 1300 ? null : t('chk.stopLine', { x: Math.round(sx) }));
             },
-            solution: program('robot.drive(200, 0)\nwhile sensor.reflection() > 20:\n    wait(10)\nrobot.stop()'),
+            solution: program('robo.drive(200, 0)\nwhile sensor.reflection() > 20:\n    wait(10)\nrobo.stop()'),
           },
         ],
       },
       {
         id: 'u5l5',
         exercises: [
-          { kind: 'order', lines: ['robot.drive(200, 0)', 'while sensor.color() != Color.RED:', '    wait(10)', 'while sensor.color() != Color.BLACK:', '    wait(10)', 'robot.stop()'] },
+          { kind: 'order', lines: ['robo.drive(200, 0)', 'while sensor.color() != Color.RED:', '    wait(10)', 'while sensor.color() != Color.BLACK:', '    wait(10)', 'robo.stop()'] },
           {
             kind: 'code',
-            starter: program('robot.drive(200, 0)\n# complete: first wait for RED, then for BLACK\nrobot.stop()'),
+            starter: program('robo.drive(200, 0)\n# complete: first wait for RED, then for BLACK\nrobo.stop()'),
             targets: [zoneTarget('red'), { kind: 'rect', x: 1240, y: 60, w: 20, h: 340 }],
             check: (r, code) => {
               const sx = sensorAt(r.final).x;
               return first(count(code, /\.color\s*\(/) >= 2 ? null : t('chk.useSensor'), sx >= 1225 && sx <= 1300 ? null : t('chk.stopLine', { x: Math.round(sx) }));
             },
-            solution: program('robot.drive(200, 0)\nwhile sensor.color() != Color.RED:\n    wait(10)\nwhile sensor.color() != Color.BLACK:\n    wait(10)\nrobot.stop()'),
+            solution: program('robo.drive(200, 0)\nwhile sensor.color() != Color.RED:\n    wait(10)\nwhile sensor.color() != Color.BLACK:\n    wait(10)\nrobo.stop()'),
           },
         ],
       },
@@ -448,13 +448,13 @@ robot.stop()`),
         id: 'u6l1',
         exercises: [
           { kind: 'choice', answer: 0 },
-          { kind: 'fill', code: 'for i in ___(4):\n    robot.straight(300)\n    robot.turn(-90)', answers: [['range']] },
+          { kind: 'fill', code: 'for i in ___(4):\n    robo.straight(300)\n    robo.turn(-90)', answers: [['range']] },
           {
             kind: 'code',
             starter: program(BLANK),
             start: SQUARE_START,
             check: (r, code) => first(uses(code, /\bfor\s+\w+\s+in\b/, 'chk.useFor'), r.world.bases[0] && Math.abs(r.world.bases[0].turn) >= 350 ? null : t('chk.fourCorners'), backHome(r, SQUARE_START, 20)),
-            solution: program('for i in range(4):\n    robot.straight(300)\n    robot.turn(-90)'),
+            solution: program('for i in range(4):\n    robo.straight(300)\n    robo.turn(-90)'),
           },
         ],
       },
@@ -462,13 +462,13 @@ robot.stop()`),
         id: 'u6l2',
         exercises: [
           { kind: 'choice', answer: 0 },
-          { kind: 'order', lines: ['def go_and_back(distance):', '    robot.straight(distance)', '    robot.straight(-distance)', 'go_and_back(800)'] },
+          { kind: 'order', lines: ['def go_and_back(distance):', '    robo.straight(distance)', '    robo.straight(-distance)', 'go_and_back(800)'] },
           {
             kind: 'code',
             starter: program('def go_and_back(distance):\n    # complete here\n    pass\n\n'),
             targets: [zoneTarget('red')],
             check: (r, code) => first(uses(code, /def\s+go_and_back\s*\(/, 'chk.keepFn'), uses(code, /^\s*go_and_back\s*\(/m, 'chk.callFn'), visited(r, 'red') ? null : t('chk.notVisited', { zone: zoneName('red') }), backHome(r, START, 25)),
-            solution: program('def go_and_back(distance):\n    robot.straight(distance)\n    robot.straight(-distance)\n\ngo_and_back(800)'),
+            solution: program('def go_and_back(distance):\n    robo.straight(distance)\n    robo.straight(-distance)\n\ngo_and_back(800)'),
           },
         ],
       },
@@ -478,9 +478,9 @@ robot.stop()`),
           { kind: 'choice', answer: 0 },
           {
             kind: 'code',
-            starter: program('robot.drive(200, 0)\n# complete: keep driving until 600 mm\nrobot.stop()'),
+            starter: program('robo.drive(200, 0)\n# complete: keep driving until 600 mm\nrobo.stop()'),
             check: (r, code) => first(uses(code, /\bwhile\b/, 'chk.useWhile'), uses(code, /\.drive\s*\(/, 'chk.useDrive'), Math.abs(r.final.x - (START.x + 600)) <= 25 ? null : `${t('chk.driveTo', { d: 600 })} ${where(r.final)}`),
-            solution: program('robot.drive(200, 0)\nwhile robot.distance() < 600:\n    wait(10)\nrobot.stop()'),
+            solution: program('robo.drive(200, 0)\nwhile robo.distance() < 600:\n    wait(10)\nrobo.stop()'),
           },
         ],
       },
@@ -490,10 +490,10 @@ robot.stop()`),
           { kind: 'choice', code: 'x = 5\nif x > 3:\n    print("A")\nelse:\n    print("B")', answer: 0 },
           {
             kind: 'code',
-            starter: program('robot.straight(700)\n# complete: if the sensor sees RED turn left, otherwise turn right\nrobot.straight(400)'),
+            starter: program('robo.straight(700)\n# complete: if the sensor sees RED turn left, otherwise turn right\nrobo.straight(400)'),
             targets: [zoneTarget('red')],
             check: (r, code) => first(uses(code, /\bif\b[\s\S]*\belse\b/, 'chk.useIfElse'), r.final.y >= 550 ? null : t('chk.wrongSide')),
-            solution: program('robot.straight(700)\nif sensor.color() == Color.RED:\n    robot.turn(-90)\nelse:\n    robot.turn(90)\nrobot.straight(400)'),
+            solution: program('robo.straight(700)\nif sensor.color() == Color.RED:\n    robo.turn(-90)\nelse:\n    robo.turn(90)\nrobo.straight(400)'),
           },
         ],
       },
@@ -501,13 +501,13 @@ robot.stop()`),
         id: 'u6l5',
         exercises: [
           { kind: 'choice', code: 'moves = [800, 640]', answer: 0 },
-          { kind: 'fill', code: 'for distance in [300, 300, 300]:\n    robot.___(distance)', answers: [['straight']] },
+          { kind: 'fill', code: 'for distance in [300, 300, 300]:\n    robo.___(distance)', answers: [['straight']] },
           {
             kind: 'code',
             starter: program('moves = [(800, -90), (640, 0)]\n\nfor distance, angle in moves:\n    # complete: drive the distance, then turn the angle\n    pass'),
             targets: [zoneTarget('yellow')],
             check: (r, code) => first(uses(code, /moves\s*=\s*\[/, 'chk.useList'), uses(code, /\bfor\b[^\n]*\bin\s+moves\b/, 'chk.useList'), needZone(r, 'yellow')),
-            solution: program('moves = [(800, -90), (640, 0)]\n\nfor distance, angle in moves:\n    robot.straight(distance)\n    robot.turn(angle)'),
+            solution: program('moves = [(800, -90), (640, 0)]\n\nfor distance, angle in moves:\n    robo.straight(distance)\n    robo.turn(angle)'),
           },
         ],
       },
@@ -521,7 +521,7 @@ robot.stop()`),
             starter: program('def mm(cm):\n    return cm * 10\n\n# complete: drive 80 cm using mm()\n'),
             targets: [zoneTarget('red')],
             check: (r, code) => first(uses(code, /\.straight\s*\(\s*mm\s*\(/, 'chk.useMm'), needZone(r, 'red')),
-            solution: program('def mm(cm):\n    return cm * 10\n\nrobot.straight(mm(80))'),
+            solution: program('def mm(cm):\n    return cm * 10\n\nrobo.straight(mm(80))'),
           },
         ],
       },
@@ -531,13 +531,13 @@ robot.stop()`),
           { kind: 'choice', code: 'for i in range(10):\n    if i == 3:\n        break\n    print(i)', answer: 0 },
           {
             kind: 'code',
-            starter: program('robot.drive(200, 0)\nwhile True:\n    # complete: leave the loop when the sensor sees BLACK\n    wait(10)\nrobot.stop()'),
+            starter: program('robo.drive(200, 0)\nwhile True:\n    # complete: leave the loop when the sensor sees BLACK\n    wait(10)\nrobo.stop()'),
             targets: [{ kind: 'rect', x: 1240, y: 60, w: 20, h: 340 }],
             check: (r, code) => {
               const sx = sensorAt(r.final).x;
               return first(uses(code, /\bbreak\b/, 'chk.useBreak'), sx >= 1225 && sx <= 1300 ? null : t('chk.stopLine', { x: Math.round(sx) }));
             },
-            solution: program('robot.drive(200, 0)\nwhile True:\n    if sensor.color() == Color.BLACK:\n        break\n    wait(10)\nrobot.stop()'),
+            solution: program('robo.drive(200, 0)\nwhile True:\n    if sensor.color() == Color.BLACK:\n        break\n    wait(10)\nrobo.stop()'),
           },
         ],
       },
@@ -562,7 +562,7 @@ robot.stop()`),
               const f = r.final;
               return f.x <= 400 && f.y <= 560 ? null : `${t('chk.endInBase')} ${where(f)}`;
             },
-            solution: program('robot.settings(straight_speed=400)\nrobot.straight(1480)\nrobot.turn(-49)\nrobot.straight(844)\nrobot.straight(-844)\nrobot.turn(49)\nrobot.straight(-1480)'),
+            solution: program('robo.settings(straight_speed=400)\nrobo.straight(1480)\nrobo.turn(-49)\nrobo.straight(844)\nrobo.straight(-844)\nrobo.turn(49)\nrobo.straight(-1480)'),
           },
         ],
       },
@@ -575,7 +575,7 @@ robot.stop()`),
             starter: program(BLANK),
             targets: [{ kind: 'rect', ...BASE2 }],
             check: (r) => first(r.final.x >= BASE2.x && r.final.y <= BASE2.h ? null : `${t('chk.inBase2')} ${where(r.final)}`, r.final.t <= 6000 ? null : t('chk.tooSlow', { s: secs(r.final.t), max: 6 })),
-            solution: program('robot.settings(straight_speed=400)\nrobot.straight(2000)'),
+            solution: program('robo.settings(straight_speed=400)\nrobo.straight(2000)'),
           },
         ],
       },
@@ -593,7 +593,7 @@ robot.stop()`),
               Math.abs(r.final.ar) <= 5 ? null : t('chk.armBack', { a: Math.round(r.final.ar) }),
               inBase(r.final.x, r.final.y) ? null : `${t('chk.endInBase')} ${where(r.final)}`,
               r.final.t <= 6000 ? null : t('chk.useWaitFalse', { s: secs(r.final.t) })),
-            solution: program('robot.settings(straight_speed=400)\nright_arm.run_angle(500, 90, wait=False)\nrobot.straight(800)\nright_arm.run_angle(500, -90, wait=False)\nrobot.straight(-800)'),
+            solution: program('robo.settings(straight_speed=400)\nanexo_right.run_angle(500, 90, wait=False)\nrobo.straight(800)\nanexo_right.run_angle(500, -90, wait=False)\nrobo.straight(-800)'),
           },
         ],
       },
@@ -607,20 +607,20 @@ robot.stop()`),
         exercises: [
           { kind: 'choice', answer: 0 },
           { kind: 'choice', answer: 0 },
-          { kind: 'fill', code: 'robot.___(True)', answers: [['use_gyro']] },
+          { kind: 'fill', code: 'robo.___(True)', answers: [['use_gyro']] },
           {
             kind: 'code',
             starter: program(`# Two laps of a 300 mm square, back to the start
 for i in range(8):
-    robot.straight(300)
-    robot.turn(-90)`),
+    robo.straight(300)
+    robo.turn(-90)`),
             start: SQUARE_START,
             realistic: 11,
             check: (r) => first(backHome(r, SQUARE_START, 35), angDiff(r.final.h, SQUARE_START.h) <= 4 ? null : t('chk.heading', { a: Math.round(angDiff(r.final.h, SQUARE_START.h)) })),
-            solution: program(`robot.use_gyro(True)
+            solution: program(`robo.use_gyro(True)
 for i in range(8):
-    robot.straight(300)
-    robot.turn(-90)`),
+    robo.straight(300)
+    robo.turn(-90)`),
           },
         ],
       },
@@ -629,7 +629,7 @@ for i in range(8):
         exercises: [
           { kind: 'choice', answer: 0 },
           { kind: 'choice', answer: 0 },
-          { kind: 'fill', code: 'robot = DriveBase(left_motor, right_motor, wheel_diameter=___, axle_track=150)', answers: [['64', '64.0', '63.96', '64,0', '63,96']] },
+          { kind: 'fill', code: 'robo = DriveBase(left_motor, right_motor, wheel_diameter=___, axle_track=150)', answers: [['64', '64.0', '63.96', '64,0', '63,96']] },
         ],
       },
       {
@@ -639,10 +639,10 @@ for i in range(8):
           { kind: 'fill', code: 'while hub.imu.___() < 90:\n    wait(10)', answers: [['heading']] },
           {
             kind: 'code',
-            starter: program('robot.drive(0, 120)\n# complete: wait until the heading reaches 90\nrobot.stop()'),
+            starter: program('robo.drive(0, 120)\n# complete: wait until the heading reaches 90\nrobo.stop()'),
             start: SQUARE_START,
             check: (r, code) => first(uses(code, /\.heading\s*\(/, 'chk.useHeading'), angDiff(r.final.h, -90) <= 6 ? null : t('chk.turnRight90', { a: Math.round(-r.final.h) })),
-            solution: program('robot.drive(0, 120)\nwhile hub.imu.heading() < 90:\n    wait(10)\nrobot.stop()'),
+            solution: program('robo.drive(0, 120)\nwhile hub.imu.heading() < 90:\n    wait(10)\nrobo.stop()'),
           },
         ],
       },
@@ -663,14 +663,14 @@ kp = 6
 kd = 0
 last_error = 0
 
-while robot.distance() < 1300:
+while robo.distance() < 1300:
     error = sensor.reflection() - target
     derivative = error - last_error
-    robot.drive(400, kp * error + kd * derivative)
+    robo.drive(400, kp * error + kd * derivative)
     last_error = error
     wait(10)
 
-robot.stop()`),
+robo.stop()`),
             start: FOLLOW_START,
             targets: [{ kind: 'rect', x: 1450, y: 860, w: 200, h: 230 }],
             check: (r) => first(r.final.y >= 820 && r.final.x >= 1400 && r.final.x <= 1700 ? null : `${t('chk.lostLinePid')} ${where(r.final)}`, r.final.t <= 4000 ? null : t('chk.tooSlow', { s: secs(r.final.t), max: 4 })),
@@ -679,14 +679,14 @@ kp = 6
 kd = 8
 last_error = 0
 
-while robot.distance() < 1300:
+while robo.distance() < 1300:
     error = sensor.reflection() - target
     derivative = error - last_error
-    robot.drive(400, kp * error + kd * derivative)
+    robo.drive(400, kp * error + kd * derivative)
     last_error = error
     wait(10)
 
-robot.stop()`),
+robo.stop()`),
           },
         ],
       },
@@ -701,12 +701,12 @@ target = 50
 gain = 1.5
 
 # complete: follow the line for 3 seconds (3000 ms)
-while robot.distance() < 200:
+while robo.distance() < 200:
     error = sensor.reflection() - target
-    robot.drive(150, error * gain)
+    robo.drive(150, error * gain)
     wait(10)
 
-robot.stop()`),
+robo.stop()`),
             start: FOLLOW_START,
             check: (r, code) => first(uses(code, /watch\.time\s*\(/, 'chk.useStopWatch'), r.final.t >= 2900 && r.final.t <= 3400 ? null : t('chk.followTime', { s: secs(r.final.t) }), r.final.y >= 520 && r.final.y <= 680 ? null : `${t('chk.lostLine')} ${where(r.final)}`),
             solution: program(`watch = StopWatch()
@@ -715,10 +715,10 @@ gain = 1.5
 
 while watch.time() < 3000:
     error = sensor.reflection() - target
-    robot.drive(150, error * gain)
+    robo.drive(150, error * gain)
     wait(10)
 
-robot.stop()`),
+robo.stop()`),
           },
         ],
       },
@@ -745,8 +745,8 @@ push_crate()`),
               return first(uses(code, /def\s+push_crate\s*\(/, 'chk.keepFn'), inZone(c, 'blue') ? null : t('chk.crateZone', { zone: zoneName('blue') }), inBase(r.final.x, r.final.y) ? null : `${t('chk.endInBase')} ${where(r.final)}`);
             },
             solution: program(`def push_crate():
-    robot.straight(1300)
-    robot.straight(-1300)
+    robo.straight(1300)
+    robo.straight(-1300)
 
 push_crate()`),
           },
@@ -759,10 +759,10 @@ push_crate()`),
           {
             kind: 'code',
             starter: program(`def open_claw():
-    left_arm.run_angle(300, 90)
+    anexo_left.run_angle(300, 90)
 
 def close_claw():
-    left_arm.run_angle(300, -90)
+    anexo_left.run_angle(300, -90)
 
 # complete: open, drive to the crate, close and bring it to the base
 `),
@@ -774,15 +774,15 @@ def close_claw():
               return first(c.x <= 400 && c.y <= 560 ? null : t('chk.crateBase'), inBase(r.final.x, r.final.y) ? null : `${t('chk.endInBase')} ${where(r.final)}`);
             },
             solution: program(`def open_claw():
-    left_arm.run_angle(300, 90)
+    anexo_left.run_angle(300, 90)
 
 def close_claw():
-    left_arm.run_angle(300, -90)
+    anexo_left.run_angle(300, -90)
 
 open_claw()
-robot.straight(466)
+robo.straight(466)
 close_claw()
-robot.straight(-466)`),
+robo.straight(-466)`),
           },
         ],
       },
@@ -809,18 +809,18 @@ visit_yellow()`),
               visited(r, 'yellow') ? null : t('chk.notVisited', { zone: zoneName('yellow') }),
               inBase(r.final.x, r.final.y) ? null : `${t('chk.endInBase')} ${where(r.final)}`),
             solution: program(`def push_crate():
-    robot.straight(620)
-    robot.straight(-620)
+    robo.straight(620)
+    robo.straight(-620)
 
 def visit_yellow():
-    robot.turn(-90)
-    robot.straight(640)
-    robot.turn(90)
-    robot.straight(800)
-    robot.straight(-800)
-    robot.turn(-90)
-    robot.straight(-640)
-    robot.turn(90)
+    robo.turn(-90)
+    robo.straight(640)
+    robo.turn(90)
+    robo.straight(800)
+    robo.straight(-800)
+    robo.turn(-90)
+    robo.straight(-640)
+    robo.turn(90)
 
 push_crate()
 visit_yellow()`),
@@ -834,10 +834,10 @@ visit_yellow()`),
           {
             kind: 'code',
             starter: program(`def open_claw():
-    left_arm.run_target(300, 90)
+    anexo_left.run_target(300, 90)
 
 def close_claw():
-    left_arm.run_target(300, 0)
+    anexo_left.run_target(300, 0)
 
 # complete: grab the crate, drop it in the red zone and return to the base
 `),
@@ -846,17 +846,17 @@ def close_claw():
             targets: [zoneTarget('red'), BASE_TARGET],
             check: (r) => first(inZone(objAt(r, 'crate'), 'red') ? null : t('chk.crateZone', { zone: zoneName('red') }), inBase(r.final.x, r.final.y) ? null : `${t('chk.endInBase')} ${where(r.final)}`),
             solution: program(`def open_claw():
-    left_arm.run_target(300, 90)
+    anexo_left.run_target(300, 90)
 
 def close_claw():
-    left_arm.run_target(300, 0)
+    anexo_left.run_target(300, 0)
 
 open_claw()
-robot.straight(266)
+robo.straight(266)
 close_claw()
-robot.straight(340)
+robo.straight(340)
 open_claw()
-robot.straight(-606)`),
+robo.straight(-606)`),
           },
         ],
       },
@@ -871,27 +871,27 @@ robot.straight(-606)`),
           { kind: 'choice', answer: 0 },
           {
             kind: 'code',
-            starter: program('for i in range(4)\n    robot.straight(300)\nrobot.turn(-90)'),
+            starter: program('for i in range(4)\n    robo.straight(300)\nrobo.turn(-90)'),
             start: SQUARE_START,
             check: (r) => first(r.world.bases[0] && Math.abs(r.world.bases[0].turn) >= 350 ? null : t('chk.fourCorners'), backHome(r, SQUARE_START, 20)),
-            solution: program('for i in range(4):\n    robot.straight(300)\n    robot.turn(-90)'),
+            solution: program('for i in range(4):\n    robo.straight(300)\n    robo.turn(-90)'),
           },
         ],
       },
       {
         id: 'u11l2',
         exercises: [
-          { kind: 'choice', code: 'robot.straight(250)\nprint(robot.distance())', answer: 0 },
+          { kind: 'choice', code: 'robo.straight(250)\nprint(robo.distance())', answer: 0 },
           {
             kind: 'code',
-            starter: program('robot.drive(200, 0)\nwhile sensor.color() != Color.BLACK:\n    wait(10)\nrobot.stop()\n# complete: print how far the robot drove\n'),
+            starter: program('robo.drive(200, 0)\nwhile sensor.color() != Color.BLACK:\n    wait(10)\nrobo.stop()\n# complete: print how far the robot drove\n'),
             targets: [{ kind: 'rect', x: 1240, y: 60, w: 20, h: 340 }],
             check: (r) => {
               const d = r.final.x - START.x;
               const printed = r.events.filter((e) => e.kind === 'print').map((e) => parseFloat(e.text)).filter((n) => !Number.isNaN(n));
               return printed.some((n) => Math.abs(n - d) <= 15) ? null : t('chk.printDist');
             },
-            solution: program('robot.drive(200, 0)\nwhile sensor.color() != Color.BLACK:\n    wait(10)\nrobot.stop()\nprint(robot.distance())'),
+            solution: program('robo.drive(200, 0)\nwhile sensor.color() != Color.BLACK:\n    wait(10)\nrobo.stop()\nprint(robo.distance())'),
           },
         ],
       },
@@ -901,10 +901,10 @@ robot.straight(-606)`),
           { kind: 'choice', answer: 0 },
           {
             kind: 'code',
-            starter: program('# Go to the yellow zone\nrobot.straight(80)\nrobot.turn(90)\nrobot.straight(640)'),
+            starter: program('# Go to the yellow zone\nrobo.straight(80)\nrobo.turn(90)\nrobo.straight(640)'),
             targets: [zoneTarget('yellow')],
             check: (r) => needZone(r, 'yellow'),
-            solution: program('# Go to the yellow zone\nrobot.straight(800)\nrobot.turn(-90)\nrobot.straight(640)'),
+            solution: program('# Go to the yellow zone\nrobo.straight(800)\nrobo.turn(-90)\nrobo.straight(640)'),
           },
         ],
       },
@@ -919,17 +919,17 @@ robot.straight(-606)`),
 hub = PrimeHub()
 left_motor = Motor(Port.A, positive_direction=Direction.COUNTERCLOCKWISE)
 right_motor = Motor(Port.B, positive_direction=Direction.CLOCKWISE)
-robot = DriveBase(left_motor, right_motor, wheel_diameter=62.4, axle_track=150)
+robo = DriveBase(left_motor, right_motor, wheel_diameter=62.4, axle_track=150)
 sensor = ColorSensor(Port.F)
 
-robot.drive(200, 0)
+robo.drive(200, 0)
 while sensor.color() != Color.RED:
     wait(10)
-robot.stop()
+robo.stop()
 `,
             targets: [zoneTarget('red')],
             check: (r) => (inZone(sensorAt(r.final), 'red') ? null : t('chk.stopRed')),
-            solution: program('robot.drive(200, 0)\nwhile sensor.color() != Color.RED:\n    wait(10)\nrobot.stop()', false).replace('robot = DriveBase(left_motor, right_motor, wheel_diameter=62.4, axle_track=150)', 'robot = DriveBase(left_motor, right_motor, wheel_diameter=62.4, axle_track=150)\nsensor = ColorSensor(Port.D)'),
+            solution: program('robo.drive(200, 0)\nwhile sensor.color() != Color.RED:\n    wait(10)\nrobo.stop()', false).replace('robo = DriveBase(left_motor, right_motor, wheel_diameter=62.4, axle_track=150)', 'robo = DriveBase(left_motor, right_motor, wheel_diameter=62.4, axle_track=150)\nsensor = ColorSensor(Port.D)'),
           },
         ],
       },
@@ -948,7 +948,7 @@ robot.stop()
             start: START2,
             targets: [zoneTarget('blue'), { kind: 'rect', ...BASE2 }],
             check: (r) => first(visited(r, 'blue') ? null : t('chk.notVisited', { zone: zoneName('blue') }), r.final.x >= BASE2.x && r.final.y <= BASE2.h ? null : `${t('chk.inBase2')} ${where(r.final)}`),
-            solution: program('robot.straight(642)\nrobot.straight(-642)'),
+            solution: program('robo.straight(642)\nrobo.straight(-642)'),
           },
         ],
       },
@@ -965,7 +965,7 @@ robot.stop()
               visited(r, 'blue') ? null : t('chk.notVisited', { zone: zoneName('blue') }),
               inBase(r.final.x, r.final.y) ? null : `${t('chk.endInBase')} ${where(r.final)}`,
               r.final.t <= 8000 ? null : t('chk.tooSlow', { s: secs(r.final.t), max: 8 })),
-            solution: program('robot.settings(straight_speed=480, straight_acceleration=1500)\nrobot.straight(1480)\nrobot.straight(-1480)'),
+            solution: program('robo.settings(straight_speed=480, straight_acceleration=1500)\nrobo.straight(1480)\nrobo.straight(-1480)'),
           },
         ],
       },
@@ -982,7 +982,7 @@ robot.stop()
               inZone(objAt(r, 'crate'), 'blue') ? null : t('chk.crateZone', { zone: zoneName('blue') }),
               visited(r, 'green') ? null : t('chk.notVisited', { zone: zoneName('green') }),
               r.final.x >= BASE2.x && r.final.y <= BASE2.h ? null : `${t('chk.inBase2')} ${where(r.final)}`),
-            solution: program('robot.straight(1300)\nrobot.turn(-41)\nrobot.straight(971)\nrobot.turn(126)\nrobot.straight(562)'),
+            solution: program('robo.straight(1300)\nrobo.turn(-41)\nrobo.straight(971)\nrobo.turn(126)\nrobo.straight(562)'),
           },
         ],
       },
@@ -1009,12 +1009,12 @@ kp = 1.5
             solution: program(`target = 50
 kp = 1.5
 
-while robot.distance() < 1300:
+while robo.distance() < 1300:
     error = sensor.reflection() - target
-    robot.drive(150, kp * error)
+    robo.drive(150, kp * error)
     wait(10)
 
-robot.stop()
+robo.stop()
 hub.light.on(Color.GREEN)
 hub.speaker.beep()`),
           },

@@ -19,7 +19,7 @@ export const TEXT: ContentText = {
       tips: [
         '每个设备只在程序开头创建一次。',
         '以 # 开头的行是注释：机器人会忽略它们，但它们能帮助队友看懂代码。',
-        'left_motor、robot 和 sensor 这些名字是我们自己选的。你也可以用别的名字，只要整个程序里用同一个名字就行。',
+        'left_motor、robo 和 sensor 这些名字是我们自己选的。你也可以用别的名字，只要整个程序里用同一个名字就行。',
       ],
       mistakes: ['忘记 import 会导致 NameError：Python 不知道 DriveBase 或 Port 是什么。'],
     },
@@ -74,7 +74,7 @@ export const TEXT: ContentText = {
     strafe: {
       title: '那横移（strafe）呢？',
       summary: 'Pybricks 的 DriveBase 没有 strafe。典型的 FLL 机器人有两个固定的驱动轮（差速驱动），只能向前或向后推。只有装了全向轮或麦克纳姆轮的机器人才能横着走。要到达侧面的某个点：先转向，再行驶，然后转回来。',
-      tips: ['如果你写 robot.strafe(...)，模拟器会显示和主机一样的错误：AttributeError。'],
+      tips: ['如果你写 robo.strafe(...)，模拟器会显示和主机一样的错误：AttributeError。'],
     },
     curve: {
       title: 'curve()：沿弧线行驶',
@@ -98,7 +98,7 @@ export const TEXT: ContentText = {
     },
     drive: {
       title: 'drive() 和 stop()：持续行驶',
-      summary: 'drive() 启动车轮后，程序会立刻执行下一行，机器人仍在运动。只有调用 robot.stop() 时机器人才会停下。这是“一直走到看见黑线”和巡线程序的基础。',
+      summary: 'drive() 启动车轮后，程序会立刻执行下一行，机器人仍在运动。只有调用 robo.stop() 时机器人才会停下。这是“一直走到看见黑线”和巡线程序的基础。',
       params: [
         ['mm/s', '前进速度（负数 = 后退）。'],
         ['度/秒', '行驶时转多少。0 = 直行，正数 = 向右。'],
@@ -243,12 +243,12 @@ export const TEXT: ContentText = {
   lessons: {
     u1l1: {
       title: '第一个程序',
-      intro: 'Pybricks 是运行在 SPIKE Prime 主机里的 Python。机器人从上到下逐行执行程序。\n\n行驶时我们使用 DriveBase，在本课程中它叫 robot。指令 robot.straight(300) 让机器人向前走 300 毫米。',
+      intro: 'Pybricks 是运行在 SPIKE Prime 主机里的 Python。机器人从上到下逐行执行程序。\n\n行驶时我们使用 DriveBase，在本课程中它叫 robot。指令 robo.straight(300) 让机器人向前走 300 毫米。',
       ex: [
         { prompt: '我们用哪种语言编写 Pybricks 程序？', options: ['Python', 'Scratch 积木', 'C++', 'JavaScript'], explain: 'Pybricks 使用 MicroPython，这是专为主机这类小型电路板设计的 Python 版本。' },
         { prompt: 'straight() 用什么单位测量距离？', options: ['毫米', '厘米', '车轮圈数', '秒'], explain: 'Pybricks 中所有距离都以 mm 为单位。30 cm = 300 mm。' },
         { prompt: '补全代码，让机器人向前走 300 mm。', explain: 'straight 的意思是走直线。' },
-        { prompt: '让机器人向前走 300 mm。', hint: '在注释下面写 robot.straight(300)。' },
+        { prompt: '让机器人向前走 300 mm。', hint: '在注释下面写 robo.straight(300)。' },
       ],
     },
     u1l2: {
@@ -266,17 +266,17 @@ export const TEXT: ContentText = {
       title: '直行',
       intro: 'straight(距离) 沿直线行驶后停下。正数向前，负数向后。\n\n模拟器场地的边缘每 100 mm 有一个刻度。起点在基地 1 内，机器人中心位于 x = 120 mm。',
       ex: [
-        { prompt: 'robot.straight(-200) 会做什么？', options: ['后退 200 mm', '前进 200 mm', '转 200 度', '报错，不允许负数'], explain: '负的距离表示向后走。' },
+        { prompt: 'robo.straight(-200) 会做什么？', options: ['后退 200 mm', '前进 200 mm', '转 200 度', '报错，不允许负数'], explain: '负的距离表示向后走。' },
         { prompt: '25 cm 等于多少毫米？', options: ['250', '25', '2500', '2.5'], explain: '1 cm = 10 mm，所以 25 cm = 250 mm。' },
-        { prompt: '把机器人开到红色区域。它的中心在起点前方 800 mm。', hint: '一个距离正确的 robot.straight() 就够了。' },
+        { prompt: '把机器人开到红色区域。它的中心在起点前方 800 mm。', hint: '一个距离正确的 robo.straight() 就够了。' },
       ],
     },
     u2l2: {
       title: '转向',
       intro: 'turn(角度) 让机器人原地转动。正数向右转（顺时针），负数向左转。\n\n四分之一圈是 90 度，半圈是 180 度。',
       ex: [
-        { prompt: 'robot.turn(90) 会让机器人转向哪边？', options: ['右边', '左边', '前方', '取决于端口'], explain: '正角度 = 顺时针 = 向右。' },
-        { prompt: '哪条指令能让机器人掉头？', options: ['robot.turn(180)', 'robot.turn(90)', 'robot.turn(360)', 'robot.straight(-180)'], explain: '掉头是 180 度。360 是转一整圈，机器人最后还是朝着原来的方向。' },
+        { prompt: 'robo.turn(90) 会让机器人转向哪边？', options: ['右边', '左边', '前方', '取决于端口'], explain: '正角度 = 顺时针 = 向右。' },
+        { prompt: '哪条指令能让机器人掉头？', options: ['robo.turn(180)', 'robo.turn(90)', 'robo.turn(360)', 'robo.straight(-180)'], explain: '掉头是 180 度。360 是转一整圈，机器人最后还是朝着原来的方向。' },
         { prompt: '补全代码，向左转四分之一圈。', explain: '向左是负数：-90。' },
         { prompt: '把机器人开到黄色区域。尺寸：前进 800 mm，向左转，再前进 640 mm。', hint: 'straight(800)，然后 turn(-90)，然后 straight(640)。' },
       ],
@@ -285,7 +285,7 @@ export const TEXT: ContentText = {
       title: '有横移吗？',
       intro: '有人会找 strafe() 指令来横着走。Pybricks 的 DriveBase 没有这个指令：机器人有两个固定的轮子，只能向前或向后推（差速驱动）。\n\n要到达侧面的某个点：先转向，再行驶，然后转回来。',
       ex: [
-        { prompt: '如果程序调用 robot.strafe(100) 会怎样？', options: ['报错：DriveBase 没有 strafe', '机器人横移 100 mm', '机器人转 100 度', '机器人前进 100 mm'], explain: '主机会显示 AttributeError，和模拟器一样。只有全向轮或麦克纳姆轮才能横着走。' },
+        { prompt: '如果程序调用 robo.strafe(100) 会怎样？', options: ['报错：DriveBase 没有 strafe', '机器人横移 100 mm', '机器人转 100 度', '机器人前进 100 mm'], explain: '主机会显示 AttributeError，和模拟器一样。只有全向轮或麦克纳姆轮才能横着走。' },
         { prompt: '拼出“向左走 300 mm”并最终重新朝前的路线。', explain: '转向、行驶、再转回来，就能代替横移。' },
         { prompt: '停在黄色区域内，但要朝向场地右侧，和起点时一样。', hint: '用上一课的路线，最后加一个 turn(90)。' },
       ],
@@ -294,54 +294,54 @@ export const TEXT: ContentText = {
       title: '弧线',
       intro: 'curve(半径, 角度) 沿圆弧行驶。半径大是缓弯，半径小是急弯。正角度向右弯。\n\n半径 300、角度 -90 的弧线会让机器人向前 300 mm、向左 300 mm。',
       ex: [
-        { prompt: '下面哪条弧线最急？', options: ['robot.curve(100, 90)', 'robot.curve(400, 90)', 'robot.curve(800, 90)', '都一样'], explain: '半径越小，弯道越急。' },
+        { prompt: '下面哪条弧线最急？', options: ['robo.curve(100, 90)', 'robo.curve(400, 90)', 'robo.curve(800, 90)', '都一样'], explain: '半径越小，弯道越急。' },
         { prompt: '补全代码，以 300 mm 半径向左走四分之一圆。', explain: '向左是负数，四分之一圆是 90 度。' },
         { prompt: '在路上使用一次 curve()、不用 turn()，到达黄色区域。', hint: '前进 500 mm，执行 curve(300, -90)，再前进 340 mm。' },
       ],
     },
     u3l2: {
       title: '速度',
-      intro: 'robot.settings() 修改 straight、turn 和 curve 的速度。例如 robot.settings(straight_speed=400) 以 400 mm/s 的速度行驶。\n\n更快能节省比赛时间，更慢通常更精确。',
+      intro: 'robo.settings() 修改 straight、turn 和 curve 的速度。例如 robo.settings(straight_speed=400) 以 400 mm/s 的速度行驶。\n\n更快能节省比赛时间，更慢通常更精确。',
       ex: [
         { prompt: 'straight_speed 的单位是什么？', options: ['mm/s', '度/秒', 'cm/s', '转/分钟'], explain: '直行速度的单位是毫米每秒。' },
         { prompt: '补全代码，以 400 mm/s 行驶。', explain: 'straight_speed 控制直行的速度。' },
-        { prompt: '在 6 秒内到达蓝色区域（前方 1400 mm）。按默认速度，机器人来不及。', hint: '在 straight 之前加上 robot.settings(straight_speed=400)。' },
+        { prompt: '在 6 秒内到达蓝色区域（前方 1400 mm）。按默认速度，机器人来不及。', hint: '在 straight 之前加上 robo.settings(straight_speed=400)。' },
       ],
     },
     u4l1: {
       title: 'run_angle()',
-      intro: '附件由 C、E 端口的电机驱动。在模拟器中，它们是机器人顶部的两个齿轮。\n\nleft_arm.run_angle(500, 180) 以每秒 500 度的速度把左侧附件转 180 度。',
+      intro: '附件由 C、E 端口的电机驱动。在模拟器中，它们是机器人顶部的两个齿轮。\n\nanexo_left.run_angle(500, 180) 以每秒 500 度的速度把左侧附件转 180 度。',
       ex: [
-        { prompt: '在 left_arm.run_angle(500, 90) 中，500 是什么？', options: ['速度，单位是度/秒', '角度，单位是度', '时间，单位是毫秒', '电机功率'], explain: '先写速度，再写角度。' },
+        { prompt: '在 anexo_left.run_angle(500, 90) 中，500 是什么？', options: ['速度，单位是度/秒', '角度，单位是度', '时间，单位是毫秒', '电机功率'], explain: '先写速度，再写角度。' },
         { prompt: '补全代码，让右侧附件转一整圈。', explain: '一整圈是 360 度。' },
-        { prompt: '把左侧附件转半圈，然后再转回起始位置。', hint: '两行：left_arm.run_angle(500, 180) 和 left_arm.run_angle(500, -180)。' },
+        { prompt: '把左侧附件转半圈，然后再转回起始位置。', hint: '两行：anexo_left.run_angle(500, 180) 和 anexo_left.run_angle(500, -180)。' },
       ],
     },
     u4l2: {
       title: '附件与机器人同时动',
       intro: '默认情况下，每条指令都要等完成后才执行下一行。加上 wait=False，指令开始后程序会立刻继续。\n\n这样附件可以在机器人行驶时抬起，节省宝贵的比赛时间。\n\nrun_target(速度, 角度) 把电机转到一个精确的角度（从零算起）。',
       ex: [
-        { prompt: 'right_arm.run_angle(500, 90, wait=False) 中的 wait=False 有什么作用？', options: ['开始转动，程序不等待直接继续', '不转动电机', '让电机一直转', '转动前等待 90 ms'], explain: '电机和后面的代码同时运行。' },
+        { prompt: 'anexo_right.run_angle(500, 90, wait=False) 中的 wait=False 有什么作用？', options: ['开始转动，程序不等待直接继续', '不转动电机', '让电机一直转', '转动前等待 90 ms'], explain: '电机和后面的代码同时运行。' },
         { prompt: '附件在 30°。执行 run_target(500, 90) 后它会到哪里？', options: ['到 90°', '到 120°', '到 60°', '停在 30°'], explain: '不管原来在哪里，run_target 都会转到目标角度。run_angle(500, 90) 则会转到 120°。' },
-        { prompt: '开到红色区域，同时把右侧附件转 90°。全部在 4.6 秒内完成。', hint: 'right_arm.run_angle(500, 90, wait=False)，然后 robot.straight(800)。' },
+        { prompt: '开到红色区域，同时把右侧附件转 90°。全部在 4.6 秒内完成。', hint: 'anexo_right.run_angle(500, 90, wait=False)，然后 robo.straight(800)。' },
       ],
     },
     u5l1: {
       title: '停在线上',
-      intro: 'sensor.color() 告诉你传感器下方场地的颜色：Color.BLACK、Color.WHITE、Color.RED……\n\n要一直走到出现某种颜色：用 robot.drive(速度, 0) 启动车轮，在 while 循环里等待颜色出现，然后调用 robot.stop()。\n\n在模拟器中，地面上的红点表示传感器读取的位置。',
+      intro: 'sensor.color() 告诉你传感器下方场地的颜色：Color.BLACK、Color.WHITE、Color.RED……\n\n要一直走到出现某种颜色：用 robo.drive(速度, 0) 启动车轮，在 while 循环里等待颜色出现，然后调用 robo.stop()。\n\n在模拟器中，地面上的红点表示传感器读取的位置。',
       ex: [
         { prompt: '判断传感器是否看到黑色的正确写法是？', options: ['sensor.color() == Color.BLACK', 'sensor.color() == "BLACK"', 'sensor.color = Color.BLACK', 'sensor.black()'], explain: '用 == 比较，并使用 Pybricks 的颜色（Color.BLACK），不加引号。' },
         { prompt: '补全代码，一直走到找到黑线。', explain: '只要颜色不等于（!=）黑色，就继续走。' },
-        { prompt: '开到黑色的停止带并停在上面。途中传感器会经过红色区域：机器人不能停在那里。', hint: 'robot.drive(200, 0)，然后 while sensor.color() != Color.BLACK: wait(10)，然后 robot.stop()。' },
+        { prompt: '开到黑色的停止带并停在上面。途中传感器会经过红色区域：机器人不能停在那里。', hint: 'robo.drive(200, 0)，然后 while sensor.color() != Color.BLACK: wait(10)，然后 robo.stop()。' },
       ],
     },
     u5l2: {
       title: '巡线',
-      intro: 'sensor.reflection() 测量反射回来的光，范围 0 到 100：黑色约为 7，白色约为 96。在线的边缘，数值介于两者之间，大约 50。\n\n比例巡线程序计算 error = reflection() - 50，并按误差比例转向：robot.drive(150, error * gain)。机器人沿着线的边缘行驶，不断修正。',
+      intro: 'sensor.reflection() 测量反射回来的光，范围 0 到 100：黑色约为 7，白色约为 96。在线的边缘，数值介于两者之间，大约 50。\n\n比例巡线程序计算 error = reflection() - 50，并按误差比例转向：robo.drive(150, error * gain)。机器人沿着线的边缘行驶，不断修正。',
       ex: [
         { prompt: '传感器完全在黑色上方。reflection() 最可能是多少？', options: ['约 7', '约 50', '约 96', '正好 100'], explain: '黑色反射的光很少。' },
         { prompt: '机器人在线上左右摇摆得很厉害。通常怎么做有帮助？', options: ['降低增益', '提高增益', '去掉 wait(10)', '用 turn() 代替 drive()'], explain: '增益太高会让修正过度。逐步降低它（必要时也降低速度）。' },
-        { prompt: '机器人开始时传感器已经在线的边缘。补全巡线程序，让它走完直线和弯道，直到线的尽头。', hint: '在 while 里，把注释换成 robot.drive(150, error * gain)。' },
+        { prompt: '机器人开始时传感器已经在线的边缘。补全巡线程序，让它走完直线和弯道，直到线的尽头。', hint: '在 while 里，把注释换成 robo.drive(150, error * gain)。' },
       ],
     },
     u6l1: {
@@ -350,7 +350,7 @@ export const TEXT: ContentText = {
       ex: [
         { prompt: 'for i in range(3): 的代码块会执行几次？', options: ['3', '2', '4', '无限次'], explain: 'range(3) 数 0、1、2：共三次。' },
         { prompt: '补全代码，重复 4 次。', explain: 'range(4) 生成 0 到 3。' },
-        { prompt: '用 for 走一个边长 300 mm 的正方形，并回到出发点。机器人从基地外出发，前方和左侧都有空地。', hint: 'for i in range(4):，里面写 robot.straight(300) 和 robot.turn(-90)。' },
+        { prompt: '用 for 走一个边长 300 mm 的正方形，并回到出发点。机器人从基地外出发，前方和左侧都有空地。', hint: 'for i in range(4):，里面写 robo.straight(300) 和 robo.turn(-90)。' },
       ],
     },
     u6l2: {
@@ -359,7 +359,7 @@ export const TEXT: ContentText = {
       ex: [
         { prompt: 'Python 读到 def mission(): 这一行时会发生什么？', options: ['只是保存函数；调用 mission() 时才执行', '立刻执行这个函数', '如果函数从未使用就报错', '无限重复这个函数'], explain: '定义不等于执行。只有调用 mission() 时才会执行。' },
         { prompt: '把函数和调用排成正确的顺序。', explain: '先写定义和它缩进的代码块，再在代码块外面调用。' },
-        { prompt: '创建函数 go_and_back(distance)，用它去红色区域再回到起点。', hint: '函数内：robot.straight(distance) 和 robot.straight(-distance)。函数外：go_and_back(800)。' },
+        { prompt: '创建函数 go_and_back(distance)，用它去红色区域再回到起点。', hint: '函数内：robo.straight(distance) 和 robo.straight(-distance)。函数外：go_and_back(800)。' },
       ],
     },
     u7l1: {
@@ -372,12 +372,12 @@ export const TEXT: ContentText = {
     },
     u8l1: {
       title: '陀螺仪',
-      intro: '在真实机器人上，每次转向车轮都会轻微打滑，而且两个轮子从来不会完全一样。每次转向误差 2°，到出发结束时就会变成很大的误差。\n\nrobot.use_gyro(True) 让 DriveBase 用主机的陀螺仪测量转向并自动修正。\n\n在这个挑战中，模拟器处于真实模式：车轮会像真实机器人一样打滑。',
+      intro: '在真实机器人上，每次转向车轮都会轻微打滑，而且两个轮子从来不会完全一样。每次转向误差 2°，到出发结束时就会变成很大的误差。\n\nrobo.use_gyro(True) 让 DriveBase 用主机的陀螺仪测量转向并自动修正。\n\n在这个挑战中，模拟器处于真实模式：车轮会像真实机器人一样打滑。',
       ex: [
         { prompt: '为什么程序正确，真实机器人还是转不准？', options: ['车轮会打滑，而且两轮不完全相同', 'Python 会把数字四舍五入', '主机只能以 10 度为单位转动', '电池会改变要求的角度'], explain: 'DriveBase 靠车轮计算转角。车轮打滑时，计算值就和实际转角不一致。' },
         { prompt: '陀螺仪测量的是什么？', options: ['机器人实际转了多少', '场地的颜色', '到墙的距离', '车轮的速度'], explain: '陀螺仪感知的是主机本身的旋转，所以不依赖车轮。' },
         { prompt: '补全代码，在 DriveBase 中启用陀螺仪。', explain: 'use_gyro(True) 启用，use_gyro(False) 关闭。' },
-        { prompt: '直接运行程序：在正方形里绕两圈后，机器人回不到起点。启用陀螺仪，让它准确返回。', hint: '在 for 之前加上 robot.use_gyro(True)。' },
+        { prompt: '直接运行程序：在正方形里绕两圈后，机器人回不到起点。启用陀螺仪，让它准确返回。', hint: '在 for 之前加上 robo.use_gyro(True)。' },
       ],
     },
     u8l2: {
@@ -403,7 +403,7 @@ export const TEXT: ContentText = {
       intro: '很多 FLL 任务都是把一个物体推到某个位置。机器人的保险杠会推动前方的东西。\n\n把每个任务放进一个名字清楚的函数里，比如 push_crate()。这样你可以单独测试一个任务，再按顺序调用各个函数组成整场比赛。',
       ex: [
         { prompt: '为什么要把每个任务放进单独的函数？', options: ['可以单独测试每个任务，也方便调整顺序', '因为 Pybricks 要求这样做', '为了让机器人更快', '为了省电'], explain: '函数让程序井井有条：改一个任务不会弄坏其他任务。' },
-        { prompt: '补全 push_crate()，把橙色箱子推到蓝色区域，然后回到基地 1。', hint: '箱子中心最后必须在 x = 1500 到 1700 之间。试试 robot.straight(1300)，然后 robot.straight(-1300)。' },
+        { prompt: '补全 push_crate()，把橙色箱子推到蓝色区域，然后回到基地 1。', hint: '箱子中心最后必须在 x = 1500 到 1700 之间。试试 robo.straight(1300)，然后 robo.straight(-1300)。' },
       ],
     },
     u10l2: {
@@ -411,15 +411,15 @@ export const TEXT: ContentText = {
       intro: '在这个挑战中，机器人左侧装有夹爪（C 端口）。电机在 90° 时夹爪张开，在 0° 时闭合。\n\n抓取方法：张开，让箱子位于两片夹片之间，然后闭合。要放下就再张开。\n\n夹爪中心在机器人中心前方 214 mm、左侧 46 mm 处。',
       ex: [
         { prompt: '如果夹爪闭合时中间什么都没有，会怎样？', options: ['空着闭合，机器人不带箱子继续前进', '程序报错', '机器人停下', '箱子会自己移到夹爪里'], explain: '夹爪只能抓住闭合时位于夹片之间的东西。' },
-        { prompt: '用 open_claw() 和 close_claw() 抓住蓝色箱子，并把它带回基地 1 内。', hint: 'open_claw()，robot.straight(466)，close_claw()，robot.straight(-466)。' },
+        { prompt: '用 open_claw() 和 close_claw() 抓住蓝色箱子，并把它带回基地 1 内。', hint: 'open_claw()，robo.straight(466)，close_claw()，robo.straight(-466)。' },
       ],
     },
     u1l3: {
       title: '错误和注释',
-      intro: '以 # 开头的行是注释：写给队友看的说明，机器人会忽略它们。\n\n程序出错时会停下来，并显示错误和行号。命令拼错了，比如 robot.straigth()，会出现 AttributeError：DriveBase 没有这个名字的命令。',
+      intro: '以 # 开头的行是注释：写给队友看的说明，机器人会忽略它们。\n\n程序出错时会停下来，并显示错误和行号。命令拼错了，比如 robo.straigth()，会出现 AttributeError：DriveBase 没有这个名字的命令。',
       ex: [
         { prompt: '机器人怎么处理以 # 开头的行？', options: ['忽略它：这是注释', '执行两次', '报错并停止程序', '发出哔声'], explain: '注释是给人看的代码说明，机器人会跳过。' },
-        { prompt: 'robot.straigth(300) 报错了。为什么？', options: ['命令名拼错了', '数字太大', '不允许用括号', '机器人需要先写注释'], explain: '正确的名字是 straight。Python 只认识准确的名字。' },
+        { prompt: 'robo.straigth(300) 报错了。为什么？', options: ['命令名拼错了', '数字太大', '不允许用括号', '机器人需要先写注释'], explain: '正确的名字是 straight。Python 只认识准确的名字。' },
         { prompt: '这个程序会报错停止。运行它，读一读错误信息，然后修好它，让机器人前进 500 mm。', hint: '看看 straight 是怎么拼的。' },
       ],
     },
@@ -427,25 +427,25 @@ export const TEXT: ContentText = {
       title: '灯光和声音',
       intro: '主机的中间按钮上有一盏灯，还有一个扬声器。hub.light.on(Color.GREEN) 把灯变成绿色，hub.speaker.beep() 发出一声短哔。\n\n它们在测试时很有用：哔声表示一个步骤完成了，灯光可以显示机器人正在做哪个任务。',
       ex: [
-        { prompt: '哪条命令让主机发出哔声？', options: ['hub.speaker.beep()', 'hub.light.beep()', 'robot.beep()', 'hub.display.beep()'], explain: '声音来自扬声器：hub.speaker。' },
+        { prompt: '哪条命令让主机发出哔声？', options: ['hub.speaker.beep()', 'hub.light.beep()', 'robo.beep()', 'hub.display.beep()'], explain: '声音来自扬声器：hub.speaker。' },
         { prompt: '补全代码，让灯变成绿色。', explain: '颜色用 Color 加大写的名字。' },
-        { prompt: '把灯变成绿色，前进 300 mm，最后发出哔声。', hint: 'hub.light.on(Color.GREEN)、robot.straight(300)、hub.speaker.beep()。' },
+        { prompt: '把灯变成绿色，前进 300 mm，最后发出哔声。', hint: 'hub.light.on(Color.GREEN)、robo.straight(300)、hub.speaker.beep()。' },
       ],
     },
     u2l4: {
       title: '倒车',
-      intro: '很多任务只需要机器人沿同一条路去了再回来。不用掉头，直接用负数距离倒车：robot.straight(-800) 正好抵消 robot.straight(800)。\n\n这样更快，而且机器人回来时朝向不变。',
+      intro: '很多任务只需要机器人沿同一条路去了再回来。不用掉头，直接用负数距离倒车：robo.straight(-800) 正好抵消 robo.straight(800)。\n\n这样更快，而且机器人回来时朝向不变。',
       ex: [
-        { prompt: '机器人执行了 robot.straight(800)。哪条命令能不转向地把它带回起点？', options: ['robot.straight(-800)', 'robot.turn(180)', 'robot.straight(800)', 'robot.turn(-800)'], explain: '负数距离会沿同一条路倒退。' },
-        { prompt: '到红色区域走一趟，再不转向地回到基地 1 内。', hint: 'robot.straight(800) 和 robot.straight(-800)。' },
+        { prompt: '机器人执行了 robo.straight(800)。哪条命令能不转向地把它带回起点？', options: ['robo.straight(-800)', 'robo.turn(180)', 'robo.straight(800)', 'robo.turn(-800)'], explain: '负数距离会沿同一条路倒退。' },
+        { prompt: '到红色区域走一趟，再不转向地回到基地 1 内。', hint: 'robo.straight(800) 和 robo.straight(-800)。' },
       ],
     },
     u2l5: {
       title: '掉头',
-      intro: '掉头就是转半圈：robot.turn(180) 或 robot.turn(-180)。两者最后都朝向相反方向，只是转的方向不同。\n\n掉头之后，正数距离会把机器人带回它来的地方。',
+      intro: '掉头就是转半圈：robo.turn(180) 或 robo.turn(-180)。两者最后都朝向相反方向，只是转的方向不同。\n\n掉头之后，正数距离会把机器人带回它来的地方。',
       ex: [
         { prompt: '补全代码，让机器人掉头。', explain: '180 或 -180：向任一边转半圈。' },
-        { prompt: '执行 robot.turn(180) 之后，robot.straight(300) 会做什么？', options: ['朝来的方向往回前进 300 mm', '倒退 300 mm', '再转 300 度', '横着走'], explain: '机器人现在朝向另一边，所以向前就是回到起点的方向。' },
+        { prompt: '执行 robo.turn(180) 之后，robo.straight(300) 会做什么？', options: ['朝来的方向往回前进 300 mm', '倒退 300 mm', '再转 300 度', '横着走'], explain: '机器人现在朝向另一边，所以向前就是回到起点的方向。' },
         { prompt: '开到红色区域，掉头，再向前开回基地 1 内。', hint: 'straight(800)、turn(180)、straight(800)。' },
       ],
     },
@@ -460,27 +460,27 @@ export const TEXT: ContentText = {
     },
     u3l3: {
       title: 'S 形弯',
-      intro: '两个方向相反的弯道组成一个 S。先 robot.curve(300, -90) 再 robot.curve(300, 90)，机器人会向前 600 mm、向左 600 mm，最后朝向和出发时一样。\n\n这是不停车就能平稳换道的方法。',
+      intro: '两个方向相反的弯道组成一个 S。先 robo.curve(300, -90) 再 robo.curve(300, 90)，机器人会向前 600 mm、向左 600 mm，最后朝向和出发时一样。\n\n这是不停车就能平稳换道的方法。',
       ex: [
-        { prompt: '执行 robot.curve(300, -90) 再执行 robot.curve(300, 90) 后，机器人朝向哪里？', options: ['和出发时一样', '左边', '右边', '后面'], explain: '一个弯向左转 90°，另一个向右转 90°：正好抵消。' },
+        { prompt: '执行 robo.curve(300, -90) 再执行 robo.curve(300, 90) 后，机器人朝向哪里？', options: ['和出发时一样', '左边', '右边', '后面'], explain: '一个弯向左转 90°，另一个向右转 90°：正好抵消。' },
         { prompt: '用两个弯道到达黄色区域，最后像出发时一样朝右。', hint: 'curve(300, -90)、curve(300, 90)，然后 straight(200)。' },
       ],
     },
     u3l4: {
       title: '转向速度',
-      intro: 'settings() 也可以用 turn_rate 改变转向速度，单位是度每秒。robot.settings(turn_rate=400) 让 turn() 转得更快。\n\n快速转向能节省时间，但在真实机器人上更容易打滑。记得在场地上测试。',
+      intro: 'settings() 也可以用 turn_rate 改变转向速度，单位是度每秒。robo.settings(turn_rate=400) 让 turn() 转得更快。\n\n快速转向能节省时间，但在真实机器人上更容易打滑。记得在场地上测试。',
       ex: [
         { prompt: '哪个设置决定 turn() 转得多快？', options: ['turn_rate', 'straight_speed', 'axle_track', 'wheel_diameter'], explain: 'turn_rate 是转向速度，单位是度每秒。' },
         { prompt: '补全代码，让转向更快。', explain: 'turn_rate=400 表示每秒 400 度。' },
-        { prompt: '在 2 秒内转完整一圈（360°）。默认速度需要 2.5 秒。', hint: '在转向前加上 robot.settings(turn_rate=400)。' },
+        { prompt: '在 2 秒内转完整一圈（360°）。默认速度需要 2.5 秒。', hint: '在转向前加上 robo.settings(turn_rate=400)。' },
       ],
     },
     u4l3: {
       title: '精确角度',
       intro: 'run_angle() 是从电机当前位置开始累加的，所以小误差会越积越多。run_target(速度, 角度) 会转到从零算起的精确角度，不管电机从哪里开始。\n\nreset_angle(0) 把当前位置设为新的零点。',
       ex: [
-        { prompt: 'left_arm.reset_angle(0) 做什么？', options: ['把当前位置设为零', '把电机转回零', '停止电机', '转 0 度'], explain: '它不会让任何东西动，只是改变参考点。' },
-        { prompt: '附件已经转到 105°。让它正好停在 120°。', hint: 'left_arm.run_target(500, 120)。' },
+        { prompt: 'anexo_left.reset_angle(0) 做什么？', options: ['把当前位置设为零', '把电机转回零', '停止电机', '转 0 度'], explain: '它不会让任何东西动，只是改变参考点。' },
+        { prompt: '附件已经转到 105°。让它正好停在 120°。', hint: 'anexo_left.run_target(500, 120)。' },
       ],
     },
     u4l4: {
@@ -488,7 +488,7 @@ export const TEXT: ContentText = {
       intro: '如果第一条命令要等到完成，第二个附件就只能之后才开始。在第一条命令里加 wait=False，两个附件就会一起动，节省时间。',
       ex: [
         { prompt: '怎样让两个附件同时动？', options: ['在第一条命令里加 wait=False', '两条命令都加 wait=False', '把两条写在同一行', 'Pybricks 做不到'], explain: '第一条开始后，程序马上执行第二条。第二条没有 wait=False，会等到完成。' },
-        { prompt: '在 0.8 秒内把两个附件都转 180°。', hint: 'left_arm.run_angle(500, 180, wait=False) 和 right_arm.run_angle(500, 180)。' },
+        { prompt: '在 0.8 秒内把两个附件都转 180°。', hint: 'anexo_left.run_angle(500, 180, wait=False) 和 anexo_right.run_angle(500, 180)。' },
       ],
     },
     u5l3: {
@@ -497,7 +497,7 @@ export const TEXT: ContentText = {
       ex: [
         { prompt: '补全代码，在红色区域停下。', explain: 'Color.RED 就是红色。' },
         { prompt: '机器人停下时传感器在红色上，但机器人中心还没进区域。为什么？', options: ['传感器在机器人中心的前方', '传感器坏了', '红色检测不到', '机器人在倒车'], explain: '传感器读的是机器人前方的地面。规划停车位置时要记住这一点。' },
-        { prompt: '一直前进，直到传感器找到红色区域，然后停在那里。', hint: 'robot.drive(200, 0)、while sensor.color() != Color.RED: wait(10)、robot.stop()。' },
+        { prompt: '一直前进，直到传感器找到红色区域，然后停在那里。', hint: 'robo.drive(200, 0)、while sensor.color() != Color.RED: wait(10)、robo.stop()。' },
       ],
     },
     u5l4: {
@@ -505,7 +505,7 @@ export const TEXT: ContentText = {
       intro: 'reflection() 给出一个数字，所以你可以自己选一个界限。黑色约为 7：只要 sensor.reflection() > 20，机器人就还没到黑色。\n\n当官方场地的颜色和 color() 认识的颜色不完全一样时，这很有用。',
       ex: [
         { prompt: '用 reflection() 在黑色上停下时，哪个条件让机器人继续前进？', options: ['while sensor.reflection() > 20:', 'while sensor.reflection() < 20:', 'while sensor.reflection() == 100:', 'while sensor.color() > 20:'], explain: '数值高（浅色地面）时继续前进。到了黑色会降到 20 以下。' },
-        { prompt: '用 sensor.reflection() 停在黑色的停止带上。', hint: 'robot.drive(200, 0)、while sensor.reflection() > 20: wait(10)、robot.stop()。' },
+        { prompt: '用 sensor.reflection() 停在黑色的停止带上。', hint: 'robo.drive(200, 0)、while sensor.reflection() > 20: wait(10)、robo.stop()。' },
       ],
     },
     u5l5: {
@@ -518,18 +518,18 @@ export const TEXT: ContentText = {
     },
     u6l3: {
       title: '当……时重复',
-      intro: 'while 会在条件为真时一直重复。和 drive() 一起用，可以在正确的时刻让机器人停下：robot.drive(200, 0)，然后 while robot.distance() < 600: wait(10)，再 robot.stop()。\n\ndistance() 会在机器人行驶时不断更新。',
+      intro: 'while 会在条件为真时一直重复。和 drive() 一起用，可以在正确的时刻让机器人停下：robo.drive(200, 0)，然后 while robo.distance() < 600: wait(10)，再 robo.stop()。\n\ndistance() 会在机器人行驶时不断更新。',
       ex: [
-        { prompt: 'while robot.distance() < 600: 什么时候停止重复？', options: ['机器人走了 600 mm 或更多时', '永远不会', '重复 600 次之后', '立刻'], explain: '到 600 mm 时条件变为假，程序继续往下执行。' },
-        { prompt: '用 drive() 和 while 循环，让机器人走 600 mm 后停下。', hint: 'while robot.distance() < 600:，里面写 wait(10)。' },
+        { prompt: 'while robo.distance() < 600: 什么时候停止重复？', options: ['机器人走了 600 mm 或更多时', '永远不会', '重复 600 次之后', '立刻'], explain: '到 600 mm 时条件变为假，程序继续往下执行。' },
+        { prompt: '用 drive() 和 while 循环，让机器人走 600 mm 后停下。', hint: 'while robo.distance() < 600:，里面写 wait(10)。' },
       ],
     },
     u6l4: {
       title: '用 if 做判断',
-      intro: 'if 只在条件为真时执行一段代码；条件为假时执行 else。机器人可以根据传感器决定做什么。\n\n例如：if sensor.color() == Color.RED: robot.turn(-90) else: robot.turn(90)。',
+      intro: 'if 只在条件为真时执行一段代码；条件为假时执行 else。机器人可以根据传感器决定做什么。\n\n例如：if sensor.color() == Color.RED: robo.turn(-90) else: robo.turn(90)。',
       ex: [
         { prompt: '这个程序会输出什么？', options: ['A', 'B', 'A 和 B', '什么也不输出'], explain: '5 > 3 为真，所以只执行 if 的代码块。' },
-        { prompt: '前进 700 mm 后，如果传感器看到红色就左转，否则右转。然后前进 400 mm。', hint: 'if sensor.color() == Color.RED: robot.turn(-90)，else: robot.turn(90)。' },
+        { prompt: '前进 700 mm 后，如果传感器看到红色就左转，否则右转。然后前进 400 mm。', hint: 'if sensor.color() == Color.RED: robo.turn(-90)，else: robo.turn(90)。' },
       ],
     },
     u6l5: {
@@ -538,7 +538,7 @@ export const TEXT: ContentText = {
       ex: [
         { prompt: 'moves = [800, 640] 时，moves[1] 是多少？', options: ['640', '800', '1440', '出错'], explain: '从 0 开始数：moves[0] 是 800，moves[1] 是 640。' },
         { prompt: '补全代码，依次走完列表中的每个距离。', explain: 'for 每次把列表中的一个值交给 distance。' },
-        { prompt: '补全循环，按照动作列表走到黄色区域。', hint: '在 for 里面：robot.straight(distance) 和 robot.turn(angle)。' },
+        { prompt: '补全循环，按照动作列表走到黄色区域。', hint: '在 for 里面：robo.straight(distance) 和 robo.turn(angle)。' },
       ],
     },
     u6l6: {
@@ -547,7 +547,7 @@ export const TEXT: ContentText = {
       ex: [
         { prompt: '补全代码，让函数返回以毫米为单位的值。', explain: 'return 把结果交还给调用函数的地方。' },
         { prompt: '这个程序会输出什么？', options: ['9', '8', '10', 'double(4) + 1'], explain: 'double(4) 返回 8，加 1 得 9。' },
-        { prompt: '用 mm() 前进 80 cm，到达红色区域。', hint: 'robot.straight(mm(80))。' },
+        { prompt: '用 mm() 前进 80 cm，到达红色区域。', hint: 'robo.straight(mm(80))。' },
       ],
     },
     u6l7: {
@@ -563,7 +563,7 @@ export const TEXT: ContentText = {
       intro: '训练场地两边各有一个基地，就像 FLL 场地桌上的出发区。基地 2 在右边，场地的另一端。\n\n横穿整个场地需要时间：用 settings() 开得更快。',
       ex: [
         { prompt: 'BatControl 的训练场地有几个基地？', options: ['两个，每边一个', '一个', '四个', '没有'], explain: '基地 1 在左边，基地 2 在右边。' },
-        { prompt: '在 6 秒内从基地 1 横穿场地到基地 2。', hint: 'robot.settings(straight_speed=400) 和 robot.straight(2000)。' },
+        { prompt: '在 6 秒内从基地 1 横穿场地到基地 2。', hint: 'robo.settings(straight_speed=400) 和 robo.straight(2000)。' },
       ],
     },
     u7l3: {
@@ -571,7 +571,7 @@ export const TEXT: ContentText = {
       intro: '在真正的比赛中，附件会在机器人行驶时一起动。先用 wait=False 启动附件，再前进：两件事同时发生。\n\n优秀的队伍就是这样在每个任务上节省几秒钟。',
       ex: [
         { prompt: '为什么要在机器人行驶时移动附件？', options: ['节省比赛时间', '让机器人更准确', '因为主机要求这样', '为了省电'], explain: '两个动作同时进行，用时取决于较长的那个，而不是两者之和。' },
-        { prompt: '开往红色区域，途中把右侧附件打开 90°，返回时再关回 0°，最后停在基地 1，全部在 6 秒内完成。', hint: 'settings(straight_speed=400)、right_arm.run_angle(500, 90, wait=False)、straight(800)、right_arm.run_angle(500, -90, wait=False)、straight(-800)。' },
+        { prompt: '开往红色区域，途中把右侧附件打开 90°，返回时再关回 0°，最后停在基地 1，全部在 6 秒内完成。', hint: 'settings(straight_speed=400)、anexo_right.run_angle(500, 90, wait=False)、straight(800)、anexo_right.run_angle(500, -90, wait=False)、straight(-800)。' },
       ],
     },
     u8l3: {
@@ -612,7 +612,7 @@ export const TEXT: ContentText = {
       intro: 'SyntaxError 表示 Python 看不懂某一行的写法：少了冒号、缩进不对，或者括号没有闭合。\n\n错误信息会显示行号。检查这一行和它上面的一行。',
       ex: [
         { prompt: '在一行 for 上出现 SyntaxError。最可能的原因是什么？', options: ['行尾少了冒号', '数字错了', '电机没接好', '机器人太慢'], explain: 'for、while、if 和 def 的行尾都必须有冒号。' },
-        { prompt: '这个程序应该走一个边长 300 mm 的正方形并回到起点，但有两个错误。把它们改正。', hint: '在 range(4) 后面加冒号，并把 robot.turn(-90) 缩进到 for 里面。' },
+        { prompt: '这个程序应该走一个边长 300 mm 的正方形并回到起点，但有两个错误。把它们改正。', hint: '在 range(4) 后面加冒号，并把 robo.turn(-90) 缩进到 for 里面。' },
       ],
     },
     u11l2: {
@@ -620,7 +620,7 @@ export const TEXT: ContentText = {
       intro: 'print() 会在输出面板显示数值。这是了解机器人在“想”什么的最简单方法：走了多远、传感器读到什么、heading 是多少。\n\n在真实主机上，print 的内容会显示在 Pybricks Code 的终端里。',
       ex: [
         { prompt: '这个程序会输出什么？', options: ['250', '0', '25', '出错'], explain: 'distance() 记录从开始到现在走过的 mm。' },
-        { prompt: '机器人开到黑色带。输出它走了多远。', hint: '在 robot.stop() 之后写 print(robot.distance())。' },
+        { prompt: '机器人开到黑色带。输出它走了多远。', hint: '在 robo.stop() 之后写 print(robo.distance())。' },
       ],
     },
     u11l3: {
@@ -643,7 +643,7 @@ export const TEXT: ContentText = {
       title: '从基地 2 出发',
       intro: '在 FLL 场地桌上，有些任务离另一个出发区更近。在 BatControl 里，基地 2 在右边，机器人出发时朝左。\n\n命令完全一样：机器人朝向哪里，哪里就是前方。',
       ex: [
-        { prompt: '机器人从基地 2 出发，朝左。哪条命令让它驶向蓝色区域？', options: ['robot.straight(640)', 'robot.straight(-640)', 'robot.turn(180)', 'robot.curve(640, 90)'], explain: '机器人朝左，正对蓝色区域，所以向前是正数。' },
+        { prompt: '机器人从基地 2 出发，朝左。哪条命令让它驶向蓝色区域？', options: ['robo.straight(640)', 'robo.straight(-640)', 'robo.turn(180)', 'robo.curve(640, 90)'], explain: '机器人朝左，正对蓝色区域，所以向前是正数。' },
         { prompt: '从基地 2 出发，去蓝色区域，再回到基地 2。', hint: '蓝色区域的中心在前方 642 mm。' },
       ],
     },
@@ -652,7 +652,7 @@ export const TEXT: ContentText = {
       intro: '比赛中每一秒都很重要。提高 straight_speed 和 straight_acceleration，但要记住：在真实机器人上，太快可能打滑，精度会下降。\n\n使用 62.4 mm 车轮时，SPIKE 电机的最大轮速大约是 540 mm/s。',
       ex: [
         { prompt: '在一段很长的直线路线上，哪个改动最有帮助？', options: ['提高 straight_speed', '提高 turn_rate', '减小 axle_track', '加上 wait(100)'], explain: '直线路线上，关键是行驶速度。' },
-        { prompt: '在 8 秒内经过红色区域和蓝色区域，再回到基地 1。', hint: 'robot.settings(straight_speed=480, straight_acceleration=1500)、straight(1480) 和 straight(-1480)。' },
+        { prompt: '在 8 秒内经过红色区域和蓝色区域，再回到基地 1。', hint: 'robo.settings(straight_speed=480, straight_acceleration=1500)、straight(1480) 和 straight(-1480)。' },
       ],
     },
     u12l3: {
@@ -668,7 +668,7 @@ export const TEXT: ContentText = {
       intro: '把学到的东西结合起来：沿线走到尽头，再用灯光和哔声表示已经到达。\n\n恭喜：学完这一课，你就掌握了 FLL 中常用的 Pybricks 主要命令。',
       ex: [
         { prompt: '要知道一个任务在真实机器人上是否真的可靠，最好的办法是什么？', options: ['运行多次，看看是否每次都成功', '运行一次', '只看代码', '只在模拟器里测试'], explain: '好的任务每次都能成功，而不是只成功一次。' },
-        { prompt: '沿线走到尽头，然后把灯变成绿色并发出哔声。', hint: 'while robot.distance() < 1300: 用 kp 巡线；然后 robot.stop()、hub.light.on(Color.GREEN)、hub.speaker.beep()。' },
+        { prompt: '沿线走到尽头，然后把灯变成绿色并发出哔声。', hint: 'while robo.distance() < 1300: 用 kp 巡线；然后 robo.stop()、hub.light.on(Color.GREEN)、hub.speaker.beep()。' },
       ],
     },
   },

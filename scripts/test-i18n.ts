@@ -19,7 +19,7 @@ for (const u of UNITS) for (const l of u.lessons) for (const ex of l.exercises) 
 }
 for (const tp of TOPICS) codes.push(tp.example);
 const sim = readFileSync(new URL('../src/ui/simtab.ts', import.meta.url), 'utf8');
-codes.push(...[...sim.matchAll(/`([^`]*)`/g)].map((m) => m[1]).filter((s) => /robot\.|left_arm|right_arm/.test(s)));
+codes.push(...[...sim.matchAll(/`([^`]*)`/g)].map((m) => m[1]).filter((s) => /robo\.|anexo_left|anexo_right/.test(s)));
 const comments = new Set(codes.flatMap(commentsIn));
 
 for (const [lang, c] of Object.entries(CONTENT)) {

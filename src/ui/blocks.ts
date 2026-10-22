@@ -53,16 +53,16 @@ function lines(blocks: Block[], ind: string): string[] {
   const out: string[] = [];
   for (const b of blocks) {
     switch (b.k) {
-      case 'straight': out.push(`${ind}robot.straight(${fmt(b.d)})`); break;
-      case 'turn': out.push(`${ind}robot.turn(${fmt(b.a)})`); break;
-      case 'curve': out.push(`${ind}robot.curve(${fmt(b.r)}, ${fmt(b.a)})`); break;
-      case 'speed': out.push(`${ind}robot.settings(straight_speed=${fmt(b.v)})`); break;
-      case 'gyro': out.push(`${ind}robot.use_gyro(${b.on ? 'True' : 'False'})`); break;
+      case 'straight': out.push(`${ind}robo.straight(${fmt(b.d)})`); break;
+      case 'turn': out.push(`${ind}robo.turn(${fmt(b.a)})`); break;
+      case 'curve': out.push(`${ind}robo.curve(${fmt(b.r)}, ${fmt(b.a)})`); break;
+      case 'speed': out.push(`${ind}robo.settings(straight_speed=${fmt(b.v)})`); break;
+      case 'gyro': out.push(`${ind}robo.use_gyro(${b.on ? 'True' : 'False'})`); break;
       case 'until':
-        out.push(`${ind}robot.drive(${fmt(b.v)}, 0)`, `${ind}while sensor.color() != Color.${b.c}:`, `${ind}    wait(10)`, `${ind}robot.stop()`);
+        out.push(`${ind}robo.drive(${fmt(b.v)}, 0)`, `${ind}while sensor.color() != Color.${b.c}:`, `${ind}    wait(10)`, `${ind}robo.stop()`);
         break;
-      case 'arm': out.push(`${ind}${b.side}_arm.run_angle(${fmt(b.s)}, ${fmt(b.a)}${b.wait ? '' : ', wait=False'})`); break;
-      case 'target': out.push(`${ind}${b.side}_arm.run_target(${fmt(b.s)}, ${fmt(b.a)})`); break;
+      case 'arm': out.push(`${ind}anexo_${b.side}.run_angle(${fmt(b.s)}, ${fmt(b.a)}${b.wait ? '' : ', wait=False'})`); break;
+      case 'target': out.push(`${ind}anexo_${b.side}.run_target(${fmt(b.s)}, ${fmt(b.a)})`); break;
       case 'wait': out.push(`${ind}wait(${fmt(b.ms)})`); break;
       case 'beep': out.push(`${ind}hub.speaker.beep()`); break;
       case 'repeat':
@@ -74,7 +74,7 @@ function lines(blocks: Block[], ind: string): string[] {
   return out;
 }
 
-const SETUP_RE = /^\s*(from |import |hub\s*=|\w*_motor\s*=|robot\s*=|\w*_arm\s*=|sensor\s*=|$)/;
+const SETUP_RE = /^\s*(from |import |hub\s*=|\w*_motor\s*=|robot?\s*=|\w*_arm\s*=|anexo_\w*\s*=|sensor\s*=|$)/;
 
 /** Separa o cabeçalho de configuração (imports e dispositivos) do corpo do programa. */
 export function splitSetup(code: string): { head: string; body: string } {
@@ -116,26 +116,26 @@ function fromStmts(body: any[]): Block[] | null {
     const st = body[i];
     if (st.type === 'Pass') continue;
     let c;
-    if ((c = isCall(st, 'robot', 'straight')) && !c.kwargs.length) { const v = nums(c, 1); if (!v) return null; out.push({ k: 'straight', d: v[0] }); continue; }
-    if ((c = isCall(st, 'robot', 'turn')) && !c.kwargs.length) { const v = nums(c, 1); if (!v) return null; out.push({ k: 'turn', a: v[0] }); continue; }
-    if ((c = isCall(st, 'robot', 'curve')) && !c.kwargs.length) { const v = nums(c, 2); if (!v) return null; out.push({ k: 'curve', r: v[0], a: v[1] }); continue; }
-    if ((c = isCall(st, 'robot', 'settings'))) {
+    if ((c = isCall(st, 'robo', 'straight')) && !c.kwargs.length) { const v = nums(c, 1); if (!v) return null; out.push({ k: 'straight', d: v[0] }); continue; }
+    if ((c = isCall(st, 'robo', 'turn')) && !c.kwargs.length) { const v = nums(c, 1); if (!v) return null; out.push({ k: 'turn', a: v[0] }); continue; }
+    if ((c = isCall(st, 'robo', 'curve')) && !c.kwargs.length) { const v = nums(c, 2); if (!v) return null; out.push({ k: 'curve', r: v[0], a: v[1] }); continue; }
+    if ((c = isCall(st, 'robo', 'settings'))) {
       if (c.args.length || c.kwargs.length !== 1 || c.kwargs[0].name !== 'straight_speed') return null;
       const v = num(c.kwargs[0].value);
       if (v === null) return null;
       out.push({ k: 'speed', v });
       continue;
     }
-    if ((c = isCall(st, 'robot', 'use_gyro'))) {
+    if ((c = isCall(st, 'robo', 'use_gyro'))) {
       const a = c.args[0];
       if (c.args.length !== 1 || a.type !== 'Const' || typeof a.value !== 'boolean') return null;
       out.push({ k: 'gyro', on: a.value });
       continue;
     }
-    if ((c = isCall(st, 'robot', 'drive'))) {
+    if ((c = isCall(st, 'robo', 'drive'))) {
       const v = nums(c, 2);
       const w = body[i + 1];
-      const stop = isCall(body[i + 2], 'robot', 'stop');
+      const stop = isCall(body[i + 2], 'robo', 'stop');
       const test = w?.type === 'While' ? w.test : null;
       const okTest = test && test.type === 'Compare' && test.ops.length === 1 && test.ops[0] === '!='
         && test.left.type === 'Call' && test.left.func.type === 'Attribute' && test.left.func.attr === 'color'
@@ -148,7 +148,7 @@ function fromStmts(body: any[]): Block[] | null {
       continue;
     }
     let side: Side | null = null;
-    for (const s of ['left', 'right'] as const) if (isCall(st, `${s}_arm`, 'run_angle') || isCall(st, `${s}_arm`, 'run_target')) side = s;
+    for (const s of ['left', 'right'] as const) if (isCall(st, `anexo_${s}`, 'run_angle') || isCall(st, `anexo_${s}`, 'run_target')) side = s;
     if (side) {
       const call = st.value;
       const v = nums(call, 2);

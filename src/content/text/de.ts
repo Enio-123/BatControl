@@ -19,7 +19,7 @@ export const TEXT: ContentText = {
       tips: [
         'Lege jedes Gerät nur einmal an, am Anfang des Programms.',
         'Zeilen, die mit # beginnen, sind Kommentare: Der Roboter ignoriert sie, aber sie helfen dem Team, den Code zu verstehen.',
-        'Die Namen left_motor, robot und sensor haben wir ausgewählt. Du kannst andere verwenden, solange du im ganzen Programm denselben Namen benutzt.',
+        'Die Namen left_motor, robo und sensor haben wir ausgewählt. Du kannst andere verwenden, solange du im ganzen Programm denselben Namen benutzt.',
       ],
       mistakes: ['Ein vergessener Import führt zu einem NameError: Python weiß nicht, was DriveBase oder Port ist.'],
     },
@@ -74,7 +74,7 @@ export const TEXT: ContentText = {
     strafe: {
       title: 'Und Strafe (seitwärts fahren)?',
       summary: 'Die DriveBase von Pybricks hat kein Strafe. Ein typischer FLL-Roboter hat zwei feste Antriebsräder (Differentialantrieb), die nur vorwärts und rückwärts schieben. Seitwärts fahren gibt es nur bei Robotern mit Omni- oder Mecanum-Rädern. Um einen Punkt seitlich zu erreichen: drehen, fahren und zurückdrehen.',
-      tips: ['Wenn du robot.strafe(...) schreibst, zeigt der Simulator denselben Fehler wie der Hub: AttributeError.'],
+      tips: ['Wenn du robo.strafe(...) schreibst, zeigt der Simulator denselben Fehler wie der Hub: AttributeError.'],
     },
     curve: {
       title: 'curve(): im Bogen fahren',
@@ -98,7 +98,7 @@ export const TEXT: ContentText = {
     },
     drive: {
       title: 'drive() und stop(): weiterfahren',
-      summary: 'drive() startet die Räder und das Programm geht sofort zur nächsten Zeile, während der Roboter noch fährt. Der Roboter hält erst an, wenn du robot.stop() aufrufst. Das ist die Grundlage für „fahr, bis du die schwarze Linie siehst“ und für Linienfolger.',
+      summary: 'drive() startet die Räder und das Programm geht sofort zur nächsten Zeile, während der Roboter noch fährt. Der Roboter hält erst an, wenn du robo.stop() aufrufst. Das ist die Grundlage für „fahr, bis du die schwarze Linie siehst“ und für Linienfolger.',
       params: [
         ['mm/s', 'Vorwärtsgeschwindigkeit (negativ = rückwärts).'],
         ['Grad/s', 'Wie stark er beim Fahren dreht. 0 = geradeaus, positiv = rechts.'],
@@ -243,12 +243,12 @@ export const TEXT: ContentText = {
   lessons: {
     u1l1: {
       title: 'Erstes Programm',
-      intro: 'Pybricks ist Python, das im SPIKE-Prime-Hub läuft. Der Roboter führt das Programm von oben nach unten aus, Zeile für Zeile.\n\nZum Fahren nutzen wir die DriveBase, die in diesem Kurs robot heißt. Der Befehl robot.straight(300) fährt 300 Millimeter vorwärts.',
+      intro: 'Pybricks ist Python, das im SPIKE-Prime-Hub läuft. Der Roboter führt das Programm von oben nach unten aus, Zeile für Zeile.\n\nZum Fahren nutzen wir die DriveBase, die in diesem Kurs robot heißt. Der Befehl robo.straight(300) fährt 300 Millimeter vorwärts.',
       ex: [
         { prompt: 'In welcher Sprache schreiben wir Pybricks-Programme?', options: ['Python', 'Scratch-Blöcke', 'C++', 'JavaScript'], explain: 'Pybricks nutzt MicroPython, eine Python-Version für kleine Platinen wie den Hub.' },
         { prompt: 'In welcher Einheit misst straight() die Strecke?', options: ['Millimeter', 'Zentimeter', 'Radumdrehungen', 'Sekunden'], explain: 'Alle Strecken in Pybricks sind in mm. 30 cm = 300 mm.' },
         { prompt: 'Ergänze, damit der Roboter 300 mm vorwärts fährt.', explain: 'straight bedeutet geradeaus fahren.' },
-        { prompt: 'Lass den Roboter 300 mm vorwärts fahren.', hint: 'Verwende robot.straight(300) unter dem Kommentar.' },
+        { prompt: 'Lass den Roboter 300 mm vorwärts fahren.', hint: 'Verwende robo.straight(300) unter dem Kommentar.' },
       ],
     },
     u1l2: {
@@ -266,17 +266,17 @@ export const TEXT: ContentText = {
       title: 'Geradeaus fahren',
       intro: 'straight(Strecke) fährt geradeaus und hält an. Eine positive Zahl fährt vorwärts, eine negative rückwärts.\n\nAuf der Simulatormatte hat der Rand alle 100 mm eine Linealmarke. Der Start liegt in BASIS 1, mit der Robotermitte bei x = 120 mm.',
       ex: [
-        { prompt: 'Was macht robot.straight(-200)?', options: ['Fährt 200 mm rückwärts', 'Fährt 200 mm vorwärts', 'Dreht sich um 200 Grad', 'Fehler, negative Zahlen sind nicht erlaubt'], explain: 'Eine negative Strecke fährt rückwärts.' },
+        { prompt: 'Was macht robo.straight(-200)?', options: ['Fährt 200 mm rückwärts', 'Fährt 200 mm vorwärts', 'Dreht sich um 200 Grad', 'Fehler, negative Zahlen sind nicht erlaubt'], explain: 'Eine negative Strecke fährt rückwärts.' },
         { prompt: 'Wie viel sind 25 cm in Millimetern?', options: ['250', '25', '2500', '2,5'], explain: '1 cm = 10 mm, also 25 cm = 250 mm.' },
-        { prompt: 'Bring den Roboter in die rote Zone. Ihre Mitte liegt 800 mm vor dem Start.', hint: 'Ein einziges robot.straight() mit der richtigen Strecke reicht.' },
+        { prompt: 'Bring den Roboter in die rote Zone. Ihre Mitte liegt 800 mm vor dem Start.', hint: 'Ein einziges robo.straight() mit der richtigen Strecke reicht.' },
       ],
     },
     u2l2: {
       title: 'Drehen',
       intro: 'turn(Winkel) dreht den Roboter auf der Stelle. Positiv dreht nach rechts (im Uhrzeigersinn), negativ nach links.\n\nEine Vierteldrehung sind 90 Grad, eine halbe Drehung 180.',
       ex: [
-        { prompt: 'Wohin dreht der Roboter bei robot.turn(90)?', options: ['Nach rechts', 'Nach links', 'Nach vorn', 'Hängt vom Port ab'], explain: 'Positiver Winkel = Uhrzeigersinn = rechts.' },
-        { prompt: 'Mit welchem Befehl wendet der Roboter?', options: ['robot.turn(180)', 'robot.turn(90)', 'robot.turn(360)', 'robot.straight(-180)'], explain: 'Wenden sind 180 Grad. 360 ist eine volle Drehung, danach zeigt der Roboter wieder in dieselbe Richtung.' },
+        { prompt: 'Wohin dreht der Roboter bei robo.turn(90)?', options: ['Nach rechts', 'Nach links', 'Nach vorn', 'Hängt vom Port ab'], explain: 'Positiver Winkel = Uhrzeigersinn = rechts.' },
+        { prompt: 'Mit welchem Befehl wendet der Roboter?', options: ['robo.turn(180)', 'robo.turn(90)', 'robo.turn(360)', 'robo.straight(-180)'], explain: 'Wenden sind 180 Grad. 360 ist eine volle Drehung, danach zeigt der Roboter wieder in dieselbe Richtung.' },
         { prompt: 'Ergänze für eine Vierteldrehung nach links.', explain: 'Links ist negativ: -90.' },
         { prompt: 'Bring den Roboter in die gelbe Zone. Maße: 800 mm fahren, nach links drehen und weitere 640 mm fahren.', hint: 'straight(800), dann turn(-90), dann straight(640).' },
       ],
@@ -285,7 +285,7 @@ export const TEXT: ContentText = {
       title: 'Gibt es Strafe?',
       intro: 'Manche suchen einen Befehl strafe(), um seitwärts zu fahren. Die DriveBase von Pybricks hat keinen: Der Roboter hat zwei feste Räder, die nur vorwärts und rückwärts schieben (Differentialantrieb).\n\nUm einen Punkt seitlich zu erreichen: drehen, fahren und zurückdrehen.',
       ex: [
-        { prompt: 'Was passiert, wenn das Programm robot.strafe(100) aufruft?', options: ['Ein Fehler: Die DriveBase hat kein Strafe', 'Der Roboter fährt 100 mm seitwärts', 'Der Roboter dreht sich um 100 Grad', 'Der Roboter fährt 100 mm vorwärts'], explain: 'Der Hub zeigt AttributeError, genau wie der Simulator. Seitwärts fahren gibt es nur mit Omni- oder Mecanum-Rädern.' },
+        { prompt: 'Was passiert, wenn das Programm robo.strafe(100) aufruft?', options: ['Ein Fehler: Die DriveBase hat kein Strafe', 'Der Roboter fährt 100 mm seitwärts', 'Der Roboter dreht sich um 100 Grad', 'Der Roboter fährt 100 mm vorwärts'], explain: 'Der Hub zeigt AttributeError, genau wie der Simulator. Seitwärts fahren gibt es nur mit Omni- oder Mecanum-Rädern.' },
         { prompt: 'Baue den Weg, um „300 mm nach links“ zu fahren und danach wieder nach vorn zu zeigen.', explain: 'Drehen, fahren und zurückdrehen ersetzt Strafe.' },
         { prompt: 'Ende in der gelben Zone, aber mit Blick zur rechten Seite der Matte, wie am Start.', hint: 'Nimm den Weg aus der vorherigen Lektion und füge am Ende ein turn(90) hinzu.' },
       ],
@@ -294,54 +294,54 @@ export const TEXT: ContentText = {
       title: 'Kurven',
       intro: 'curve(Radius, Winkel) fährt einen Kreisbogen. Ein großer Radius ergibt eine weite Kurve, ein kleiner eine enge. Ein positiver Winkel fährt nach rechts.\n\nEine Kurve mit Radius 300 und Winkel -90 bringt den Roboter 300 mm nach vorn und 300 mm nach links.',
       ex: [
-        { prompt: 'Welche dieser Kurven ist am engsten?', options: ['robot.curve(100, 90)', 'robot.curve(400, 90)', 'robot.curve(800, 90)', 'Alle sind gleich'], explain: 'Je kleiner der Radius, desto enger die Kurve.' },
+        { prompt: 'Welche dieser Kurven ist am engsten?', options: ['robo.curve(100, 90)', 'robo.curve(400, 90)', 'robo.curve(800, 90)', 'Alle sind gleich'], explain: 'Je kleiner der Radius, desto enger die Kurve.' },
         { prompt: 'Ergänze, um einen Viertelkreis nach links mit 300 mm Radius zu fahren.', explain: 'Links ist negativ, und ein Viertelkreis sind 90 Grad.' },
         { prompt: 'Erreiche die gelbe Zone mit einem curve() unterwegs, ohne turn().', hint: '500 mm fahren, curve(300, -90) und weitere 340 mm fahren.' },
       ],
     },
     u3l2: {
       title: 'Geschwindigkeit',
-      intro: 'robot.settings() ändert die Geschwindigkeit von straight, turn und curve. Zum Beispiel fährt robot.settings(straight_speed=400) mit 400 mm/s.\n\nSchneller spart Matchzeit, langsamer ist meist genauer.',
+      intro: 'robo.settings() ändert die Geschwindigkeit von straight, turn und curve. Zum Beispiel fährt robo.settings(straight_speed=400) mit 400 mm/s.\n\nSchneller spart Matchzeit, langsamer ist meist genauer.',
       ex: [
         { prompt: 'In welcher Einheit ist straight_speed?', options: ['mm/s', 'Grad/s', 'cm/s', 'Umdrehungen pro Minute'], explain: 'Die Fahrgeschwindigkeit ist in Millimetern pro Sekunde.' },
         { prompt: 'Ergänze, um mit 400 mm/s zu fahren.', explain: 'straight_speed steuert die Geschwindigkeit beim Geradeausfahren.' },
-        { prompt: 'Erreiche die blaue Zone (1400 mm voraus) in weniger als 6 Sekunden. Mit der Standardgeschwindigkeit schafft es der Roboter nicht.', hint: 'Setze robot.settings(straight_speed=400) vor das straight.' },
+        { prompt: 'Erreiche die blaue Zone (1400 mm voraus) in weniger als 6 Sekunden. Mit der Standardgeschwindigkeit schafft es der Roboter nicht.', hint: 'Setze robo.settings(straight_speed=400) vor das straight.' },
       ],
     },
     u4l1: {
       title: 'run_angle()',
-      intro: 'Aufsätze werden von den Motoren an den Ports C und E bewegt. Im Simulator sind das die beiden Zahnräder oben auf dem Roboter.\n\nleft_arm.run_angle(500, 180) dreht den linken Aufsatz um 180 Grad mit 500 Grad pro Sekunde.',
+      intro: 'Aufsätze werden von den Motoren an den Ports C und E bewegt. Im Simulator sind das die beiden Zahnräder oben auf dem Roboter.\n\nanexo_left.run_angle(500, 180) dreht den linken Aufsatz um 180 Grad mit 500 Grad pro Sekunde.',
       ex: [
-        { prompt: 'Was ist die 500 in left_arm.run_angle(500, 90)?', options: ['Die Geschwindigkeit in Grad pro Sekunde', 'Der Winkel in Grad', 'Die Zeit in Millisekunden', 'Die Motorleistung'], explain: 'Zuerst kommt die Geschwindigkeit, dann der Winkel.' },
+        { prompt: 'Was ist die 500 in anexo_left.run_angle(500, 90)?', options: ['Die Geschwindigkeit in Grad pro Sekunde', 'Der Winkel in Grad', 'Die Zeit in Millisekunden', 'Die Motorleistung'], explain: 'Zuerst kommt die Geschwindigkeit, dann der Winkel.' },
         { prompt: 'Ergänze, damit sich der rechte Aufsatz einmal ganz dreht.', explain: 'Eine volle Umdrehung sind 360 Grad.' },
-        { prompt: 'Dreh den linken Aufsatz eine halbe Umdrehung und bring ihn dann in die Ausgangsposition zurück.', hint: 'Zwei Zeilen: left_arm.run_angle(500, 180) und left_arm.run_angle(500, -180).' },
+        { prompt: 'Dreh den linken Aufsatz eine halbe Umdrehung und bring ihn dann in die Ausgangsposition zurück.', hint: 'Zwei Zeilen: anexo_left.run_angle(500, 180) und anexo_left.run_angle(500, -180).' },
       ],
     },
     u4l2: {
       title: 'Aufsatz und Roboter gleichzeitig',
       intro: 'Standardmäßig wartet jeder Befehl, bis er fertig ist, bevor die nächste Zeile kommt. Mit wait=False startet der Befehl und das Programm geht sofort weiter.\n\nSo kann sich der Aufsatz heben, während der Roboter fährt, und du sparst wertvolle Sekunden im Match.\n\nrun_target(Geschwindigkeit, Winkel) fährt den Motor auf einen genauen Winkel, gezählt ab null.',
       ex: [
-        { prompt: 'Was bewirkt wait=False in right_arm.run_angle(500, 90, wait=False)?', options: ['Beginnt zu drehen und das Programm läuft weiter, ohne zu warten', 'Dreht den Motor nicht', 'Dreht den Motor endlos', 'Wartet 90 ms vor dem Drehen'], explain: 'Der Motor dreht parallel zu den nächsten Zeilen.' },
+        { prompt: 'Was bewirkt wait=False in anexo_right.run_angle(500, 90, wait=False)?', options: ['Beginnt zu drehen und das Programm läuft weiter, ohne zu warten', 'Dreht den Motor nicht', 'Dreht den Motor endlos', 'Wartet 90 ms vor dem Drehen'], explain: 'Der Motor dreht parallel zu den nächsten Zeilen.' },
         { prompt: 'Der Aufsatz steht bei 30°. Wohin fährt er mit run_target(500, 90)?', options: ['Auf 90°', 'Auf 120°', 'Auf 60°', 'Er bleibt bei 30°'], explain: 'run_target fährt auf den Zielwinkel, egal wo er vorher stand. run_angle(500, 90) würde auf 120° fahren.' },
-        { prompt: 'Fahr in die rote Zone und dreh gleichzeitig den rechten Aufsatz um 90°. Alles in weniger als 4,6 Sekunden.', hint: 'right_arm.run_angle(500, 90, wait=False) und danach robot.straight(800).' },
+        { prompt: 'Fahr in die rote Zone und dreh gleichzeitig den rechten Aufsatz um 90°. Alles in weniger als 4,6 Sekunden.', hint: 'anexo_right.run_angle(500, 90, wait=False) und danach robo.straight(800).' },
       ],
     },
     u5l1: {
       title: 'An der Linie anhalten',
-      intro: 'sensor.color() sagt dir die Farbe der Matte unter dem Sensor: Color.BLACK, Color.WHITE, Color.RED...\n\nUm zu fahren, bis eine Farbe erscheint: Starte die Räder mit robot.drive(Geschwindigkeit, 0), warte in einer while-Schleife, bis die Farbe auftaucht, und rufe robot.stop() auf.\n\nIm Simulator zeigt der rote Punkt auf dem Boden, wo der Sensor misst.',
+      intro: 'sensor.color() sagt dir die Farbe der Matte unter dem Sensor: Color.BLACK, Color.WHITE, Color.RED...\n\nUm zu fahren, bis eine Farbe erscheint: Starte die Räder mit robo.drive(Geschwindigkeit, 0), warte in einer while-Schleife, bis die Farbe auftaucht, und rufe robo.stop() auf.\n\nIm Simulator zeigt der rote Punkt auf dem Boden, wo der Sensor misst.',
       ex: [
         { prompt: 'Wie prüfst du richtig, ob der Sensor Schwarz sieht?', options: ['sensor.color() == Color.BLACK', 'sensor.color() == "BLACK"', 'sensor.color = Color.BLACK', 'sensor.black()'], explain: 'Vergleiche mit == und verwende die Pybricks-Farbe (Color.BLACK), ohne Anführungszeichen.' },
         { prompt: 'Ergänze, um zu fahren, bis die schwarze Linie gefunden ist.', explain: 'Solange die Farbe ungleich (!=) Schwarz ist, weiterfahren.' },
-        { prompt: 'Fahr bis zum schwarzen STOPP-Streifen und halte darauf an. Unterwegs überquert der Sensor die rote Zone: Dort darf der Roboter nicht anhalten.', hint: 'robot.drive(200, 0), dann while sensor.color() != Color.BLACK: wait(10), dann robot.stop().' },
+        { prompt: 'Fahr bis zum schwarzen STOPP-Streifen und halte darauf an. Unterwegs überquert der Sensor die rote Zone: Dort darf der Roboter nicht anhalten.', hint: 'robo.drive(200, 0), dann while sensor.color() != Color.BLACK: wait(10), dann robo.stop().' },
       ],
     },
     u5l2: {
       title: 'Linienfolger',
-      intro: 'sensor.reflection() misst von 0 bis 100, wie viel Licht zurückkommt: Schwarz liegt bei etwa 7, Weiß bei etwa 96. Am Rand der Linie liegt der Wert dazwischen, um 50.\n\nDer Proportionalfolger berechnet error = reflection() - 50 und lenkt den Roboter proportional zum Fehler: robot.drive(150, error * gain). Er fährt am Rand der Linie entlang und korrigiert ständig.',
+      intro: 'sensor.reflection() misst von 0 bis 100, wie viel Licht zurückkommt: Schwarz liegt bei etwa 7, Weiß bei etwa 96. Am Rand der Linie liegt der Wert dazwischen, um 50.\n\nDer Proportionalfolger berechnet error = reflection() - 50 und lenkt den Roboter proportional zum Fehler: robo.drive(150, error * gain). Er fährt am Rand der Linie entlang und korrigiert ständig.',
       ex: [
         { prompt: 'Der Sensor ist ganz über Schwarz. Welcher reflection()-Wert ist am wahrscheinlichsten?', options: ['Etwa 7', 'Etwa 50', 'Etwa 96', 'Genau 100'], explain: 'Schwarz wirft wenig Licht zurück.' },
         { prompt: 'Der Roboter fährt starken Zickzack über die Linie. Was hilft meistens?', options: ['Den Verstärkungsfaktor senken', 'Den Verstärkungsfaktor erhöhen', 'Das wait(10) entfernen', 'turn() statt drive() verwenden'], explain: 'Ein hoher Verstärkungsfaktor übertreibt die Korrekturen. Senke ihn schrittweise (und bei Bedarf auch die Geschwindigkeit).' },
-        { prompt: 'Der Roboter startet schon mit dem Sensor am Rand der Linie. Ergänze den Linienfolger, damit er die Gerade und die Kurve bis zum Ende der Linie fährt.', hint: 'Ersetze in der while-Schleife den Kommentar durch robot.drive(150, error * gain).' },
+        { prompt: 'Der Roboter startet schon mit dem Sensor am Rand der Linie. Ergänze den Linienfolger, damit er die Gerade und die Kurve bis zum Ende der Linie fährt.', hint: 'Ersetze in der while-Schleife den Kommentar durch robo.drive(150, error * gain).' },
       ],
     },
     u6l1: {
@@ -350,7 +350,7 @@ export const TEXT: ContentText = {
       ex: [
         { prompt: 'Wie oft wird der Block von for i in range(3): ausgeführt?', options: ['3', '2', '4', 'Endlos'], explain: 'range(3) zählt 0, 1 und 2: dreimal.' },
         { prompt: 'Ergänze, um 4-mal zu wiederholen.', explain: 'range(4) erzeugt die Zahlen 0 bis 3.' },
-        { prompt: 'Fahr mit for ein Quadrat mit 300 mm Seitenlänge und ende dort, wo du gestartet bist. Der Roboter startet außerhalb der Basis, mit freiem Platz vorn und links.', hint: 'for i in range(4): und darin robot.straight(300) und robot.turn(-90).' },
+        { prompt: 'Fahr mit for ein Quadrat mit 300 mm Seitenlänge und ende dort, wo du gestartet bist. Der Roboter startet außerhalb der Basis, mit freiem Platz vorn und links.', hint: 'for i in range(4): und darin robo.straight(300) und robo.turn(-90).' },
       ],
     },
     u6l2: {
@@ -359,7 +359,7 @@ export const TEXT: ContentText = {
       ex: [
         { prompt: 'Was passiert, wenn Python die Zeile def mission(): liest?', options: ['Es speichert die Funktion nur; sie läuft, wenn mission() aufgerufen wird', 'Es führt die Funktion sofort aus', 'Es gibt einen Fehler, wenn die Funktion nie benutzt wird', 'Es wiederholt die Funktion endlos'], explain: 'Definieren ist nicht ausführen. Sie läuft erst, wenn du mission() aufrufst.' },
         { prompt: 'Bring die Funktion und den Aufruf in die richtige Reihenfolge.', explain: 'Zuerst die Definition mit ihrem eingerückten Block, dann der Aufruf außerhalb des Blocks.' },
-        { prompt: 'Schreib die Funktion go_and_back(distance) und nutze sie, um die rote Zone zu besuchen und zum Start zurückzukehren.', hint: 'In der Funktion: robot.straight(distance) und robot.straight(-distance). Außerhalb: go_and_back(800).' },
+        { prompt: 'Schreib die Funktion go_and_back(distance) und nutze sie, um die rote Zone zu besuchen und zum Start zurückzukehren.', hint: 'In der Funktion: robo.straight(distance) und robo.straight(-distance). Außerhalb: go_and_back(800).' },
       ],
     },
     u7l1: {
@@ -372,12 +372,12 @@ export const TEXT: ContentText = {
     },
     u8l1: {
       title: 'Gyroskop',
-      intro: 'Bei einem echten Roboter rutschen die Räder bei jeder Drehung ein wenig, und kein Rad gleicht genau dem anderen. 2° Fehler pro Drehung werden am Ende eines Laufs zu einem großen Fehler.\n\nrobot.use_gyro(True) lässt die DriveBase die Drehung mit dem Gyroskop des Hubs messen und selbst korrigieren.\n\nIn dieser Aufgabe ist der Simulator im realistischen Modus: Die Räder rutschen wie bei einem echten Roboter.',
+      intro: 'Bei einem echten Roboter rutschen die Räder bei jeder Drehung ein wenig, und kein Rad gleicht genau dem anderen. 2° Fehler pro Drehung werden am Ende eines Laufs zu einem großen Fehler.\n\nrobo.use_gyro(True) lässt die DriveBase die Drehung mit dem Gyroskop des Hubs messen und selbst korrigieren.\n\nIn dieser Aufgabe ist der Simulator im realistischen Modus: Die Räder rutschen wie bei einem echten Roboter.',
       ex: [
         { prompt: 'Warum verfehlt der echte Roboter seine Drehungen trotz richtigem Programm?', options: ['Die Räder rutschen und sind nicht identisch', 'Python rundet die Zahlen', 'Der Hub dreht nur in 10-Grad-Schritten', 'Der Akku ändert den verlangten Winkel'], explain: 'Die DriveBase zählt die Drehung über die Räder. Rutschen sie, passt die Zählung nicht zur echten Drehung.' },
         { prompt: 'Was misst das Gyroskop?', options: ['Wie weit sich der Roboter wirklich gedreht hat', 'Die Farbe der Matte', 'Den Abstand zur Wand', 'Die Radgeschwindigkeit'], explain: 'Das Gyroskop spürt die Drehung des Hubs selbst und hängt deshalb nicht von den Rädern ab.' },
         { prompt: 'Ergänze, um das Gyroskop in der DriveBase einzuschalten.', explain: 'use_gyro(True) schaltet es ein, use_gyro(False) aus.' },
-        { prompt: 'Führe das Programm unverändert aus: Nach zwei Runden im Quadrat kommt der Roboter nicht zum Start zurück. Schalte das Gyroskop ein, damit er genau zurückkommt.', hint: 'Füge robot.use_gyro(True) vor dem for ein.' },
+        { prompt: 'Führe das Programm unverändert aus: Nach zwei Runden im Quadrat kommt der Roboter nicht zum Start zurück. Schalte das Gyroskop ein, damit er genau zurückkommt.', hint: 'Füge robo.use_gyro(True) vor dem for ein.' },
       ],
     },
     u8l2: {
@@ -403,7 +403,7 @@ export const TEXT: ContentText = {
       intro: 'Viele FLL-Missionen bestehen darin, ein Objekt an eine Stelle zu schieben. Die Stoßstange des Roboters schiebt, was vor ihr liegt.\n\nPack jede Mission in eine Funktion mit klarem Namen, etwa push_crate(). So kannst du eine Mission einzeln testen und das Match aufbauen, indem du die Funktionen nacheinander aufrufst.',
       ex: [
         { prompt: 'Warum kommt jede Mission in ihre eigene Funktion?', options: ['Um jede einzeln zu testen und die Reihenfolge leicht zu ändern', 'Weil Pybricks es verlangt', 'Damit der Roboter schneller wird', 'Um Akku zu sparen'], explain: 'Funktionen halten das Programm ordentlich: Du änderst eine Mission, ohne die anderen kaputt zu machen.' },
-        { prompt: 'Ergänze push_crate(), um die orange Kiste in die blaue Zone zu schieben und zu BASIS 1 zurückzukehren.', hint: 'Die Kistenmitte muss zwischen x = 1500 und 1700 landen. Probier robot.straight(1300) und dann robot.straight(-1300).' },
+        { prompt: 'Ergänze push_crate(), um die orange Kiste in die blaue Zone zu schieben und zu BASIS 1 zurückzukehren.', hint: 'Die Kistenmitte muss zwischen x = 1500 und 1700 landen. Probier robo.straight(1300) und dann robo.straight(-1300).' },
       ],
     },
     u10l2: {
@@ -411,15 +411,15 @@ export const TEXT: ContentText = {
       intro: 'In dieser Aufgabe hat der Roboter den Greifer auf der linken Seite (Port C). Bei 90° ist er offen, bei 0° geschlossen.\n\nZum Greifen: öffnen, mit der Kiste zwischen den Backen ankommen und schließen. Zum Loslassen wieder öffnen.\n\nDie Mitte des Greifers liegt 214 mm vor und 46 mm links von der Robotermitte.',
       ex: [
         { prompt: 'Was passiert, wenn der Greifer sich ohne etwas zwischen den Backen schließt?', options: ['Er schließt leer und der Roboter fährt ohne Kiste weiter', 'Das Programm gibt einen Fehler', 'Der Roboter hält an', 'Die Kiste kommt zum Greifer'], explain: 'Der Greifer packt nur, was beim Schließen zwischen den Backen ist.' },
-        { prompt: 'Nutze open_claw() und close_claw(), um die blaue Kiste zu greifen und in BASIS 1 zu bringen.', hint: 'open_claw(), robot.straight(466), close_claw(), robot.straight(-466).' },
+        { prompt: 'Nutze open_claw() und close_claw(), um die blaue Kiste zu greifen und in BASIS 1 zu bringen.', hint: 'open_claw(), robo.straight(466), close_claw(), robo.straight(-466).' },
       ],
     },
     u1l3: {
       title: 'Fehler und Kommentare',
-      intro: 'Zeilen, die mit # beginnen, sind Kommentare: Notizen für das Team, die der Roboter ignoriert.\n\nWenn etwas falsch ist, hält das Programm an und zeigt einen Fehler mit der Zeilennummer. Ein falsch geschriebener Befehl wie robot.straigth() ergibt AttributeError: Die DriveBase hat keinen Befehl mit diesem Namen.',
+      intro: 'Zeilen, die mit # beginnen, sind Kommentare: Notizen für das Team, die der Roboter ignoriert.\n\nWenn etwas falsch ist, hält das Programm an und zeigt einen Fehler mit der Zeilennummer. Ein falsch geschriebener Befehl wie robo.straigth() ergibt AttributeError: Die DriveBase hat keinen Befehl mit diesem Namen.',
       ex: [
         { prompt: 'Was macht der Roboter mit einer Zeile, die mit # beginnt?', options: ['Er ignoriert sie: Es ist ein Kommentar', 'Er führt sie zweimal aus', 'Er stoppt das Programm mit einem Fehler', 'Er piept'], explain: 'Kommentare erklären den Code für Menschen. Der Roboter überspringt sie.' },
-        { prompt: 'robot.straigth(300) ergibt einen Fehler. Warum?', options: ['Der Befehlsname ist falsch geschrieben', 'Die Zahl ist zu groß', 'Klammern sind nicht erlaubt', 'Der Roboter braucht zuerst einen Kommentar'], explain: 'Der richtige Name ist straight. Python kennt nur den genauen Namen.' },
+        { prompt: 'robo.straigth(300) ergibt einen Fehler. Warum?', options: ['Der Befehlsname ist falsch geschrieben', 'Die Zahl ist zu groß', 'Klammern sind nicht erlaubt', 'Der Roboter braucht zuerst einen Kommentar'], explain: 'Der richtige Name ist straight. Python kennt nur den genauen Namen.' },
         { prompt: 'Dieses Programm stoppt mit einem Fehler. Starte es, lies die Meldung und repariere es, damit der Roboter 500 mm fährt.', hint: 'Schau, wie straight geschrieben ist.' },
       ],
     },
@@ -427,25 +427,25 @@ export const TEXT: ContentText = {
       title: 'Licht und Ton',
       intro: 'Der Hub hat ein Licht am mittleren Knopf und einen Lautsprecher. hub.light.on(Color.GREEN) schaltet das Licht auf Grün und hub.speaker.beep() macht einen kurzen Piepton.\n\nDas hilft beim Testen: Ein Piepton zeigt, dass ein Schritt fertig ist, und das Licht kann zeigen, bei welcher Mission der Roboter ist.',
       ex: [
-        { prompt: 'Welcher Befehl lässt den Hub piepen?', options: ['hub.speaker.beep()', 'hub.light.beep()', 'robot.beep()', 'hub.display.beep()'], explain: 'Der Ton kommt aus dem Lautsprecher: hub.speaker.' },
+        { prompt: 'Welcher Befehl lässt den Hub piepen?', options: ['hub.speaker.beep()', 'hub.light.beep()', 'robo.beep()', 'hub.display.beep()'], explain: 'Der Ton kommt aus dem Lautsprecher: hub.speaker.' },
         { prompt: 'Ergänze, damit das Licht grün wird.', explain: 'Farben nutzen Color und den Namen in Großbuchstaben.' },
-        { prompt: 'Schalte das Licht auf Grün, fahr 300 mm und piepe am Ende.', hint: 'hub.light.on(Color.GREEN), robot.straight(300), hub.speaker.beep().' },
+        { prompt: 'Schalte das Licht auf Grün, fahr 300 mm und piepe am Ende.', hint: 'hub.light.on(Color.GREEN), robo.straight(300), hub.speaker.beep().' },
       ],
     },
     u2l4: {
       title: 'Rückwärts fahren',
-      intro: 'Viele Missionen verlangen nur, dass der Roboter auf demselben Weg hin und zurück fährt. Statt umzudrehen, fahr mit einer negativen Strecke rückwärts: robot.straight(-800) macht robot.straight(800) rückgängig.\n\nDas ist schneller, und der Roboter kommt in derselben Ausrichtung zurück.',
+      intro: 'Viele Missionen verlangen nur, dass der Roboter auf demselben Weg hin und zurück fährt. Statt umzudrehen, fahr mit einer negativen Strecke rückwärts: robo.straight(-800) macht robo.straight(800) rückgängig.\n\nDas ist schneller, und der Roboter kommt in derselben Ausrichtung zurück.',
       ex: [
-        { prompt: 'Der Roboter ist robot.straight(800) gefahren. Welcher Befehl bringt ihn ohne Drehen zum Start zurück?', options: ['robot.straight(-800)', 'robot.turn(180)', 'robot.straight(800)', 'robot.turn(-800)'], explain: 'Eine negative Strecke fährt auf demselben Weg rückwärts.' },
-        { prompt: 'Besuche die rote Zone und komm ohne Drehen zurück in BASIS 1.', hint: 'robot.straight(800) und robot.straight(-800).' },
+        { prompt: 'Der Roboter ist robo.straight(800) gefahren. Welcher Befehl bringt ihn ohne Drehen zum Start zurück?', options: ['robo.straight(-800)', 'robo.turn(180)', 'robo.straight(800)', 'robo.turn(-800)'], explain: 'Eine negative Strecke fährt auf demselben Weg rückwärts.' },
+        { prompt: 'Besuche die rote Zone und komm ohne Drehen zurück in BASIS 1.', hint: 'robo.straight(800) und robo.straight(-800).' },
       ],
     },
     u2l5: {
       title: 'Umdrehen',
-      intro: 'Umdrehen ist eine halbe Drehung: robot.turn(180) oder robot.turn(-180). Beide enden in der entgegengesetzten Richtung; sie drehen sich nur andersherum.\n\nNach dem Umdrehen bringen positive Strecken den Roboter dorthin zurück, wo er herkam.',
+      intro: 'Umdrehen ist eine halbe Drehung: robo.turn(180) oder robo.turn(-180). Beide enden in der entgegengesetzten Richtung; sie drehen sich nur andersherum.\n\nNach dem Umdrehen bringen positive Strecken den Roboter dorthin zurück, wo er herkam.',
       ex: [
         { prompt: 'Ergänze, damit der Roboter umdreht.', explain: '180 oder -180: eine halbe Drehung zu einer der beiden Seiten.' },
-        { prompt: 'Was macht robot.straight(300) nach robot.turn(180)?', options: ['Fährt 300 mm zurück in Richtung Herkunft', 'Fährt 300 mm rückwärts', 'Dreht weitere 300 Grad', 'Fährt seitwärts'], explain: 'Der Roboter schaut jetzt in die andere Richtung, also führt vorwärts zurück zum Start.' },
+        { prompt: 'Was macht robo.straight(300) nach robo.turn(180)?', options: ['Fährt 300 mm zurück in Richtung Herkunft', 'Fährt 300 mm rückwärts', 'Dreht weitere 300 Grad', 'Fährt seitwärts'], explain: 'Der Roboter schaut jetzt in die andere Richtung, also führt vorwärts zurück zum Start.' },
         { prompt: 'Fahr zur roten Zone, dreh um und komm vorwärts fahrend zurück in BASIS 1.', hint: 'straight(800), turn(180), straight(800).' },
       ],
     },
@@ -460,27 +460,27 @@ export const TEXT: ContentText = {
     },
     u3l3: {
       title: 'S-Kurve',
-      intro: 'Zwei Kurven in entgegengesetzte Richtungen ergeben ein S. robot.curve(300, -90) und danach robot.curve(300, 90) bringen den Roboter 600 mm nach vorn und 600 mm nach links, und er schaut am Ende in dieselbe Richtung wie am Start.\n\nSo wechselt man sanft die Spur, ohne anzuhalten.',
+      intro: 'Zwei Kurven in entgegengesetzte Richtungen ergeben ein S. robo.curve(300, -90) und danach robo.curve(300, 90) bringen den Roboter 600 mm nach vorn und 600 mm nach links, und er schaut am Ende in dieselbe Richtung wie am Start.\n\nSo wechselt man sanft die Spur, ohne anzuhalten.',
       ex: [
-        { prompt: 'Wohin schaut der Roboter nach robot.curve(300, -90) und dann robot.curve(300, 90)?', options: ['In dieselbe Richtung wie am Start', 'Nach links', 'Nach rechts', 'Nach hinten'], explain: 'Eine Kurve dreht 90° nach links, die andere 90° nach rechts: Sie heben sich auf.' },
+        { prompt: 'Wohin schaut der Roboter nach robo.curve(300, -90) und dann robo.curve(300, 90)?', options: ['In dieselbe Richtung wie am Start', 'Nach links', 'Nach rechts', 'Nach hinten'], explain: 'Eine Kurve dreht 90° nach links, die andere 90° nach rechts: Sie heben sich auf.' },
         { prompt: 'Erreiche die gelbe Zone mit zwei Kurven und schau am Ende nach rechts, wie am Start.', hint: 'curve(300, -90), curve(300, 90) und dann straight(200).' },
       ],
     },
     u3l4: {
       title: 'Drehgeschwindigkeit',
-      intro: 'settings() ändert mit turn_rate auch die Drehgeschwindigkeit, in Grad pro Sekunde. robot.settings(turn_rate=400) lässt turn() schneller drehen.\n\nSchnelle Drehungen sparen Zeit, aber am echten Roboter rutschen sie mehr. Teste auf der Matte.',
+      intro: 'settings() ändert mit turn_rate auch die Drehgeschwindigkeit, in Grad pro Sekunde. robo.settings(turn_rate=400) lässt turn() schneller drehen.\n\nSchnelle Drehungen sparen Zeit, aber am echten Roboter rutschen sie mehr. Teste auf der Matte.',
       ex: [
         { prompt: 'Welche Einstellung ändert, wie schnell turn() dreht?', options: ['turn_rate', 'straight_speed', 'axle_track', 'wheel_diameter'], explain: 'turn_rate ist die Drehgeschwindigkeit in Grad pro Sekunde.' },
         { prompt: 'Ergänze, damit die Drehungen schneller werden.', explain: 'turn_rate=400 bedeutet 400 Grad pro Sekunde.' },
-        { prompt: 'Dreh eine volle Umdrehung (360°) in weniger als 2 Sekunden. Mit der Standardgeschwindigkeit dauert es 2,5 s.', hint: 'Setz robot.settings(turn_rate=400) vor die Drehung.' },
+        { prompt: 'Dreh eine volle Umdrehung (360°) in weniger als 2 Sekunden. Mit der Standardgeschwindigkeit dauert es 2,5 s.', hint: 'Setz robo.settings(turn_rate=400) vor die Drehung.' },
       ],
     },
     u4l3: {
       title: 'Genauer Winkel',
       intro: 'run_angle() zählt von dort weiter, wo der Motor gerade steht, deshalb summieren sich kleine Fehler. run_target(Geschwindigkeit, Winkel) fährt auf einen genauen Winkel, gezählt ab null, egal wo der Motor angefangen hat.\n\nreset_angle(0) legt die aktuelle Position als neue Null fest.',
       ex: [
-        { prompt: 'Was macht left_arm.reset_angle(0)?', options: ['Legt die aktuelle Position als Null fest', 'Dreht den Motor zurück auf null', 'Stoppt den Motor', 'Dreht um 0 Grad'], explain: 'Es bewegt nichts: Es ändert nur den Bezugspunkt.' },
-        { prompt: 'Der Aufsatz steht schon bei 105°. Lass ihn genau bei 120° enden.', hint: 'left_arm.run_target(500, 120).' },
+        { prompt: 'Was macht anexo_left.reset_angle(0)?', options: ['Legt die aktuelle Position als Null fest', 'Dreht den Motor zurück auf null', 'Stoppt den Motor', 'Dreht um 0 Grad'], explain: 'Es bewegt nichts: Es ändert nur den Bezugspunkt.' },
+        { prompt: 'Der Aufsatz steht schon bei 105°. Lass ihn genau bei 120° enden.', hint: 'anexo_left.run_target(500, 120).' },
       ],
     },
     u4l4: {
@@ -488,7 +488,7 @@ export const TEXT: ContentText = {
       intro: 'Wenn der erste Befehl wartet, bis er fertig ist, startet der zweite Aufsatz erst danach. Mit wait=False beim ersten bewegen sich beide zusammen und du sparst Zeit.',
       ex: [
         { prompt: 'Wie bewegst du zwei Aufsätze gleichzeitig?', options: ['wait=False beim ersten Befehl', 'wait=False bei beiden Befehlen', 'Beide in dieselbe Zeile schreiben', 'Das geht in Pybricks nicht'], explain: 'Der erste startet und das Programm geht zum zweiten. Der zweite wartet ohne wait=False, bis er fertig ist.' },
-        { prompt: 'Dreh beide Aufsätze in weniger als 0,8 Sekunden um 180°.', hint: 'left_arm.run_angle(500, 180, wait=False) und right_arm.run_angle(500, 180).' },
+        { prompt: 'Dreh beide Aufsätze in weniger als 0,8 Sekunden um 180°.', hint: 'anexo_left.run_angle(500, 180, wait=False) und anexo_right.run_angle(500, 180).' },
       ],
     },
     u5l3: {
@@ -497,7 +497,7 @@ export const TEXT: ContentText = {
       ex: [
         { prompt: 'Ergänze, um auf der roten Zone anzuhalten.', explain: 'Color.RED ist Rot.' },
         { prompt: 'Der Roboter hat mit dem Sensor auf Rot angehalten, aber seine Mitte ist noch vor der Zone. Warum?', options: ['Der Sensor sitzt vor der Robotermitte', 'Der Sensor ist kaputt', 'Rot wird nicht erkannt', 'Der Roboter ist rückwärts gefahren'], explain: 'Der Sensor liest den Boden vor dem Roboter. Denk daran, wenn du planst, wo er anhalten soll.' },
-        { prompt: 'Fahr, bis der Sensor die rote Zone findet, und halte dort an.', hint: 'robot.drive(200, 0), while sensor.color() != Color.RED: wait(10), robot.stop().' },
+        { prompt: 'Fahr, bis der Sensor die rote Zone findet, und halte dort an.', hint: 'robo.drive(200, 0), while sensor.color() != Color.RED: wait(10), robo.stop().' },
       ],
     },
     u5l4: {
@@ -505,7 +505,7 @@ export const TEXT: ContentText = {
       intro: 'reflection() liefert eine Zahl, also kannst du eine Grenze wählen. Schwarz liegt bei etwa 7: Solange sensor.reflection() > 20 ist, ist der Roboter noch nicht auf Schwarz.\n\nDas hilft, wenn die Farben auf der offiziellen Matte nicht genau die sind, die color() kennt.',
       ex: [
         { prompt: 'Welche Bedingung lässt den Roboter weiterfahren, wenn er mit reflection() auf Schwarz anhalten soll?', options: ['while sensor.reflection() > 20:', 'while sensor.reflection() < 20:', 'while sensor.reflection() == 100:', 'while sensor.color() > 20:'], explain: 'Solange der Wert hoch ist (heller Boden), weiterfahren. Auf Schwarz fällt er unter 20.' },
-        { prompt: 'Halte mit sensor.reflection() auf dem schwarzen STOPP-Streifen an.', hint: 'robot.drive(200, 0), while sensor.reflection() > 20: wait(10), robot.stop().' },
+        { prompt: 'Halte mit sensor.reflection() auf dem schwarzen STOPP-Streifen an.', hint: 'robo.drive(200, 0), while sensor.reflection() > 20: wait(10), robo.stop().' },
       ],
     },
     u5l5: {
@@ -518,18 +518,18 @@ export const TEXT: ContentText = {
     },
     u6l3: {
       title: 'Wiederholen, solange',
-      intro: 'while wiederholt, solange eine Bedingung wahr ist. Zusammen mit drive() hält es den Roboter im richtigen Moment an: robot.drive(200, 0), dann while robot.distance() < 600: wait(10), dann robot.stop().\n\ndistance() wird aktualisiert, während der Roboter fährt.',
+      intro: 'while wiederholt, solange eine Bedingung wahr ist. Zusammen mit drive() hält es den Roboter im richtigen Moment an: robo.drive(200, 0), dann while robo.distance() < 600: wait(10), dann robo.stop().\n\ndistance() wird aktualisiert, während der Roboter fährt.',
       ex: [
-        { prompt: 'Wann hört while robot.distance() < 600: auf zu wiederholen?', options: ['Wenn der Roboter 600 mm oder mehr gefahren ist', 'Nie', 'Nach 600 Wiederholungen', 'Sofort'], explain: 'Bei 600 mm wird die Bedingung falsch und das Programm geht weiter.' },
-        { prompt: 'Nutze drive() und eine while-Schleife, um den Roboter nach 600 mm anzuhalten.', hint: 'while robot.distance() < 600: und darin wait(10).' },
+        { prompt: 'Wann hört while robo.distance() < 600: auf zu wiederholen?', options: ['Wenn der Roboter 600 mm oder mehr gefahren ist', 'Nie', 'Nach 600 Wiederholungen', 'Sofort'], explain: 'Bei 600 mm wird die Bedingung falsch und das Programm geht weiter.' },
+        { prompt: 'Nutze drive() und eine while-Schleife, um den Roboter nach 600 mm anzuhalten.', hint: 'while robo.distance() < 600: und darin wait(10).' },
       ],
     },
     u6l4: {
       title: 'Entscheiden mit if',
-      intro: 'if führt einen Block nur aus, wenn die Bedingung wahr ist; else läuft, wenn sie falsch ist. Der Roboter kann je nach Sensor entscheiden, was er tut.\n\nBeispiel: if sensor.color() == Color.RED: robot.turn(-90) else: robot.turn(90).',
+      intro: 'if führt einen Block nur aus, wenn die Bedingung wahr ist; else läuft, wenn sie falsch ist. Der Roboter kann je nach Sensor entscheiden, was er tut.\n\nBeispiel: if sensor.color() == Color.RED: robo.turn(-90) else: robo.turn(90).',
       ex: [
         { prompt: 'Was gibt dieses Programm aus?', options: ['A', 'B', 'A und B', 'Nichts'], explain: '5 > 3 ist wahr, also läuft nur der if-Block.' },
-        { prompt: 'Fahr 700 mm. Sieht der Sensor Rot, dreh nach links, sonst nach rechts. Fahr dann 400 mm.', hint: 'if sensor.color() == Color.RED: robot.turn(-90), else: robot.turn(90).' },
+        { prompt: 'Fahr 700 mm. Sieht der Sensor Rot, dreh nach links, sonst nach rechts. Fahr dann 400 mm.', hint: 'if sensor.color() == Color.RED: robo.turn(-90), else: robo.turn(90).' },
       ],
     },
     u6l5: {
@@ -538,7 +538,7 @@ export const TEXT: ContentText = {
       ex: [
         { prompt: 'Was ist moves[1] bei moves = [800, 640]?', options: ['640', '800', '1440', 'Ein Fehler'], explain: 'Gezählt wird ab 0: moves[0] ist 800 und moves[1] ist 640.' },
         { prompt: 'Ergänze, um jede Strecke der Liste zu fahren.', explain: 'for gibt distance nacheinander jeden Wert der Liste.' },
-        { prompt: 'Ergänze die Schleife, um der Liste der Bewegungen zu folgen und die gelbe Zone zu erreichen.', hint: 'In der for-Schleife: robot.straight(distance) und robot.turn(angle).' },
+        { prompt: 'Ergänze die Schleife, um der Liste der Bewegungen zu folgen und die gelbe Zone zu erreichen.', hint: 'In der for-Schleife: robo.straight(distance) und robo.turn(angle).' },
       ],
     },
     u6l6: {
@@ -547,7 +547,7 @@ export const TEXT: ContentText = {
       ex: [
         { prompt: 'Ergänze, damit die Funktion den Wert in Millimetern zurückgibt.', explain: 'return schickt das Ergebnis an den, der die Funktion aufgerufen hat.' },
         { prompt: 'Was gibt dieses Programm aus?', options: ['9', '8', '10', 'double(4) + 1'], explain: 'double(4) gibt 8 zurück, plus 1 ergibt 9.' },
-        { prompt: 'Nutze mm(), um 80 cm zu fahren und die rote Zone zu erreichen.', hint: 'robot.straight(mm(80)).' },
+        { prompt: 'Nutze mm(), um 80 cm zu fahren und die rote Zone zu erreichen.', hint: 'robo.straight(mm(80)).' },
       ],
     },
     u6l7: {
@@ -563,7 +563,7 @@ export const TEXT: ContentText = {
       intro: 'Die Trainingsmatte hat zwei Basen, eine auf jeder Seite, wie die Startbereiche am FLL-Tisch. BASIS 2 liegt rechts, am anderen Ende der Matte.\n\nDie ganze Matte zu überqueren dauert: Nutze settings(), um schneller zu fahren.',
       ex: [
         { prompt: 'Wie viele Basen hat die BatControl-Trainingsmatte?', options: ['Zwei, eine auf jeder Seite', 'Eine', 'Vier', 'Keine'], explain: 'BASIS 1 links und BASIS 2 rechts.' },
-        { prompt: 'Überquere die Matte von BASIS 1 nach BASIS 2 in weniger als 6 Sekunden.', hint: 'robot.settings(straight_speed=400) und robot.straight(2000).' },
+        { prompt: 'Überquere die Matte von BASIS 1 nach BASIS 2 in weniger als 6 Sekunden.', hint: 'robo.settings(straight_speed=400) und robo.straight(2000).' },
       ],
     },
     u7l3: {
@@ -571,7 +571,7 @@ export const TEXT: ContentText = {
       intro: 'In einem echten Durchlauf bewegt sich der Aufsatz, während der Roboter fährt. Starte den Aufsatz mit wait=False und fahr dann: Beides passiert gleichzeitig.\n\nSo sparen gute Teams bei jeder Mission Sekunden.',
       ex: [
         { prompt: 'Warum den Aufsatz bewegen, während der Roboter fährt?', options: ['Um Matchzeit zu sparen', 'Damit der Roboter genauer wird', 'Weil der Hub es verlangt', 'Um Akku zu sparen'], explain: 'Zwei Aktionen gleichzeitig dauern so lange wie die längere, nicht die Summe.' },
-        { prompt: 'Fahr zur roten Zone und öffne unterwegs den rechten Aufsatz um 90°, schließ ihn auf dem Rückweg wieder auf 0° und ende in BASIS 1, alles in weniger als 6 Sekunden.', hint: 'settings(straight_speed=400), right_arm.run_angle(500, 90, wait=False), straight(800), right_arm.run_angle(500, -90, wait=False), straight(-800).' },
+        { prompt: 'Fahr zur roten Zone und öffne unterwegs den rechten Aufsatz um 90°, schließ ihn auf dem Rückweg wieder auf 0° und ende in BASIS 1, alles in weniger als 6 Sekunden.', hint: 'settings(straight_speed=400), anexo_right.run_angle(500, 90, wait=False), straight(800), anexo_right.run_angle(500, -90, wait=False), straight(-800).' },
       ],
     },
     u8l3: {
@@ -612,7 +612,7 @@ export const TEXT: ContentText = {
       intro: 'SyntaxError bedeutet, dass Python nicht verstanden hat, wie eine Zeile geschrieben ist: ein fehlender Doppelpunkt, falsche Einrückung oder eine offene Klammer.\n\nDie Meldung zeigt die Zeile. Schau dir diese Zeile und die davor an.',
       ex: [
         { prompt: 'SyntaxError in einer Zeile mit for. Was ist die wahrscheinlichste Ursache?', options: ['Der Doppelpunkt am Ende fehlt', 'Die Zahl ist falsch', 'Der Motor ist nicht angeschlossen', 'Der Roboter ist zu langsam'], explain: 'for, while, if und def enden immer mit einem Doppelpunkt.' },
-        { prompt: 'Dieses Programm soll ein Quadrat mit 300 mm fahren und zum Start zurückkehren, hat aber zwei Fehler. Repariere sie.', hint: 'Setz den Doppelpunkt nach range(4) und rück robot.turn(-90) ein, damit es in der for-Schleife steht.' },
+        { prompt: 'Dieses Programm soll ein Quadrat mit 300 mm fahren und zum Start zurückkehren, hat aber zwei Fehler. Repariere sie.', hint: 'Setz den Doppelpunkt nach range(4) und rück robo.turn(-90) ein, damit es in der for-Schleife steht.' },
       ],
     },
     u11l2: {
@@ -620,7 +620,7 @@ export const TEXT: ContentText = {
       intro: 'print() zeigt Werte im Ausgabe-Bereich. So findest du am einfachsten heraus, was der Roboter „denkt“: wie weit er gefahren ist, was der Sensor misst, wie das Heading ist.\n\nAm echten Hub erscheint print im Terminal von Pybricks Code.',
       ex: [
         { prompt: 'Was gibt dieses Programm aus?', options: ['250', '0', '25', 'Ein Fehler'], explain: 'distance() zählt die gefahrenen mm seit dem Start.' },
-        { prompt: 'Der Roboter fährt bis zum schwarzen Streifen. Gib aus, wie weit er gefahren ist.', hint: 'print(robot.distance()) nach robot.stop().' },
+        { prompt: 'Der Roboter fährt bis zum schwarzen Streifen. Gib aus, wie weit er gefahren ist.', hint: 'print(robo.distance()) nach robo.stop().' },
       ],
     },
     u11l3: {
@@ -643,7 +643,7 @@ export const TEXT: ContentText = {
       title: 'Start aus BASIS 2',
       intro: 'Am FLL-Tisch liegen manche Missionen näher am anderen Startbereich. In BatControl liegt BASIS 2 rechts, und der Roboter startet mit Blick nach links.\n\nDie Befehle sind dieselben: Vorwärts ist dort, wohin der Roboter schaut.',
       ex: [
-        { prompt: 'Der Roboter startet in BASIS 2 mit Blick nach links. Welcher Befehl fährt ihn zur blauen Zone?', options: ['robot.straight(640)', 'robot.straight(-640)', 'robot.turn(180)', 'robot.curve(640, 90)'], explain: 'Der Roboter schaut nach links, zur blauen Zone, also ist vorwärts positiv.' },
+        { prompt: 'Der Roboter startet in BASIS 2 mit Blick nach links. Welcher Befehl fährt ihn zur blauen Zone?', options: ['robo.straight(640)', 'robo.straight(-640)', 'robo.turn(180)', 'robo.curve(640, 90)'], explain: 'Der Roboter schaut nach links, zur blauen Zone, also ist vorwärts positiv.' },
         { prompt: 'Besuche von BASIS 2 aus die blaue Zone und kehr zu BASIS 2 zurück.', hint: 'Die Mitte der blauen Zone liegt 642 mm voraus.' },
       ],
     },
@@ -652,7 +652,7 @@ export const TEXT: ContentText = {
       intro: 'Im Match zählt jede Sekunde. Erhöhe straight_speed und straight_acceleration, aber denk daran: Am echten Roboter kann zu schnell rutschen und Genauigkeit kosten.\n\nDie maximale Radgeschwindigkeit der SPIKE-Motoren liegt mit 62,4-mm-Rädern bei etwa 540 mm/s.',
       ex: [
         { prompt: 'Welche Änderung hilft auf einem langen, geraden Weg am meisten?', options: ['straight_speed erhöhen', 'turn_rate erhöhen', 'axle_track verringern', 'wait(100) einfügen'], explain: 'Auf einem geraden Weg zählt die Fahrgeschwindigkeit.' },
-        { prompt: 'Besuche die rote und die blaue Zone und komm in weniger als 8 Sekunden zurück in BASIS 1.', hint: 'robot.settings(straight_speed=480, straight_acceleration=1500), straight(1480) und straight(-1480).' },
+        { prompt: 'Besuche die rote und die blaue Zone und komm in weniger als 8 Sekunden zurück in BASIS 1.', hint: 'robo.settings(straight_speed=480, straight_acceleration=1500), straight(1480) und straight(-1480).' },
       ],
     },
     u12l3: {
@@ -668,7 +668,7 @@ export const TEXT: ContentText = {
       intro: 'Kombiniere, was du gelernt hast: Folge der Linie bis zum Ende und zeig mit Licht und Piepton, dass du angekommen bist.\n\nGlückwunsch: Nach dieser Lektion kennst du die wichtigsten Pybricks-Befehle, die in der FLL verwendet werden.',
       ex: [
         { prompt: 'Wie findest du am besten heraus, ob eine Mission am echten Roboter wirklich funktioniert?', options: ['Sie mehrmals laufen lassen und schauen, ob sie immer klappt', 'Sie einmal laufen lassen', 'Nur den Code anschauen', 'Nur im Simulator testen'], explain: 'Eine gute Mission klappt jedes Mal, nicht nur einmal.' },
-        { prompt: 'Folge der Linie bis zum Ende, schalte dann das Licht auf Grün und piepe.', hint: 'while robot.distance() < 1300: Linienfolger mit kp; dann robot.stop(), hub.light.on(Color.GREEN), hub.speaker.beep().' },
+        { prompt: 'Folge der Linie bis zum Ende, schalte dann das Licht auf Grün und piepe.', hint: 'while robo.distance() < 1300: Linienfolger mit kp; dann robo.stop(), hub.light.on(Color.GREEN), hub.speaker.beep().' },
       ],
     },
   },

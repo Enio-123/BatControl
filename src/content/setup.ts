@@ -1,5 +1,5 @@
-// Cabeçalho padrão dos programas do BatControl. Os nomes no código são em inglês para
-// servirem a equipes de qualquer país; os comentários são traduzidos pelo idioma do app.
+// Cabeçalho padrão dos programas do BatControl, no estilo da equipe BatLego (robo, anexo_left,
+// anexo_right); os comentários são traduzidos pelo idioma do app.
 export const IMPORTS = `from pybricks.hubs import PrimeHub
 from pybricks.pupdevices import Motor, ColorSensor
 from pybricks.parameters import Port, Direction, Stop, Color
@@ -11,11 +11,11 @@ export const SETUP_BASE = `${IMPORTS}
 hub = PrimeHub()
 left_motor = Motor(Port.A, positive_direction=Direction.COUNTERCLOCKWISE)
 right_motor = Motor(Port.B, positive_direction=Direction.CLOCKWISE)
-robot = DriveBase(left_motor, right_motor, wheel_diameter=62.4, axle_track=150)`;
+robo = DriveBase(left_motor, right_motor, wheel_diameter=62.4, axle_track=150)`;
 
 export const SETUP_FULL = `${SETUP_BASE}
-left_arm = Motor(Port.C)
-right_arm = Motor(Port.E)
+anexo_left = Motor(Port.C)
+anexo_right = Motor(Port.E)
 sensor = ColorSensor(Port.D)`;
 
 export const program = (body: string, full = true) => `${full ? SETUP_FULL : SETUP_BASE}
@@ -36,9 +36,9 @@ export function setupFor(cfg: { ports: Record<string, string>; wheelDiameter: nu
 hub = PrimeHub()
 left_motor = Motor(Port.${p.leftWheel}, positive_direction=Direction.COUNTERCLOCKWISE)
 right_motor = Motor(Port.${p.rightWheel}, positive_direction=Direction.CLOCKWISE)
-robot = DriveBase(left_motor, right_motor, wheel_diameter=${cfg.wheelDiameter}, axle_track=${cfg.axleTrack})
-robot.use_gyro(True)
-left_arm = Motor(Port.${p.leftArm})
-right_arm = Motor(Port.${p.rightArm})
+robo = DriveBase(left_motor, right_motor, wheel_diameter=${cfg.wheelDiameter}, axle_track=${cfg.axleTrack})
+robo.use_gyro(True)
+anexo_left = Motor(Port.${p.leftArm})
+anexo_right = Motor(Port.${p.rightArm})
 sensor = ColorSensor(Port.${p.color})`;
 }

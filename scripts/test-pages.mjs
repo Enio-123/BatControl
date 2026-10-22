@@ -49,10 +49,10 @@ try {
   const res = await p2.evaluate(async () => {
     const hub = await import('/src/ble/hub.ts');
     const { program } = await import('/src/content/setup.ts');
-    const mpy = await hub.compile(program('robot.straight(300)\nrobot.turn(90)'));
+    const mpy = await hub.compile(program('robo.straight(300)\nrobo.turn(90)'));
     const multi = hub.multiMpy(mpy);
     let err = '';
-    try { await hub.compile('robot.straight(300'); } catch (e) { err = String(e.message || e); }
+    try { await hub.compile('robo.straight(300'); } catch (e) { err = String(e.message || e); }
     return { mpyLen: mpy.length, head: Array.from(mpy.slice(0, 4)), multiLen: multi.length, err: err.slice(0, 120) };
   });
   // Cabeçalho .mpy: 'M' (77), versão 6, flags, bits do small int.

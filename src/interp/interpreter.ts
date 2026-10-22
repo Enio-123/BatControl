@@ -514,6 +514,9 @@ export class Interpreter {
     const low = name.toLowerCase();
     const similar = known.find((k) => k.toLowerCase() === low && k !== name);
     if (similar) return '. ' + tr('e.didYouMean', { s: similar });
+    // Nomes antigos do BatControl (robot, left_arm, right_arm) viraram robo, anexo_left, anexo_right
+    const renamed: Record<string, string> = { robot: 'robo', left_arm: 'anexo_left', right_arm: 'anexo_right' };
+    if (renamed[name] && known.includes(renamed[name])) return '. ' + tr('e.didYouMean', { s: renamed[name] });
     if (['DriveBase', 'Motor', 'ColorSensor', 'PrimeHub', 'Port', 'Direction', 'Color', 'Stop', 'wait', 'StopWatch'].includes(name)) {
       return '. ' + tr('e.missingImport');
     }

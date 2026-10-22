@@ -164,7 +164,7 @@ export class PuzzleView {
     const edHost = h('div', { class: 'editor-host' });
     const cons = new ConsoleView();
     cons.clear(t('player.runToSee'));
-    const firstLine = localizeCode(pz.solution).split('\n').filter((l) => /^\S/.test(l) && !/^(from|import|hub|left_|right_|robot =|sensor =)/.test(l))[0] ?? '';
+    const firstLine = localizeCode(pz.solution).split('\n').filter((l) => /^\S/.test(l) && !/^(from|import|hub|left_|right_|anexo_|robo =|sensor =)/.test(l))[0] ?? '';
     const hintEl = h('p', { class: 'hint', hidden: true }, h('b', {}, `${t('player.hint')}: `), t('pz.hintText', { code: firstLine }));
     body.replaceChildren(h('div', { class: 'card code-card enter' },
       h('p', { class: 'eyebrow' }, t('player.program')), ...head, hintEl,

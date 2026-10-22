@@ -22,32 +22,32 @@ import { importPhoto, MatPhoto, removePhoto, savedPhoto } from './photo';
 import { Stage } from './stage';
 
 export const defaultCode = () => localizeCode(program(`# Leave the base, go to the red zone and come back
-robot.straight(800)
-robot.turn(90)
-robot.turn(-90)
-robot.straight(-800)
+robo.straight(800)
+robo.turn(90)
+robo.turn(-90)
+robo.straight(-800)
 hub.speaker.beep()`));
 
 const clawDemo = () => localizeCode(program(`# Claws: 0 degrees = closed, 90 degrees = open
-left_arm.run_angle(300, 90, wait=False)
-right_arm.run_angle(300, 90)
-robot.straight(466)
+anexo_left.run_angle(300, 90, wait=False)
+anexo_right.run_angle(300, 90)
+robo.straight(466)
 # Close both claws on the crates
-left_arm.run_angle(300, -90, wait=False)
-right_arm.run_angle(300, -90)
-robot.straight(-466)`));
+anexo_left.run_angle(300, -90, wait=False)
+anexo_right.run_angle(300, -90)
+robo.straight(-466)`));
 
 /** Comandos rápidos para montar o programa tocando, sem digitar tudo no celular. */
 const QUICK: [string, string][] = [
-  ['quick.forward', 'robot.straight(200)'],
-  ['quick.back', 'robot.straight(-200)'],
-  ['quick.right', 'robot.turn(90)'],
-  ['quick.left', 'robot.turn(-90)'],
-  ['quick.curve', 'robot.curve(200, 90)'],
-  ['quick.openL', 'left_arm.run_angle(300, 90)'],
-  ['quick.closeL', 'left_arm.run_angle(300, -90)'],
-  ['quick.openR', 'right_arm.run_angle(300, 90)'],
-  ['quick.closeR', 'right_arm.run_angle(300, -90)'],
+  ['quick.forward', 'robo.straight(200)'],
+  ['quick.back', 'robo.straight(-200)'],
+  ['quick.right', 'robo.turn(90)'],
+  ['quick.left', 'robo.turn(-90)'],
+  ['quick.curve', 'robo.curve(200, 90)'],
+  ['quick.openL', 'anexo_left.run_angle(300, 90)'],
+  ['quick.closeL', 'anexo_left.run_angle(300, -90)'],
+  ['quick.openR', 'anexo_right.run_angle(300, 90)'],
+  ['quick.closeR', 'anexo_right.run_angle(300, -90)'],
   ['quick.wait', 'wait(500)'],
   ['quick.repeat', 'for i in range(4):'],
   ['quick.beep', 'hub.speaker.beep()'],
@@ -120,7 +120,7 @@ class RulerTool {
   }
 
   code() {
-    return this.steps().flatMap((s) => [s.turn ? `robot.turn(${s.turn})` : '', s.dist ? `robot.straight(${s.dist})` : '']).filter(Boolean).join('\n');
+    return this.steps().flatMap((s) => [s.turn ? `robo.turn(${s.turn})` : '', s.dist ? `robo.straight(${s.dist})` : '']).filter(Boolean).join('\n');
   }
 
   refresh() {

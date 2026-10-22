@@ -19,7 +19,7 @@ export const TEXT: ContentText = {
       tips: [
         '各デバイスはプログラムの最初に一度だけ作りましょう。',
         '# で始まる行はコメントです。ロボットは無視しますが、チームがコードを理解するのに役立ちます。',
-        'left_motor、robot、sensor という名前は私たちが決めたものです。プログラム全体で同じ名前を使えば、別の名前でもかまいません。',
+        'left_motor、robo、sensor という名前は私たちが決めたものです。プログラム全体で同じ名前を使えば、別の名前でもかまいません。',
       ],
       mistakes: ['import を忘れると NameError になります。Python が DriveBase や Port を知らないからです。'],
     },
@@ -74,7 +74,7 @@ export const TEXT: ContentText = {
     strafe: {
       title: '横移動（strafe）は？',
       summary: 'Pybricks の DriveBase には strafe はありません。一般的な FLL ロボットは固定された 2 つの駆動輪（差動駆動）を持ち、前と後ろにしか押せません。横に進めるのはオムニホイールやメカナムホイールのロボットだけです。横の地点へ行くには、回って、進んで、また回ります。',
-      tips: ['robot.strafe(...) と書くと、シミュレーターはハブと同じエラー AttributeError を表示します。'],
+      tips: ['robo.strafe(...) と書くと、シミュレーターはハブと同じエラー AttributeError を表示します。'],
     },
     curve: {
       title: 'curve()：弧を描いて進む',
@@ -98,7 +98,7 @@ export const TEXT: ContentText = {
     },
     drive: {
       title: 'drive() と stop()：走り続ける',
-      summary: 'drive() は車輪を動かし始め、ロボットが動いたまま、プログラムはすぐに次の行へ進みます。robot.stop() を呼ぶまでロボットは止まりません。「黒い線が見えるまで進む」やライントレースの基本です。',
+      summary: 'drive() は車輪を動かし始め、ロボットが動いたまま、プログラムはすぐに次の行へ進みます。robo.stop() を呼ぶまでロボットは止まりません。「黒い線が見えるまで進む」やライントレースの基本です。',
       params: [
         ['mm/s', '前進の速さ（マイナス = 後退）。'],
         ['度/秒', '走りながら曲がる量。0 = まっすぐ、プラス = 右。'],
@@ -243,12 +243,12 @@ export const TEXT: ContentText = {
   lessons: {
     u1l1: {
       title: 'はじめてのプログラム',
-      intro: 'Pybricks は SPIKE プライムのハブの中で動く Python です。ロボットはプログラムを上から下へ 1 行ずつ実行します。\n\n走るには DriveBase を使います。このコースでは robot という名前です。robot.straight(300) という命令で 300 ミリメートル前へ進みます。',
+      intro: 'Pybricks は SPIKE プライムのハブの中で動く Python です。ロボットはプログラムを上から下へ 1 行ずつ実行します。\n\n走るには DriveBase を使います。このコースでは robot という名前です。robo.straight(300) という命令で 300 ミリメートル前へ進みます。',
       ex: [
         { prompt: 'Pybricks のプログラムはどの言語で書きますか？', options: ['Python', 'Scratch のブロック', 'C++', 'JavaScript'], explain: 'Pybricks は MicroPython を使います。ハブのような小さなボード向けの Python です。' },
         { prompt: 'straight() は距離をどの単位で測りますか？', options: ['ミリメートル', 'センチメートル', '車輪の回転数', '秒'], explain: 'Pybricks の距離はすべて mm です。30 cm = 300 mm。' },
         { prompt: 'ロボットが 300 mm 前に進むように完成させましょう。', explain: 'straight は「まっすぐ進む」という意味です。' },
-        { prompt: 'ロボットを 300 mm 前に進ませましょう。', hint: 'コメントの下に robot.straight(300) と書きます。' },
+        { prompt: 'ロボットを 300 mm 前に進ませましょう。', hint: 'コメントの下に robo.straight(300) と書きます。' },
       ],
     },
     u1l2: {
@@ -266,17 +266,17 @@ export const TEXT: ContentText = {
       title: 'まっすぐ進む',
       intro: 'straight(距離) はまっすぐ進んで止まります。プラスの数は前へ、マイナスの数は後ろへ進みます。\n\nシミュレーターのマットのふちには 100 mm ごとに目盛りがあります。スタートはベース1 の中で、ロボットの中心は x = 120 mm です。',
       ex: [
-        { prompt: 'robot.straight(-200) は何をしますか？', options: ['200 mm 後ろへ進む', '200 mm 前へ進む', '200 度回る', 'エラーになる。マイナスの数は使えない'], explain: 'マイナスの距離は後ろへ進みます。' },
+        { prompt: 'robo.straight(-200) は何をしますか？', options: ['200 mm 後ろへ進む', '200 mm 前へ進む', '200 度回る', 'エラーになる。マイナスの数は使えない'], explain: 'マイナスの距離は後ろへ進みます。' },
         { prompt: '25 cm は何ミリメートルですか？', options: ['250', '25', '2500', '2.5'], explain: '1 cm = 10 mm なので、25 cm = 250 mm です。' },
-        { prompt: 'ロボットを赤いゾーンへ動かしましょう。ゾーンの中心はスタートの 800 mm 前です。', hint: '正しい距離の robot.straight() が 1 つあれば十分です。' },
+        { prompt: 'ロボットを赤いゾーンへ動かしましょう。ゾーンの中心はスタートの 800 mm 前です。', hint: '正しい距離の robo.straight() が 1 つあれば十分です。' },
       ],
     },
     u2l2: {
       title: '回る',
       intro: 'turn(角度) はロボットをその場で回します。プラスは右（時計回り）、マイナスは左です。\n\n4 分の 1 回転は 90 度、半回転は 180 度です。',
       ex: [
-        { prompt: 'robot.turn(90) でロボットはどちらへ向きますか？', options: ['右', '左', '前', 'ポートによって変わる'], explain: 'プラスの角度 = 時計回り = 右です。' },
-        { prompt: 'ロボットを反対向きにする命令はどれですか？', options: ['robot.turn(180)', 'robot.turn(90)', 'robot.turn(360)', 'robot.straight(-180)'], explain: '反対向きは 180 度です。360 は 1 回転なので、ロボットは同じ向きにもどります。' },
+        { prompt: 'robo.turn(90) でロボットはどちらへ向きますか？', options: ['右', '左', '前', 'ポートによって変わる'], explain: 'プラスの角度 = 時計回り = 右です。' },
+        { prompt: 'ロボットを反対向きにする命令はどれですか？', options: ['robo.turn(180)', 'robo.turn(90)', 'robo.turn(360)', 'robo.straight(-180)'], explain: '反対向きは 180 度です。360 は 1 回転なので、ロボットは同じ向きにもどります。' },
         { prompt: '左に 4 分の 1 回転するように完成させましょう。', explain: '左はマイナス：-90。' },
         { prompt: 'ロボットを黄色いゾーンへ動かしましょう。寸法：800 mm 進み、左に回って、さらに 640 mm 進みます。', hint: 'straight(800)、次に turn(-90)、次に straight(640)。' },
       ],
@@ -285,7 +285,7 @@ export const TEXT: ContentText = {
       title: '横移動はある？',
       intro: '横に進むための strafe() という命令を探す人がいます。Pybricks の DriveBase にはありません。ロボットには前と後ろにしか押せない 2 つの固定された車輪があるからです（差動駆動）。\n\n横の地点へ行くには：回って、進んで、また回ります。',
       ex: [
-        { prompt: 'プログラムが robot.strafe(100) を呼ぶとどうなりますか？', options: ['エラー：DriveBase には strafe がない', 'ロボットが 100 mm 横に進む', 'ロボットが 100 度回る', 'ロボットが 100 mm 前に進む'], explain: 'ハブはシミュレーターと同じく AttributeError を表示します。横に進めるのはオムニホイールかメカナムホイールだけです。' },
+        { prompt: 'プログラムが robo.strafe(100) を呼ぶとどうなりますか？', options: ['エラー：DriveBase には strafe がない', 'ロボットが 100 mm 横に進む', 'ロボットが 100 度回る', 'ロボットが 100 mm 前に進む'], explain: 'ハブはシミュレーターと同じく AttributeError を表示します。横に進めるのはオムニホイールかメカナムホイールだけです。' },
         { prompt: '「左へ 300 mm 行き」、最後にまた前を向く道すじを組み立てましょう。', explain: '回る・進む・また回るで、横移動の代わりになります。' },
         { prompt: '黄色いゾーンの中で止まり、スタートのときと同じようにマットの右側を向きましょう。', hint: '前のレッスンの道すじを使い、最後に turn(90) を加えます。' },
       ],
@@ -294,54 +294,54 @@ export const TEXT: ContentText = {
       title: 'カーブ',
       intro: 'curve(半径, 角度) は円弧に沿って進みます。半径が大きいとゆるいカーブ、小さいと急なカーブになります。プラスの角度は右に曲がります。\n\n半径 300、角度 -90 のカーブで、ロボットは 300 mm 前、300 mm 左へ移動します。',
       ex: [
-        { prompt: 'いちばん急なカーブはどれですか？', options: ['robot.curve(100, 90)', 'robot.curve(400, 90)', 'robot.curve(800, 90)', 'どれも同じ'], explain: '半径が小さいほど、カーブは急になります。' },
+        { prompt: 'いちばん急なカーブはどれですか？', options: ['robo.curve(100, 90)', 'robo.curve(400, 90)', 'robo.curve(800, 90)', 'どれも同じ'], explain: '半径が小さいほど、カーブは急になります。' },
         { prompt: '半径 300 mm で左に 4 分の 1 円進むように完成させましょう。', explain: '左はマイナスで、4 分の 1 円は 90 度です。' },
         { prompt: 'turn() を使わず、途中で curve() を使って黄色いゾーンに着きましょう。', hint: '500 mm 進み、curve(300, -90) をして、さらに 340 mm 進みます。' },
       ],
     },
     u3l2: {
       title: '速さ',
-      intro: 'robot.settings() は straight、turn、curve の速さを変えます。たとえば robot.settings(straight_speed=400) なら秒速 400 mm で進みます。\n\n速くすると試合時間を節約でき、ゆっくりだとたいてい正確になります。',
+      intro: 'robo.settings() は straight、turn、curve の速さを変えます。たとえば robo.settings(straight_speed=400) なら秒速 400 mm で進みます。\n\n速くすると試合時間を節約でき、ゆっくりだとたいてい正確になります。',
       ex: [
         { prompt: 'straight_speed の単位は何ですか？', options: ['mm/s', '度/秒', 'cm/s', '毎分回転数'], explain: '走行速度の単位はミリメートル毎秒です。' },
         { prompt: '秒速 400 mm で進むように完成させましょう。', explain: 'straight_speed はまっすぐ進むときの速さを決めます。' },
-        { prompt: '青いゾーン（1400 mm 先）に 6 秒以内に着きましょう。標準の速さでは間に合いません。', hint: 'straight の前に robot.settings(straight_speed=400) を書きます。' },
+        { prompt: '青いゾーン（1400 mm 先）に 6 秒以内に着きましょう。標準の速さでは間に合いません。', hint: 'straight の前に robo.settings(straight_speed=400) を書きます。' },
       ],
     },
     u4l1: {
       title: 'run_angle()',
-      intro: 'アタッチメントはポート C と E のモーターで動きます。シミュレーターでは、ロボットの上にある 2 つのギアです。\n\nleft_arm.run_angle(500, 180) は、左のアタッチメントを毎秒 500 度で 180 度回します。',
+      intro: 'アタッチメントはポート C と E のモーターで動きます。シミュレーターでは、ロボットの上にある 2 つのギアです。\n\nanexo_left.run_angle(500, 180) は、左のアタッチメントを毎秒 500 度で 180 度回します。',
       ex: [
-        { prompt: 'left_arm.run_angle(500, 90) の 500 は何ですか？', options: ['速さ（度/秒）', '角度（度）', '時間（ミリ秒）', 'モーターのパワー'], explain: '先に速さ、次に角度を書きます。' },
+        { prompt: 'anexo_left.run_angle(500, 90) の 500 は何ですか？', options: ['速さ（度/秒）', '角度（度）', '時間（ミリ秒）', 'モーターのパワー'], explain: '先に速さ、次に角度を書きます。' },
         { prompt: '右のアタッチメントを 1 回転させるように完成させましょう。', explain: '1 回転は 360 度です。' },
-        { prompt: '左のアタッチメントを半回転させ、そのあと元の位置にもどしましょう。', hint: '2 行：left_arm.run_angle(500, 180) と left_arm.run_angle(500, -180)。' },
+        { prompt: '左のアタッチメントを半回転させ、そのあと元の位置にもどしましょう。', hint: '2 行：anexo_left.run_angle(500, 180) と anexo_left.run_angle(500, -180)。' },
       ],
     },
     u4l2: {
       title: 'アタッチメントとロボットを同時に',
       intro: 'ふつう、各命令は終わるまで待ってから次の行に進みます。wait=False を付けると、命令が始まった直後にプログラムが先へ進みます。\n\nこうすればロボットが走りながらアタッチメントを上げられ、試合の貴重な秒数を節約できます。\n\nrun_target(速さ, 角度) はモーターを 0 から数えた正確な角度まで動かします。',
       ex: [
-        { prompt: 'right_arm.run_angle(500, 90, wait=False) の wait=False は何をしますか？', options: ['回り始め、プログラムは待たずに先へ進む', 'モーターを回さない', 'モーターをずっと回す', '回す前に 90 ms 待つ'], explain: 'モーターは次の行と同時に回ります。' },
+        { prompt: 'anexo_right.run_angle(500, 90, wait=False) の wait=False は何をしますか？', options: ['回り始め、プログラムは待たずに先へ進む', 'モーターを回さない', 'モーターをずっと回す', '回す前に 90 ms 待つ'], explain: 'モーターは次の行と同時に回ります。' },
         { prompt: 'アタッチメントは 30° の位置にあります。run_target(500, 90) でどこへ行きますか？', options: ['90° へ', '120° へ', '60° へ', '30° のまま'], explain: 'run_target はどこにあっても目標の角度へ行きます。run_angle(500, 90) なら 120° になります。' },
-        { prompt: '赤いゾーンへ行きながら、同時に右のアタッチメントを 90° 回しましょう。全部で 4.6 秒以内です。', hint: 'right_arm.run_angle(500, 90, wait=False) のあとに robot.straight(800)。' },
+        { prompt: '赤いゾーンへ行きながら、同時に右のアタッチメントを 90° 回しましょう。全部で 4.6 秒以内です。', hint: 'anexo_right.run_angle(500, 90, wait=False) のあとに robo.straight(800)。' },
       ],
     },
     u5l1: {
       title: '線で止まる',
-      intro: 'sensor.color() はセンサーの下のマットの色を教えてくれます：Color.BLACK、Color.WHITE、Color.RED……\n\nある色が出るまで進むには：robot.drive(速さ, 0) で車輪を動かし、while ループで色が出るまで待ち、robot.stop() を呼びます。\n\nシミュレーターでは、床の赤い点がセンサーの読む位置です。',
+      intro: 'sensor.color() はセンサーの下のマットの色を教えてくれます：Color.BLACK、Color.WHITE、Color.RED……\n\nある色が出るまで進むには：robo.drive(速さ, 0) で車輪を動かし、while ループで色が出るまで待ち、robo.stop() を呼びます。\n\nシミュレーターでは、床の赤い点がセンサーの読む位置です。',
       ex: [
         { prompt: 'センサーが黒を見ているか調べる正しい書き方はどれですか？', options: ['sensor.color() == Color.BLACK', 'sensor.color() == "BLACK"', 'sensor.color = Color.BLACK', 'sensor.black()'], explain: '== で比べ、Pybricks の色（Color.BLACK）を引用符なしで使います。' },
         { prompt: '黒い線が見つかるまで進むように完成させましょう。', explain: '色が黒と違う（!=）間は進み続けます。' },
-        { prompt: '黒いストップの帯まで進み、その上で止まりましょう。途中でセンサーは赤いゾーンを通りますが、そこで止まってはいけません。', hint: 'robot.drive(200, 0)、次に while sensor.color() != Color.BLACK: wait(10)、次に robot.stop()。' },
+        { prompt: '黒いストップの帯まで進み、その上で止まりましょう。途中でセンサーは赤いゾーンを通りますが、そこで止まってはいけません。', hint: 'robo.drive(200, 0)、次に while sensor.color() != Color.BLACK: wait(10)、次に robo.stop()。' },
       ],
     },
     u5l2: {
       title: 'ライントレース',
-      intro: 'sensor.reflection() は返ってくる光の量を 0〜100 で測ります。黒は約 7、白は約 96 です。線のふちではその中間の約 50 になります。\n\n比例制御のライントレースは error = reflection() - 50 を計算し、誤差に比例してロボットを曲げます：robot.drive(150, error * gain)。線のふちに沿って、ずっと補正しながら進みます。',
+      intro: 'sensor.reflection() は返ってくる光の量を 0〜100 で測ります。黒は約 7、白は約 96 です。線のふちではその中間の約 50 になります。\n\n比例制御のライントレースは error = reflection() - 50 を計算し、誤差に比例してロボットを曲げます：robo.drive(150, error * gain)。線のふちに沿って、ずっと補正しながら進みます。',
       ex: [
         { prompt: 'センサーが完全に黒の上にあります。reflection() の値としていちばんありそうなのは？', options: ['約 7', '約 50', '約 96', 'ちょうど 100'], explain: '黒はあまり光を反射しません。' },
         { prompt: 'ロボットが線の上で大きくジグザグします。たいてい効果があるのは？', options: ['ゲインを下げる', 'ゲインを上げる', 'wait(10) を消す', 'drive() の代わりに turn() を使う'], explain: 'ゲインが大きいと補正が大げさになります。少しずつ下げましょう（必要なら速さも）。' },
-        { prompt: 'ロボットはセンサーが線のふちにある状態でスタートします。ライントレースを完成させ、直線とカーブを線の終わりまで走らせましょう。', hint: 'while の中のコメントを robot.drive(150, error * gain) に置きかえます。' },
+        { prompt: 'ロボットはセンサーが線のふちにある状態でスタートします。ライントレースを完成させ、直線とカーブを線の終わりまで走らせましょう。', hint: 'while の中のコメントを robo.drive(150, error * gain) に置きかえます。' },
       ],
     },
     u6l1: {
@@ -350,7 +350,7 @@ export const TEXT: ContentText = {
       ex: [
         { prompt: 'for i in range(3): のブロックは何回実行されますか？', options: ['3', '2', '4', 'ずっと'], explain: 'range(3) は 0, 1, 2 と数えるので 3 回です。' },
         { prompt: '4 回くり返すように完成させましょう。', explain: 'range(4) は 0 から 3 までの数を作ります。' },
-        { prompt: 'for を使って 1 辺 300 mm の正方形を走り、スタートした場所で終わりましょう。ロボットはベースの外から、前と左に空きがある状態でスタートします。', hint: 'for i in range(4): の中に robot.straight(300) と robot.turn(-90)。' },
+        { prompt: 'for を使って 1 辺 300 mm の正方形を走り、スタートした場所で終わりましょう。ロボットはベースの外から、前と左に空きがある状態でスタートします。', hint: 'for i in range(4): の中に robo.straight(300) と robo.turn(-90)。' },
       ],
     },
     u6l2: {
@@ -359,7 +359,7 @@ export const TEXT: ContentText = {
       ex: [
         { prompt: 'Python が def mission(): の行を読むと何が起きますか？', options: ['関数を覚えるだけ。mission() と呼んだときに実行される', 'すぐに関数を実行する', '関数を一度も使わないとエラーになる', '関数をずっとくり返す'], explain: '定義することは実行することではありません。mission() を呼んだときにだけ実行されます。' },
         { prompt: '関数と呼び出しを正しい順番に並べましょう。', explain: 'まずインデントされたブロック付きの定義、次にブロックの外で呼び出します。' },
-        { prompt: '関数 go_and_back(distance) を作り、それを使って赤いゾーンへ行ってスタートにもどりましょう。', hint: '関数の中：robot.straight(distance) と robot.straight(-distance)。外：go_and_back(800)。' },
+        { prompt: '関数 go_and_back(distance) を作り、それを使って赤いゾーンへ行ってスタートにもどりましょう。', hint: '関数の中：robo.straight(distance) と robo.straight(-distance)。外：go_and_back(800)。' },
       ],
     },
     u7l1: {
@@ -372,12 +372,12 @@ export const TEXT: ContentText = {
     },
     u8l1: {
       title: 'ジャイロ',
-      intro: '本物のロボットでは回るたびに車輪が少しすべり、左右の車輪がまったく同じになることもありません。1 回の回転で 2° ずれると、走行の最後には大きなずれになります。\n\nrobot.use_gyro(True) を使うと、DriveBase がハブのジャイロで回転を測り、自分で補正します。\n\nこの課題では、シミュレーターはリアルモードです。本物のロボットのように車輪がすべります。',
+      intro: '本物のロボットでは回るたびに車輪が少しすべり、左右の車輪がまったく同じになることもありません。1 回の回転で 2° ずれると、走行の最後には大きなずれになります。\n\nrobo.use_gyro(True) を使うと、DriveBase がハブのジャイロで回転を測り、自分で補正します。\n\nこの課題では、シミュレーターはリアルモードです。本物のロボットのように車輪がすべります。',
       ex: [
         { prompt: 'プログラムが正しくても、本物のロボットの回転がずれるのはなぜですか？', options: ['車輪がすべり、左右が同じではないから', 'Python が数を四捨五入するから', 'ハブは 10 度ずつしか回れないから', '電池が指示した角度を変えるから'], explain: 'DriveBase は車輪で回転を数えます。車輪がすべると、数えた値と実際の回転が合わなくなります。' },
         { prompt: 'ジャイロは何を測りますか？', options: ['ロボットが実際にどれだけ回ったか', 'マットの色', '壁までの距離', '車輪の速さ'], explain: 'ジャイロはハブ自体の回転を感じ取るので、車輪に左右されません。' },
         { prompt: 'DriveBase でジャイロをオンにするように完成させましょう。', explain: 'use_gyro(True) でオン、use_gyro(False) でオフです。' },
-        { prompt: 'このままプログラムを実行すると、正方形を 2 周したあとロボットはスタートにもどりません。ジャイロをオンにして、ぴったりもどるようにしましょう。', hint: 'for の前に robot.use_gyro(True) を加えます。' },
+        { prompt: 'このままプログラムを実行すると、正方形を 2 周したあとロボットはスタートにもどりません。ジャイロをオンにして、ぴったりもどるようにしましょう。', hint: 'for の前に robo.use_gyro(True) を加えます。' },
       ],
     },
     u8l2: {
@@ -403,7 +403,7 @@ export const TEXT: ContentText = {
       intro: 'FLL のミッションの多くは、物をある場所まで押すことです。ロボットのバンパーは前にある物を押します。\n\n各ミッションを push_crate() のようなわかりやすい名前の関数に入れましょう。こうすれば 1 つのミッションだけをテストでき、関数を順番に呼んで試合全体を組み立てられます。',
       ex: [
         { prompt: 'ミッションごとに関数を分けるのはなぜですか？', options: ['1 つずつテストでき、順番も簡単に変えられるから', 'Pybricks がそうしないといけないと決めているから', 'ロボットが速くなるから', '電池の節約になるから'], explain: '関数でプログラムが整理されます。1 つのミッションを変えても、ほかをこわしません。' },
-        { prompt: 'push_crate() を完成させ、オレンジの箱を青いゾーンまで押して、ベース1 にもどりましょう。', hint: '箱の中心が x = 1500〜1700 の間で止まる必要があります。robot.straight(1300) のあと robot.straight(-1300) を試してみましょう。' },
+        { prompt: 'push_crate() を完成させ、オレンジの箱を青いゾーンまで押して、ベース1 にもどりましょう。', hint: '箱の中心が x = 1500〜1700 の間で止まる必要があります。robo.straight(1300) のあと robo.straight(-1300) を試してみましょう。' },
       ],
     },
     u10l2: {
@@ -411,15 +411,15 @@ export const TEXT: ContentText = {
       intro: 'この課題では、ロボットの左側（ポート C）にグリッパーが付いています。モーターが 90° で開き、0° で閉じます。\n\nつかむには：開いて、つめの間に箱が来るように近づき、閉じます。はなすときはもう一度開きます。\n\nグリッパーの中心は、ロボットの中心から前に 214 mm、左に 46 mm の位置です。',
       ex: [
         { prompt: 'つめの間に何もない状態でグリッパーを閉じるとどうなりますか？', options: ['空のまま閉じ、ロボットは箱なしで進む', 'プログラムがエラーになる', 'ロボットが止まる', '箱がグリッパーのほうへ来る'], explain: 'グリッパーは、閉じるときにつめの間にある物だけをつかみます。' },
-        { prompt: 'open_claw() と close_claw() を使って青い箱をつかみ、ベース1 の中へ運びましょう。', hint: 'open_claw()、robot.straight(466)、close_claw()、robot.straight(-466)。' },
+        { prompt: 'open_claw() と close_claw() を使って青い箱をつかみ、ベース1 の中へ運びましょう。', hint: 'open_claw()、robo.straight(466)、close_claw()、robo.straight(-466)。' },
       ],
     },
     u1l3: {
       title: 'エラーとコメント',
-      intro: '# で始まる行はコメントです。チームのためのメモで、ロボットは無視します。\n\nどこかがまちがっていると、プログラムは止まり、行番号つきのエラーを表示します。robot.straigth() のようにコマンドのつづりをまちがえると AttributeError になります。DriveBase にその名前のコマンドはないからです。',
+      intro: '# で始まる行はコメントです。チームのためのメモで、ロボットは無視します。\n\nどこかがまちがっていると、プログラムは止まり、行番号つきのエラーを表示します。robo.straigth() のようにコマンドのつづりをまちがえると AttributeError になります。DriveBase にその名前のコマンドはないからです。',
       ex: [
         { prompt: '# で始まる行を、ロボットはどうしますか？', options: ['無視する：コメントだから', '2 回実行する', 'エラーでプログラムを止める', 'ビープ音を鳴らす'], explain: 'コメントは人のためにコードを説明するものです。ロボットは読み飛ばします。' },
-        { prompt: 'robot.straigth(300) はエラーになります。なぜですか？', options: ['コマンド名のつづりがまちがっている', '数が大きすぎる', 'かっこは使えない', '先にコメントが必要'], explain: '正しい名前は straight です。Python は正確な名前しかわかりません。' },
+        { prompt: 'robo.straigth(300) はエラーになります。なぜですか？', options: ['コマンド名のつづりがまちがっている', '数が大きすぎる', 'かっこは使えない', '先にコメントが必要'], explain: '正しい名前は straight です。Python は正確な名前しかわかりません。' },
         { prompt: 'このプログラムはエラーで止まります。実行してメッセージを読み、ロボットが 500 mm 進むように直しましょう。', hint: 'straight のつづりを見てみましょう。' },
       ],
     },
@@ -427,25 +427,25 @@ export const TEXT: ContentText = {
       title: '光と音',
       intro: 'ハブには中央ボタンのライトとスピーカーがあります。hub.light.on(Color.GREEN) でライトが緑になり、hub.speaker.beep() で短いビープ音が鳴ります。\n\nテストに便利です。ビープ音でひとつの段階が終わったことがわかり、ライトでロボットがどのミッション中かを示せます。',
       ex: [
-        { prompt: 'ハブのビープ音を鳴らすコマンドはどれですか？', options: ['hub.speaker.beep()', 'hub.light.beep()', 'robot.beep()', 'hub.display.beep()'], explain: '音はスピーカー、つまり hub.speaker から出ます。' },
+        { prompt: 'ハブのビープ音を鳴らすコマンドはどれですか？', options: ['hub.speaker.beep()', 'hub.light.beep()', 'robo.beep()', 'hub.display.beep()'], explain: '音はスピーカー、つまり hub.speaker から出ます。' },
         { prompt: 'ライトを緑にするように完成させましょう。', explain: '色は Color と大文字の名前で書きます。' },
-        { prompt: 'ライトを緑にして、300 mm 進み、最後にビープ音を鳴らしましょう。', hint: 'hub.light.on(Color.GREEN)、robot.straight(300)、hub.speaker.beep()。' },
+        { prompt: 'ライトを緑にして、300 mm 進み、最後にビープ音を鳴らしましょう。', hint: 'hub.light.on(Color.GREEN)、robo.straight(300)、hub.speaker.beep()。' },
       ],
     },
     u2l4: {
       title: 'バックする',
-      intro: '多くのミッションは、同じ道を行って帰ってくるだけです。向きを変えずに、マイナスの距離でバックしましょう。robot.straight(-800) は robot.straight(800) を元にもどします。\n\nこのほうが速く、ロボットは同じ向きのままもどってきます。',
+      intro: '多くのミッションは、同じ道を行って帰ってくるだけです。向きを変えずに、マイナスの距離でバックしましょう。robo.straight(-800) は robo.straight(800) を元にもどします。\n\nこのほうが速く、ロボットは同じ向きのままもどってきます。',
       ex: [
-        { prompt: 'ロボットは robot.straight(800) で進みました。回転せずにスタートへもどすコマンドはどれですか？', options: ['robot.straight(-800)', 'robot.turn(180)', 'robot.straight(800)', 'robot.turn(-800)'], explain: 'マイナスの距離は同じ道をバックします。' },
-        { prompt: '赤いゾーンへ行き、回転せずにベース1 の中へもどりましょう。', hint: 'robot.straight(800) と robot.straight(-800)。' },
+        { prompt: 'ロボットは robo.straight(800) で進みました。回転せずにスタートへもどすコマンドはどれですか？', options: ['robo.straight(-800)', 'robo.turn(180)', 'robo.straight(800)', 'robo.turn(-800)'], explain: 'マイナスの距離は同じ道をバックします。' },
+        { prompt: '赤いゾーンへ行き、回転せずにベース1 の中へもどりましょう。', hint: 'robo.straight(800) と robo.straight(-800)。' },
       ],
     },
     u2l5: {
       title: 'Uターン',
-      intro: 'Uターンは半回転です。robot.turn(180) でも robot.turn(-180) でもかまいません。どちらも反対向きで終わり、回る方向がちがうだけです。\n\nUターンのあとは、プラスの距離でロボットは来た方向へもどります。',
+      intro: 'Uターンは半回転です。robo.turn(180) でも robo.turn(-180) でもかまいません。どちらも反対向きで終わり、回る方向がちがうだけです。\n\nUターンのあとは、プラスの距離でロボットは来た方向へもどります。',
       ex: [
         { prompt: 'ロボットが Uターンするように完成させましょう。', explain: '180 か -180：どちら向きでも半回転です。' },
-        { prompt: 'robot.turn(180) のあと、robot.straight(300) はどうなりますか？', options: ['来た方向へ 300 mm もどる', '300 mm バックする', 'さらに 300 度回る', '横に進む'], explain: 'ロボットは反対を向いているので、前に進むとスタートのほうへもどります。' },
+        { prompt: 'robo.turn(180) のあと、robo.straight(300) はどうなりますか？', options: ['来た方向へ 300 mm もどる', '300 mm バックする', 'さらに 300 度回る', '横に進む'], explain: 'ロボットは反対を向いているので、前に進むとスタートのほうへもどります。' },
         { prompt: '赤いゾーンまで行って Uターンし、前向きに進んでベース1 の中へもどりましょう。', hint: 'straight(800)、turn(180)、straight(800)。' },
       ],
     },
@@ -460,27 +460,27 @@ export const TEXT: ContentText = {
     },
     u3l3: {
       title: 'S字カーブ',
-      intro: '反対向きのカーブを 2 つつなげると S になります。robot.curve(300, -90) のあとに robot.curve(300, 90) を続けると、ロボットは前に 600 mm、左に 600 mm 進み、スタートと同じ向きで終わります。\n\n止まらずになめらかに車線を変える方法です。',
+      intro: '反対向きのカーブを 2 つつなげると S になります。robo.curve(300, -90) のあとに robo.curve(300, 90) を続けると、ロボットは前に 600 mm、左に 600 mm 進み、スタートと同じ向きで終わります。\n\n止まらずになめらかに車線を変える方法です。',
       ex: [
-        { prompt: 'robot.curve(300, -90) と robot.curve(300, 90) のあと、ロボットはどちらを向いていますか？', options: ['スタートと同じ向き', '左', '右', 'うしろ'], explain: '片方のカーブは左に 90°、もう片方は右に 90° 回るので、打ち消し合います。' },
+        { prompt: 'robo.curve(300, -90) と robo.curve(300, 90) のあと、ロボットはどちらを向いていますか？', options: ['スタートと同じ向き', '左', '右', 'うしろ'], explain: '片方のカーブは左に 90°、もう片方は右に 90° 回るので、打ち消し合います。' },
         { prompt: 'カーブ 2 つで黄色いゾーンに着き、スタートと同じく右を向いて終わりましょう。', hint: 'curve(300, -90)、curve(300, 90)、そのあと straight(200)。' },
       ],
     },
     u3l4: {
       title: '回転の速さ',
-      intro: 'settings() では turn_rate で回転の速さも変えられます。単位は度/秒です。robot.settings(turn_rate=400) で turn() が速く回ります。\n\n速い回転は時間を節約できますが、本物のロボットではすべりやすくなります。マットで試しましょう。',
+      intro: 'settings() では turn_rate で回転の速さも変えられます。単位は度/秒です。robo.settings(turn_rate=400) で turn() が速く回ります。\n\n速い回転は時間を節約できますが、本物のロボットではすべりやすくなります。マットで試しましょう。',
       ex: [
         { prompt: 'turn() の回る速さを変える設定はどれですか？', options: ['turn_rate', 'straight_speed', 'axle_track', 'wheel_diameter'], explain: 'turn_rate は回転の速さで、単位は度/秒です。' },
         { prompt: '回転が速くなるように完成させましょう。', explain: 'turn_rate=400 は毎秒 400 度という意味です。' },
-        { prompt: '1 回転（360°）を 2 秒未満で回りましょう。標準の速さでは 2.5 秒かかります。', hint: '回転の前に robot.settings(turn_rate=400) を入れます。' },
+        { prompt: '1 回転（360°）を 2 秒未満で回りましょう。標準の速さでは 2.5 秒かかります。', hint: '回転の前に robo.settings(turn_rate=400) を入れます。' },
       ],
     },
     u4l3: {
       title: 'ぴったりの角度',
       intro: 'run_angle() はモーターの今の位置から足していくので、小さな誤差がたまっていきます。run_target(速さ, 角度) は、モーターがどこから始めても、0 から数えたぴったりの角度へ動きます。\n\nreset_angle(0) は今の位置を新しい 0 にします。',
       ex: [
-        { prompt: 'left_arm.reset_angle(0) は何をしますか？', options: ['今の位置を 0 にする', 'モーターを 0 までもどす', 'モーターを止める', '0 度回る'], explain: '何も動きません。基準が変わるだけです。' },
-        { prompt: 'アタッチメントはもう 105° まで動いています。ぴったり 120° で終わるようにしましょう。', hint: 'left_arm.run_target(500, 120)。' },
+        { prompt: 'anexo_left.reset_angle(0) は何をしますか？', options: ['今の位置を 0 にする', 'モーターを 0 までもどす', 'モーターを止める', '0 度回る'], explain: '何も動きません。基準が変わるだけです。' },
+        { prompt: 'アタッチメントはもう 105° まで動いています。ぴったり 120° で終わるようにしましょう。', hint: 'anexo_left.run_target(500, 120)。' },
       ],
     },
     u4l4: {
@@ -488,7 +488,7 @@ export const TEXT: ContentText = {
       intro: '1 つめのコマンドが終わるまで待つと、2 つめのアタッチメントはそのあとで動き始めます。1 つめに wait=False をつけると、2 つがいっしょに動き、時間を節約できます。',
       ex: [
         { prompt: 'アタッチメントを 2 つ同時に動かすには？', options: ['1 つめのコマンドに wait=False', '両方のコマンドに wait=False', '2 つを同じ行に書く', 'Pybricks ではできない'], explain: '1 つめが動き始めると、プログラムは 2 つめに進みます。wait=False のない 2 つめは終わるまで待ちます。' },
-        { prompt: '両方のアタッチメントを 0.8 秒未満で 180° 回しましょう。', hint: 'left_arm.run_angle(500, 180, wait=False) と right_arm.run_angle(500, 180)。' },
+        { prompt: '両方のアタッチメントを 0.8 秒未満で 180° 回しましょう。', hint: 'anexo_left.run_angle(500, 180, wait=False) と anexo_right.run_angle(500, 180)。' },
       ],
     },
     u5l3: {
@@ -497,7 +497,7 @@ export const TEXT: ContentText = {
       ex: [
         { prompt: '赤いゾーンで止まるように完成させましょう。', explain: 'Color.RED は赤です。' },
         { prompt: 'センサーは赤の上で止まったのに、ロボットの中心はまだゾーンの手前です。なぜですか？', options: ['センサーがロボットの中心より前にあるから', 'センサーがこわれているから', '赤は検出できないから', 'ロボットがバックしたから'], explain: 'センサーはロボットの前の床を読みます。止まる位置を考えるときに覚えておきましょう。' },
-        { prompt: 'センサーが赤いゾーンを見つけるまで進み、そこで止まりましょう。', hint: 'robot.drive(200, 0)、while sensor.color() != Color.RED: wait(10)、robot.stop()。' },
+        { prompt: 'センサーが赤いゾーンを見つけるまで進み、そこで止まりましょう。', hint: 'robo.drive(200, 0)、while sensor.color() != Color.RED: wait(10)、robo.stop()。' },
       ],
     },
     u5l4: {
@@ -505,7 +505,7 @@ export const TEXT: ContentText = {
       intro: 'reflection() は数を返すので、自分でしきい値を決められます。黒は約 7 です。sensor.reflection() > 20 のあいだは、まだ黒に着いていません。\n\n公式マットの色が color() の知っている色とぴったり同じでないときに役立ちます。',
       ex: [
         { prompt: 'reflection() で黒で止まるとき、ロボットを進ませ続ける条件はどれですか？', options: ['while sensor.reflection() > 20:', 'while sensor.reflection() < 20:', 'while sensor.reflection() == 100:', 'while sensor.color() > 20:'], explain: '値が大きい（明るい床）あいだは進み続けます。黒の上では 20 より小さくなります。' },
-        { prompt: 'sensor.reflection() を使って、黒いストップの帯で止まりましょう。', hint: 'robot.drive(200, 0)、while sensor.reflection() > 20: wait(10)、robot.stop()。' },
+        { prompt: 'sensor.reflection() を使って、黒いストップの帯で止まりましょう。', hint: 'robo.drive(200, 0)、while sensor.reflection() > 20: wait(10)、robo.stop()。' },
       ],
     },
     u5l5: {
@@ -518,18 +518,18 @@ export const TEXT: ContentText = {
     },
     u6l3: {
       title: '〜のあいだくり返す',
-      intro: 'while は条件が正しいあいだくり返します。drive() と組み合わせると、ちょうどよいときにロボットを止められます：robot.drive(200, 0)、次に while robot.distance() < 600: wait(10)、そして robot.stop()。\n\ndistance() はロボットが走っているあいだ更新されます。',
+      intro: 'while は条件が正しいあいだくり返します。drive() と組み合わせると、ちょうどよいときにロボットを止められます：robo.drive(200, 0)、次に while robo.distance() < 600: wait(10)、そして robo.stop()。\n\ndistance() はロボットが走っているあいだ更新されます。',
       ex: [
-        { prompt: 'while robot.distance() < 600: はいつくり返しをやめますか？', options: ['ロボットが 600 mm 以上進んだとき', 'ずっとやめない', '600 回くり返したあと', 'すぐに'], explain: '600 mm で条件がまちがいになり、プログラムは先へ進みます。' },
-        { prompt: 'drive() と while ループを使い、600 mm 進んだらロボットを止めましょう。', hint: 'while robot.distance() < 600: の中に wait(10)。' },
+        { prompt: 'while robo.distance() < 600: はいつくり返しをやめますか？', options: ['ロボットが 600 mm 以上進んだとき', 'ずっとやめない', '600 回くり返したあと', 'すぐに'], explain: '600 mm で条件がまちがいになり、プログラムは先へ進みます。' },
+        { prompt: 'drive() と while ループを使い、600 mm 進んだらロボットを止めましょう。', hint: 'while robo.distance() < 600: の中に wait(10)。' },
       ],
     },
     u6l4: {
       title: 'if で決める',
-      intro: 'if は条件が正しいときだけブロックを実行し、else はまちがいのときに実行されます。ロボットはセンサーに合わせて何をするか決められます。\n\n例：if sensor.color() == Color.RED: robot.turn(-90) else: robot.turn(90)。',
+      intro: 'if は条件が正しいときだけブロックを実行し、else はまちがいのときに実行されます。ロボットはセンサーに合わせて何をするか決められます。\n\n例：if sensor.color() == Color.RED: robo.turn(-90) else: robo.turn(90)。',
       ex: [
         { prompt: 'このプログラムは何を表示しますか？', options: ['A', 'B', 'A と B', '何も表示しない'], explain: '5 > 3 は正しいので、if のブロックだけが実行されます。' },
-        { prompt: '700 mm 進んだあと、センサーが赤を見たら左へ、そうでなければ右へ回りましょう。そのあと 400 mm 進みます。', hint: 'if sensor.color() == Color.RED: robot.turn(-90)、else: robot.turn(90)。' },
+        { prompt: '700 mm 進んだあと、センサーが赤を見たら左へ、そうでなければ右へ回りましょう。そのあと 400 mm 進みます。', hint: 'if sensor.color() == Color.RED: robo.turn(-90)、else: robo.turn(90)。' },
       ],
     },
     u6l5: {
@@ -538,7 +538,7 @@ export const TEXT: ContentText = {
       ex: [
         { prompt: 'moves = [800, 640] のとき、moves[1] はいくつですか？', options: ['640', '800', '1440', 'エラー'], explain: '数え方は 0 から：moves[0] は 800、moves[1] は 640 です。' },
         { prompt: 'リストの距離をひとつずつ進むように完成させましょう。', explain: 'for はリストの値をひとつずつ distance に入れます。' },
-        { prompt: '動きのリストにしたがって黄色いゾーンに着くように、ループを完成させましょう。', hint: 'for の中に robot.straight(distance) と robot.turn(angle)。' },
+        { prompt: '動きのリストにしたがって黄色いゾーンに着くように、ループを完成させましょう。', hint: 'for の中に robo.straight(distance) と robo.turn(angle)。' },
       ],
     },
     u6l6: {
@@ -547,7 +547,7 @@ export const TEXT: ContentText = {
       ex: [
         { prompt: '関数がミリメートルの値を返すように完成させましょう。', explain: 'return は結果を、関数を呼んだところへ返します。' },
         { prompt: 'このプログラムは何を表示しますか？', options: ['9', '8', '10', 'double(4) + 1'], explain: 'double(4) は 8 を返し、1 を足して 9 です。' },
-        { prompt: 'mm() を使って 80 cm 進み、赤いゾーンに着きましょう。', hint: 'robot.straight(mm(80))。' },
+        { prompt: 'mm() を使って 80 cm 進み、赤いゾーンに着きましょう。', hint: 'robo.straight(mm(80))。' },
       ],
     },
     u6l7: {
@@ -563,7 +563,7 @@ export const TEXT: ContentText = {
       intro: '練習用マットには、FLL のフィールドの発進エリアのように、両側にひとつずつベースがあります。ベース2 は右側、マットの反対の端です。\n\nマット全体を横切るには時間がかかります。settings() で速くしましょう。',
       ex: [
         { prompt: 'BatControl の練習用マットにはベースがいくつありますか？', options: ['2 つ、両側にひとつずつ', '1 つ', '4 つ', 'ない'], explain: '左にベース1、右にベース2 があります。' },
-        { prompt: 'ベース1 からベース2 まで、6 秒未満でマットを横切りましょう。', hint: 'robot.settings(straight_speed=400) と robot.straight(2000)。' },
+        { prompt: 'ベース1 からベース2 まで、6 秒未満でマットを横切りましょう。', hint: 'robo.settings(straight_speed=400) と robo.straight(2000)。' },
       ],
     },
     u7l3: {
@@ -571,7 +571,7 @@ export const TEXT: ContentText = {
       intro: '本番では、ロボットが走っているあいだにアタッチメントも動かします。アタッチメントを wait=False で動かし始めてから進めば、両方が同時に起こります。\n\n強いチームはこうして、ミッションごとに数秒を節約しています。',
       ex: [
         { prompt: 'ロボットが走っているあいだにアタッチメントを動かすのはなぜですか？', options: ['試合の時間を節約するため', 'ロボットをより正確にするため', 'ハブのきまりだから', '電池を節約するため'], explain: '2 つの動作を同時にすると、かかる時間は合計ではなく長いほうの時間になります。' },
-        { prompt: '赤いゾーンへ行くとちゅうで右のアタッチメントを 90° 開き、帰りに 0° まで閉じて、ベース1 で終わりましょう。全部 6 秒未満です。', hint: 'settings(straight_speed=400)、right_arm.run_angle(500, 90, wait=False)、straight(800)、right_arm.run_angle(500, -90, wait=False)、straight(-800)。' },
+        { prompt: '赤いゾーンへ行くとちゅうで右のアタッチメントを 90° 開き、帰りに 0° まで閉じて、ベース1 で終わりましょう。全部 6 秒未満です。', hint: 'settings(straight_speed=400)、anexo_right.run_angle(500, 90, wait=False)、straight(800)、anexo_right.run_angle(500, -90, wait=False)、straight(-800)。' },
       ],
     },
     u8l3: {
@@ -612,7 +612,7 @@ export const TEXT: ContentText = {
       intro: 'SyntaxError は、Python が行の書き方を理解できなかったという意味です。コロンがない、インデントがずれている、かっこが閉じていない、などです。\n\nメッセージに行が表示されます。その行と、ひとつ上の行を見ましょう。',
       ex: [
         { prompt: 'for の行で SyntaxError が出ました。いちばんありそうな原因は？', options: ['行の最後のコロンがない', '数がまちがっている', 'モーターがつながっていない', 'ロボットがおそすぎる'], explain: 'for、while、if、def の行は必ずコロンで終わります。' },
-        { prompt: 'このプログラムは 1 辺 300 mm の正方形を走ってスタートにもどるはずですが、まちがいが 2 つあります。直しましょう。', hint: 'range(4) のあとにコロンを入れ、robot.turn(-90) をインデントして for の中に入れます。' },
+        { prompt: 'このプログラムは 1 辺 300 mm の正方形を走ってスタートにもどるはずですが、まちがいが 2 つあります。直しましょう。', hint: 'range(4) のあとにコロンを入れ、robo.turn(-90) をインデントして for の中に入れます。' },
       ],
     },
     u11l2: {
@@ -620,7 +620,7 @@ export const TEXT: ContentText = {
       intro: 'print() は出力パネルに値を表示します。ロボットが何を「考えて」いるか、つまりどれだけ進んだか、センサーが何を読んでいるか、heading がいくつかを知るいちばん簡単な方法です。\n\n本物のハブでは、print の内容は Pybricks Code のターミナルに出ます。',
       ex: [
         { prompt: 'このプログラムは何を表示しますか？', options: ['250', '0', '25', 'エラー'], explain: 'distance() はスタートから進んだ mm を数えます。' },
-        { prompt: 'ロボットは黒い帯まで進みます。どれだけ進んだか表示しましょう。', hint: 'robot.stop() のあとに print(robot.distance())。' },
+        { prompt: 'ロボットは黒い帯まで進みます。どれだけ進んだか表示しましょう。', hint: 'robo.stop() のあとに print(robo.distance())。' },
       ],
     },
     u11l3: {
@@ -643,7 +643,7 @@ export const TEXT: ContentText = {
       title: 'ベース2 から発進',
       intro: 'FLL のフィールドでは、もう一方の発進エリアのほうが近いミッションもあります。BatControl では、ベース2 は右側にあり、ロボットは左を向いてスタートします。\n\nコマンドは同じです。前とは、ロボットが向いている方向です。',
       ex: [
-        { prompt: 'ロボットはベース2 で左を向いてスタートします。青いゾーンへ向かうコマンドはどれですか？', options: ['robot.straight(640)', 'robot.straight(-640)', 'robot.turn(180)', 'robot.curve(640, 90)'], explain: 'ロボットは左、つまり青いゾーンのほうを向いているので、前進はプラスです。' },
+        { prompt: 'ロボットはベース2 で左を向いてスタートします。青いゾーンへ向かうコマンドはどれですか？', options: ['robo.straight(640)', 'robo.straight(-640)', 'robo.turn(180)', 'robo.curve(640, 90)'], explain: 'ロボットは左、つまり青いゾーンのほうを向いているので、前進はプラスです。' },
         { prompt: 'ベース2 から青いゾーンへ行き、ベース2 にもどりましょう。', hint: '青いゾーンの中心は前に 642 mm です。' },
       ],
     },
@@ -652,7 +652,7 @@ export const TEXT: ContentText = {
       intro: '試合では 1 秒が大切です。straight_speed と straight_acceleration を上げましょう。ただし本物のロボットでは、速すぎるとすべって正確さが落ちることがあります。\n\n62.4 mm の車輪なら、SPIKE のモーターの車輪の最高速度は約 540 mm/秒です。',
       ex: [
         { prompt: '長いまっすぐな道でいちばん効果がある変更はどれですか？', options: ['straight_speed を上げる', 'turn_rate を上げる', 'axle_track を小さくする', 'wait(100) を入れる'], explain: 'まっすぐな道では、走る速さが大事です。' },
-        { prompt: '赤いゾーンと青いゾーンを通って、8 秒未満でベース1 にもどりましょう。', hint: 'robot.settings(straight_speed=480, straight_acceleration=1500)、straight(1480) と straight(-1480)。' },
+        { prompt: '赤いゾーンと青いゾーンを通って、8 秒未満でベース1 にもどりましょう。', hint: 'robo.settings(straight_speed=480, straight_acceleration=1500)、straight(1480) と straight(-1480)。' },
       ],
     },
     u12l3: {
@@ -668,7 +668,7 @@ export const TEXT: ContentText = {
       intro: '学んだことを組み合わせましょう。線を最後までたどり、ライトとビープ音で着いたことを知らせます。\n\nおめでとう：このレッスンを終えれば、FLL で使う Pybricks のおもなコマンドがわかります。',
       ex: [
         { prompt: 'ミッションが本物のロボットで本当にうまくいくか知るいちばんよい方法は？', options: ['何回も実行して、毎回うまくいくか見る', '1 回だけ実行する', 'コードを見るだけ', 'シミュレーターだけで試す'], explain: 'よいミッションは 1 回だけでなく、毎回うまくいきます。' },
-        { prompt: '線を最後までたどり、そのあとライトを緑にしてビープ音を鳴らしましょう。', hint: 'while robot.distance() < 1300: で kp を使ったライントレース。そのあと robot.stop()、hub.light.on(Color.GREEN)、hub.speaker.beep()。' },
+        { prompt: '線を最後までたどり、そのあとライトを緑にしてビープ音を鳴らしましょう。', hint: 'while robo.distance() < 1300: で kp を使ったライントレース。そのあと robo.stop()、hub.light.on(Color.GREEN)、hub.speaker.beep()。' },
       ],
     },
   },
