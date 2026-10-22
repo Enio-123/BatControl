@@ -115,7 +115,8 @@ button:disabled { cursor: not-allowed; }
   border-bottom: 1px solid var(--line);
 }
 .brand { display: flex; align-items: center; gap: 10px; min-width: 0; border: 0; background: transparent; padding: 0; text-align: left; }
-.logo { width: 46px; height: auto; display: block; }
+.logo { width: 40px; height: 40px; display: block; flex: none; }
+.logo svg, .lang-logo svg, .splash-logo svg { display: block; width: 100%; height: 100%; }
 .brand-text { display: flex; flex-direction: column; line-height: 1.1; }
 .brand-text .name { font-family: var(--font-display); font-weight: 700; font-size: 1.22rem; letter-spacing: 0.02em; }
 .brand-text .sub { font-size: 0.74rem; color: var(--muted); }
@@ -249,23 +250,20 @@ dialog.sheet.closing::backdrop { opacity: 0; transition: opacity 0.16s; }
   position: fixed; inset: 0; z-index: 200; display: grid; place-content: center; justify-items: center; gap: 18px;
   background: radial-gradient(120% 90% at 50% 40%, #1d1f23 0%, #0b0c0e 70%); color: #f2f1ec; cursor: pointer;
 }
-.splash-logo { position: relative; width: min(56vw, 240px); aspect-ratio: 320 / 278; }
-.splash-logo img { width: 100%; height: 100%; display: block; animation: splash-build 0.9s steps(9, end) both, splash-pop 0.5s 0.9s var(--ease) both; filter: drop-shadow(0 10px 40px rgba(245, 197, 24, 0.25)); }
-.splash-shine {
-  position: absolute; inset: 0; pointer-events: none; mix-blend-mode: overlay;
-  background: linear-gradient(105deg, transparent 35%, rgba(255, 255, 255, 0.85) 50%, transparent 65%) no-repeat;
-  background-size: 250% 100%; background-position: 130% 0;
-  animation: splash-shine 0.8s 1.05s ease-out both;
-}
+.splash-logo { width: min(78vw, 320px); aspect-ratio: 472 / 184; filter: drop-shadow(0 10px 40px rgba(245, 197, 24, 0.22)); }
+.splash-logo .lw { animation: splash-left 0.55s 0.1s var(--ease) both; }
+.splash-logo .rw { animation: splash-right 0.55s 0.1s var(--ease) both; }
+.splash-logo .bat { animation: splash-up 0.5s 0.5s var(--ease) both; }
 .splash-name { font-family: 'Chakra Petch', var(--font-display); font-weight: 700; font-size: 2rem; letter-spacing: 0.04em; animation: splash-rise 0.45s 1s var(--ease) both; }
 .splash-name span:last-child { color: var(--accent); }
+.splash-by { font-size: 0.78rem; color: #6f747b; animation: splash-rise 0.45s 1.25s var(--ease) both; }
 .splash-sub { font-size: 0.8rem; letter-spacing: 0.14em; text-transform: uppercase; color: #9da3ab; animation: splash-rise 0.45s 1.15s var(--ease) both; }
 .splash.out { animation: splash-out 0.42s ease-in forwards; }
 .splash.reduced * { animation: none !important; }
 .splash.reduced.out { animation: fade-out 0.15s forwards; }
-@keyframes splash-build { from { clip-path: inset(100% 0 0 0); } to { clip-path: inset(0 0 0 0); } }
-@keyframes splash-pop { 0% { transform: scale(1); } 40% { transform: scale(1.06); } 100% { transform: scale(1); } }
-@keyframes splash-shine { from { background-position: 130% 0; opacity: 1; } to { background-position: -30% 0; opacity: 0; } }
+@keyframes splash-left { from { opacity: 0; transform: translateX(-90px); } }
+@keyframes splash-right { from { opacity: 0; transform: translateX(90px); } }
+@keyframes splash-up { from { opacity: 0; transform: translateY(60px); } }
 @keyframes splash-rise { from { opacity: 0; transform: translateY(10px); } }
 @keyframes splash-out { to { opacity: 0; transform: scale(1.04); } }
 @keyframes fade-out { to { opacity: 0; } }
@@ -275,7 +273,7 @@ dialog.sheet.closing::backdrop { opacity: 0; transition: opacity 0.16s; }
 }
 .lang-screen.out { animation: fade-out 0.25s forwards; }
 .lang-card { width: min(460px, 100%); display: grid; gap: 14px; justify-items: center; text-align: center; background: var(--surface); border-radius: 20px; padding: 28px 22px 22px; box-shadow: var(--shadow-2); }
-.lang-logo { width: 84px; height: auto; }
+.lang-logo { width: 72px; height: 72px; }
 .lang-grid { width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 4px; }
 .lang-opt { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 12px 14px; border: 2px solid var(--line); border-radius: 12px; background: var(--surface); text-align: left; }
 .lang-opt[aria-checked="true"] { border-color: var(--accent); background: var(--accent-soft); }

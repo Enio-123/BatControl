@@ -125,6 +125,7 @@ export const UI: Record<string, string> = {
 
   // ---- App ----
   "app.tagline": "Pybricks pour la FIRST LEGO League",
+  "app.by": "créé par l’équipe BatLego",
   "app.noStorage": "Ce navigateur ne permet pas d'enregistrer des données : la progression sera perdue à la fermeture de la page.",
   "ui.close": "Fermer",
   "nav.label": "Sections",

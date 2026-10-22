@@ -6,7 +6,7 @@ import '@fontsource/ibm-plex-sans/latin-600.css';
 import '@fontsource/jetbrains-mono/latin-400.css';
 import '@fontsource/jetbrains-mono/latin-600.css';
 import './style.css';
-import logoUrl from '../public/logo-batlego.png';
+import { iconSvg, logoEl } from './ui/logo';
 import { browserLang, Lang, setLang, t } from './i18n';
 import { START } from './content/setup';
 import { topicText } from './content/text';
@@ -100,7 +100,7 @@ function build() {
   const title = h('span', { class: 'top-title' });
   const header = h('header', { class: 'topbar' },
     h('button', { type: 'button', class: 'brand', onclick: () => go('home'), 'aria-label': `BatControl, ${t('nav.home')}` },
-      h('img', { src: logoUrl, alt: '', class: 'logo', width: '46', height: '40' }),
+      logoEl('logo', iconSvg()),
       h('span', { class: 'brand-text' }, h('span', { class: 'name' }, 'BatControl'), h('span', { class: 'sub' }, t('app.tagline')))),
     title,
     navButtons('tabs top-tabs'),

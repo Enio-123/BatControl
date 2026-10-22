@@ -1,19 +1,18 @@
-// Abertura com a logo da BatLego e escolha de idioma na primeira entrada.
-import logoUrl from '../../public/logo-batlego.png';
+// Abertura com a logo do BatControl e escolha de idioma na primeira entrada.
 import { browserLang, LANGS, Lang, setLang, t } from '../i18n';
 import { h } from './dom';
+import { iconSvg, logoEl, markSvg } from './logo';
 
 const reduced = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-/** Logo montada "peça por peça" (de baixo para cima), brilho e o nome do app. Toque para pular. */
+/** Os sinais < > chegam dos lados, o morcego sobe no meio, depois o nome do app. Toque para pular. */
 export function playSplash(): Promise<void> {
   return new Promise((resolve) => {
-    const el = h('div', { class: `splash${reduced() ? ' reduced' : ''}`, role: 'img', 'aria-label': 'BatLego · BatControl' },
-      h('div', { class: 'splash-logo' },
-        h('img', { src: logoUrl, alt: '', width: '320', height: '278', draggable: 'false' }),
-        h('span', { class: 'splash-shine', 'aria-hidden': 'true', style: `-webkit-mask:url(${logoUrl}) center/contain no-repeat;mask:url(${logoUrl}) center/contain no-repeat` })),
+    const el = h('div', { class: `splash${reduced() ? ' reduced' : ''}`, role: 'img', 'aria-label': 'BatControl' },
+      logoEl('splash-logo', markSvg()),
       h('div', { class: 'splash-name' }, h('span', {}, 'Bat'), h('span', {}, 'Control')),
-      h('div', { class: 'splash-sub' }, 'Pybricks · FIRST LEGO League'));
+      h('div', { class: 'splash-sub' }, 'Pybricks · FIRST LEGO League'),
+      h('div', { class: 'splash-by' }, t('app.by')));
     let done = false;
     const finish = () => {
       if (done) return;
@@ -52,7 +51,7 @@ export function pickLanguage(): Promise<Lang> {
     });
     const el = h('div', { class: 'lang-screen' },
       h('div', { class: 'lang-card' },
-        h('img', { src: logoUrl, alt: 'BatLego', width: '96', height: '83', class: 'lang-logo' }),
+        logoEl('lang-logo', iconSvg()),
         title, sub,
         h('div', { class: 'lang-grid', role: 'radiogroup', 'aria-label': 'Language' }, btns),
         go));
