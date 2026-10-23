@@ -10,7 +10,7 @@ import { iconSvg, logoEl } from './ui/logo';
 import { browserLang, Lang, setLang, t } from './i18n';
 import { START } from './content/setup';
 import { topicText } from './content/text';
-import { currentStreak, save, state, storageAvailable } from './store';
+import { currentStreak, renameOldNames, save, state, storageAvailable } from './store';
 import { Viewer } from './three/viewer';
 import { decodeShare, addProgram } from './ui/library';
 import { h, icon, IconName, iconBtn, openSheet } from './ui/dom';
@@ -158,6 +158,7 @@ async function handleShareLink() {
   const p = await decodeShare(m[1]);
   try { history.replaceState(null, '', `#${current}`); } catch { /* iframe */ }
   if (!p) return;
+  p.code = renameOldNames(p.code);
   const sheet = openSheet(t('share.importTitle'), [
     h('p', {}, t('share.importDesc', { name: p.name })),
     h('pre', { class: 'code-block mono preview' }, p.code.split('\n').slice(0, 14).join('\n') + (p.code.split('\n').length > 14 ? '\n…' : '')),

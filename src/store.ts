@@ -114,6 +114,30 @@ function load(): Saved {
 }
 
 export const state = load();
+migrateNames();
+
+/** Troca os nomes antigos (robot, left_arm, right_arm) pelos da equipe (robo, anexo_left, anexo_right)
+ *  no código salvo. Só mexe na parte de código de cada linha, não nos comentários. */
+export function renameOldNames(code: string): string {
+  return code.split('\n').map((line) => {
+    const i = line.indexOf('#');
+    const head = i < 0 ? line : line.slice(0, i);
+    const tail = i < 0 ? '' : line.slice(i);
+    return head.replace(/\brobot\b/g, 'robo').replace(/\bleft_arm\b/g, 'anexo_left').replace(/\bright_arm\b/g, 'anexo_right') + tail;
+  }).join('\n');
+}
+
+function migrateNames() {
+  try {
+    if (localStorage.getItem(KEY + ':names') === '2') return;
+    if (state.code) state.code = renameOldNames(state.code);
+    for (const p of state.programs) p.code = renameOldNames(p.code);
+    save();
+    localStorage.setItem(KEY + ':names', '2');
+  } catch {
+    /* sem armazenamento: nada salvo para migrar */
+  }
+}
 
 export function save() {
   try {
